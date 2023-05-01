@@ -26,14 +26,14 @@ def pizza_index(request, all_pizzas=None):
 
 def offer_index(request):
     all_offers = models.Offer.objects.all()
-    return render(request, "#", context={"all_offers": all_offers})
+    return render(request, "product/offer_index.html", context={"all_offers": all_offers})
 
 
 def pizza_detail(request, pizza_id):
     selected_pizza = get_object_or_404(models.Pizza, pk=pizza_id)
-    return render(request, "#", context={"selected_pizza": selected_pizza})
+    return render(request, "product/pizza_detail.html", context={"selected_pizza": selected_pizza})
 
 
 def offer_detail(request, offer_id):
     selected_offer = get_object_or_404(models.Offer, pk=offer_id)
-    return render(request, "#", context={"selected_offer": selected_offer})
+    return render(request, "product/offer_detail.html", context={"selected_offer": selected_offer})
