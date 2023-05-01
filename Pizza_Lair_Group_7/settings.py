@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "product.apps.ProductConfig",
+    "user.apps.UserConfig",
 ]
 
 MIDDLEWARE = [
@@ -117,6 +118,14 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# If I try to access locked resources while not authenticated,
+# then I will be redirected to this URL
+LOGIN_URL = "/user/login"
+
+# When I have successfully logged in, I will be redirected
+# to this URL
+LOGIN_REDIRECT_URL = "/order/pizzas"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
