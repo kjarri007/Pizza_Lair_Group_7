@@ -21,7 +21,7 @@ def pizza_index(request, all_pizzas=None):
 
     context = {'pizzas': Pizza.objects.all().order_by('name')}
     # TODO: Create a html file "pizza_index.html"
-    return render(request, 'pizza/pizza_index.html', context={"all_pizzas": all_pizzas})
+    return render(request, 'product/pizza_index.html', context={"all_pizzas": all_pizzas})
 
 
 def offer_index(request):
