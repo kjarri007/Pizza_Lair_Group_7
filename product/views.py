@@ -6,7 +6,8 @@ from product.models import Pizza
 
 
 # Create your views here.
-def index(request):  # searching all pizzas
+
+def pizza_index(request, all_pizzas=None):
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
         pizzas = [{
@@ -17,13 +18,10 @@ def index(request):  # searching all pizzas
         } for x in Pizza.objects.filter(name__icontains=search_filter)]
         pizzas = list(Pizza.objects.filter(name__in=search_filter).values())
         return JsonResponse({'data': pizzas})
+
     context = {'pizzas': Pizza.objects.all().order_by('name')}
-    return render(request, 'pizza/index.html', context)
-
-
-def pizza_index(request):
-    all_pizzas = models.Pizza.objects.all()
-    return render(request, "#", context={"all_pizzas": all_pizzas})
+    # TODO: Create a html file "pizza_index.html"
+    return render(request, 'pizza/pizza_index.html', context={"all_pizzas": all_pizzas})
 
 
 def offer_index(request):
