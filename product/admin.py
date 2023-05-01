@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Pizza)
-admin.site.register(Offers)
+admin.site.register(Offer)
 admin.site.register(Topping)
 admin.site.register(Category)
 admin.site.register(PizzaImg)
