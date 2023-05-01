@@ -19,7 +19,7 @@ class Topping(models.Model):
 class Pizza(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    price = models.IntegerField()
+    price = models.IntegerField(default=1000)
     toppings = models.ManyToManyField(Topping)
     categories = models.ManyToManyField(Category)
 
@@ -30,7 +30,7 @@ class Pizza(models.Model):
 class Offer(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    price = models.IntegerField()
+    price = models.IntegerField(default=1000)
     pizzas = models.ManyToManyField(Pizza)
 
     def __str__(self):
