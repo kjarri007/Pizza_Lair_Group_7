@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>{{ offer.name }}</h1>
+    <p>{{ offer.description }}</p>
+    <p>{{ offer.price }} kr</p>
+    <p>Pizzas included in the offer: {{ offer.pizzas }}</p>
+    {% for offerImg in offer.offerImg_set.all %}
+        <img src="{{ offerImg.image }}" class="offerImg">
+    {% endfor %}
+    
+{% endblock %}

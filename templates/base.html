@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- font awesome cdn link  -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/header_footer.css' %}">
     <title>Base</title>
 </head>
 <body>
@@ -23,10 +24,10 @@
                 <ul>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'myAccount' %}">My Account</a></li>
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="{% url 'user_logout' %}">Logout</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                        <li><a href="{% url 'register' %}">Register</a></li>
+                        <li><a href="{% url 'user_login' %}">Login</a></li>
+                        <li><a href="{% url 'user_register' %}">Register</a></li>
                     {% endif %}
                 </ul>
             </nav>
@@ -37,9 +38,11 @@
     </header>
     {% include 'navigation.html' %}
 
-    {% block content %}
-        <H1>Welcome to Pizza Lair</H1>
-    {% endblock %}
+    <div class="container">
+        {% block content %}
+            <H1>Welcome to Pizza Lair</H1>
+        {% endblock %}
+    </div>
 
 <!------ Footer ------>
 <footer class="footer">
