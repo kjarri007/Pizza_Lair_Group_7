@@ -1,9 +1,25 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
 from product import models
+from product.models import Pizza
 
 
 # Create your views here.
+def index(request):  # searching all pizzas
+    if 'search_filter' in request.GET:
+        search_filter = request.GET['search_filter']
+        pizzas = [{
+            'id': x.id,
+            'name': x.name,
+            'description': x.description,
+            'firstImage': x.pizzaimg_set.first().image
+        } for x in Pizza.objects.filter(name__icontains=search_filter)]
+        pizzas = list(Pizza.objects.filter(name__in=search_filter).values())
+        return JsonResponse({'data': pizzas})
+    context = {'pizzas': Pizza.objects.all().order_by('name')}
+    return render(request, 'pizza/index.html', context)
+
 
 def pizza_index(request):
     all_pizzas = models.Pizza.objects.all()
