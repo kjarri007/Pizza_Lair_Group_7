@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
+
+from user.forms.profile import ProfileForm
 from user.models import Profile
 
 
@@ -24,5 +26,10 @@ def profile(request):
     # user_profile = get_object_or_404(Profile, pk=request.user)
     user_profile = Profile.objects.filter(user=request.user).first()
     if request.method == "POST":
-        pass
-    return render(request, "user/profile.html", context={"form": ""})
+        form = ProfileForm(instance=user_profile, data=request.POST)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+            return redirect("profile")
+    return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
