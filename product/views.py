@@ -27,7 +27,7 @@ def pizza_index(request):
 
 
 def offer_index(request):
-    all_offers = models.Offers.objects.all()
+    all_offers = models.Offer.objects.all()
     return render(request, "#", context={"all_offers": all_offers})
 
 
@@ -37,5 +37,5 @@ def pizza_detail(request, pizza_id):
 
 
 def offer_detail(request, offer_id):
-    selected_offer = get_object_or_404(models.Offers, pk=offer_id)
+    selected_offer = get_object_or_404(models.Offer, pk=offer_id)
     return render(request, "#", context={"selected_offer": selected_offer})

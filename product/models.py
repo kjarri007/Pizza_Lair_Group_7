@@ -5,24 +5,36 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
 
 class Topping(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 
 class Pizza(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
+    price = models.IntegerField(default=1000)
     toppings = models.ManyToManyField(Topping)
     categories = models.ManyToManyField(Category)
-    price = models.IntegerField()
+
+    def __str__(self):
+        return self.name
 
 
-class Offers(models.Model):
+class Offer(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
+    price = models.IntegerField(default=1000)
     pizzas = models.ManyToManyField(Pizza)
-    price = models.IntegerField()
+
+    def __str__(self):
+        return self.name
 
 
 class PizzaImg(models.Model):
@@ -32,4 +44,4 @@ class PizzaImg(models.Model):
 
 class OfferImg(models.Model):
     image = models.CharField(max_length=9999)
-    offer = models.ForeignKey(Offers, on_delete=models.CASCADE)
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
