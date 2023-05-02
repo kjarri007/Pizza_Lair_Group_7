@@ -60,7 +60,7 @@ header {
 }
 
 .footer_logo {
-	margin-left: 4%;
+    margin-left: 1%;
 	margin-top: 0;
 }
 .social-media {
@@ -85,11 +85,7 @@ header {
 }
 
 .company-info > li{
-    margin-top: 7%;
+    width: fit-content;
+    margin-top: 5%;
     padding: 2%;
-}
-
-#copyright {
-    margin-top: 6%;
-    padding-right: 1%;
 }

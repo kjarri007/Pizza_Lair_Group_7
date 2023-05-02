@@ -7,12 +7,14 @@ $(document).ready(function(){
             type: 'GET',
             success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="well pizza">
-                                <a href="/order/pizzas/${d.id}">
-                                    <img class="card-img-top" src="${d.firstImage}" />
-                                    <h4>${d.name}</h4>
-                                    <p>${d.description}</p>
+                    return `<div class=" well card pizza" style="width: 24rem;">
+                                <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <div class="card-body">
+                                    <h4 class="card-title">${d.name}</h4>
+                                    <p class="card-text">${d.description}</p>
                                 </a>
+                                </div>
                             </div>`
                 });
                 $('.pizza-catalog').html(newHtml.join(''));
