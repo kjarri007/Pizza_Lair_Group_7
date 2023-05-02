@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <h1>{{ pizza.name }}</h1>
-    <p>{{ pizza.description }}</p>
-    <p>{{ pizza.price }} kr</p>
-    <p>Toppings: {{ pizza.toppings }}</p>
-    <p>Category: {{ pizza.categories }}</p>
-    {% for pizzaImg in pizza.pizzaImg_set.all %}
-        <img src="{{ pizzaImg.image }}" class="pizzaImg">
+    <h1>{{ selected_pizza.name }}</h1>
+    {% for pizzaimg in selected_pizza.pizzaimg_set.all %}
+        <img src="{{ pizzaimg.image }}" class="pizzaImg" alt="pizza detail image">
     {% endfor %}
+    <h5>{{ selected_pizza.description }}</h5>
+    <p>{{ selected_pizza.price }} kr</p>
+    <h6>Toppings:</h6>
+        <ul class="list-group list-group-horizontal-sm">
+            {% for topping in selected_pizza.toppings.all %}
+              <li class="list-group-item">{{ topping.name }}</li>
+            {% endfor %}
+        </ul>
 {% endblock %}
+
+
