@@ -1,7 +1,12 @@
-<div class="well pizza">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+<div class="card pizza" style="width: 18rem;">
     <a>
-        <img class="pizzaImg" src="{{ pizza.pizzaimg_set.first.image }}">
-            <h4>{{ pizza.name }}</h4>
-            <p>{{ pizza.description }}</p>
+        <img class="card-img-top" src="{{ pizza.pizzaimg_set.first.image }}">
+        <div class="card-body">
+            <h4 class="card-title">{{ pizza.name }}</h4>
+            <p class="card-text">{{ pizza.description }}</p>
+        </div>
     </a>
 </div>
