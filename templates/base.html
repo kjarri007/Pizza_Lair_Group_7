@@ -24,7 +24,6 @@
             <nav class="nav-links">
                 <ul>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'myAccount' %}">My Account</a></li>
                         <li><a href="{% url 'user_logout' %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'user_login' %}">Login</a></li>
