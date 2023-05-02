@@ -18,8 +18,6 @@ def pizza_index(request):
         } for pizza in Pizza.objects.filter(name__icontains=search_filter)]
         return JsonResponse({'data': pizzas})
 
-    context = {'pizzas': Pizza.objects.all().order_by('name')}
-    # TODO: Create a html file "pizza_index.html"
     all_pizzas = models.Pizza.objects.all()
     return render(request, 'product/pizza_index.html', context={"all_pizzas": all_pizzas})
 
