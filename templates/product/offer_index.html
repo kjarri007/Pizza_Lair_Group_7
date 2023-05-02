@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Our offers</h1>
-    <div class="card">
+    <h2>Our offers</h2>
+    <div class="d-flex flex-wrap">
         {% for offer in all_offers %}
             {% include 'product/single_offer.html' with offer=offer %}
         {% endfor %}
