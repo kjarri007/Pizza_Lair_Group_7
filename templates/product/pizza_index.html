@@ -2,16 +2,19 @@
 {% block content %}
     <h2>Our menu</h2>
 
-    <nav class="navbar bg-body-tertiary d-flex">
-      <div class="container-fluid">
-        <form class="d-flex flex-wrap" role="search">
+    <nav class="navbar bg-body-tertiary d-flex col-sm-11" >
+      <div class="container">
+        <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-bar">
           <button id="search-btn" class="btn btn-outline-success" type="submit">Search</button>
-            <label class="form-check-label" for="flexSwitchCheckDefault">z-a</label>
+
+            <div class="d-flex">
+            <label class="form-check-label col-sm-6" for="flexSwitchCheckDefault">z-a</label>
        <div class=" form-check form-switch">
            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-              <label class="form-check-label" for="flexSwitchCheckDefault">a-z</label>
+              <label class="form-check-label col-sm-8" for="flexSwitchCheckDefault">a-z</label>
         </div>
+            </div>
         </form>
       </div>
     </nav>
