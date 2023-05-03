@@ -16,3 +16,64 @@
 	background: #9c2521;
 	transition: 1s;
 }
+
+.color-green {
+	border-color: green;
+	color: green;
+	background-color: white;
+}
+
+.color-green:hover {
+	border-color: green;
+	color: white;
+	background-color: green;
+
+}
+
+.color-red {
+	border-color: red;
+	color: red;
+	background-color: white;
+}
+
+.color-red:hover {
+	border-color: red;
+	color: white;
+	background-color: red;
+}
+
+.color-light-green {
+	border-color: lightseagreen;
+	color: lightseagreen;
+	background-color: white;
+}
+
+.color-light-green:hover {
+	border-color: lightseagreen;
+	color: white;
+	background-color: lightseagreen;
+}
+
+.color-orange {
+	border-color: orange;
+	color: orange;
+	background-color: white;
+}
+
+.color-orange:hover {
+	border-color: orange;
+	color: white;
+	background-color: orange;
+}
+
+.color-blue {
+	border-color: blue;
+	color: blue;
+	background-color: white;
+}
+
+.color-blue:hover {
+	border-color: blue;
+	color: white;
+	background-color: blue;
+}
