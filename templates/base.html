@@ -36,7 +36,7 @@
             </nav>
             <div class="header-logo">
 				<a href=""><img class="header-logo-before" src="{% static '/images/logo.png' %}" alt="logo"></a>
-				<a href="https://www.dominos.is/"><img class="header-logo-hover" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>
+				<a href="{% url 'main_page' %}"><img class="header-logo-hover" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>
 			</div>
         </div>
     </header>
@@ -56,7 +56,7 @@
     <nav class="nav-links-footer">
         <ul class="company-info">
             <li>Phone: 5812345</li>
-            <li>Email: <a href="https://www.dominos.is" target="_blank">pizzalair@pizzalair.com</a></li>
+            <li>Email: <a href="{% url 'main_page' %}" target="_blank">pizzalair@pizzalair.com</a></li>
             <li>Locations: Pizzafold 12, 112 Reykjavík</li>
             <li >Hópur 7 <i class="far fa-copyright"></i> 2023 </li>
         </ul>
