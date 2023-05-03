@@ -1,6 +1,4 @@
 {% load static %}
-{% load crispy_forms_filters %}
-{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,29 +34,29 @@
                     {% endif %}
                 </ul>
             </nav>
-                <div class="bottom-logo">
-                    <a href="https://www.dominos.is/"><img src="{% static '/images/logo.png' %}" alt="logo" /></a>
-                </div>
+            <div class="header-logo">
+				<a href=""><img class="header-logo-before" src="{% static '/images/logo.png' %}" alt="logo"></a>
+				<a href="{% url 'main_page' %}"><img class="header-logo-hover" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>
+			</div>
         </div>
     </header>
     {% include 'navigation.html' %}
 
     <div class="container">
         {% block content %}
-            <H1>Welcome to Pizza Lair</H1>
         {% endblock %}
     </div>
 
 <!------ Footer ------>
 <footer class="footer">
-    <div class="footer_logo">
-        <a href="https://www.dominos.is/"><img src="{% static '/images/logo.png' %}" alt="logo" /></a>
+    <div class="footer-logo">
+        <a href=""><img class="footer-logo-before" src="{% static '/images/logo.png' %}" alt="logo"></a>
     </div>
 
     <nav class="nav-links-footer">
         <ul class="company-info">
             <li>Phone: 5812345</li>
-            <li>Email: <a href="https://www.dominos.is" target="_blank">pizzalair@pizzalair.com</a></li>
+            <li>Email: <a href="{% url 'main_page' %}" target="_blank">pizzalair@pizzalair.com</a></li>
             <li>Locations: Pizzafold 12, 112 Reykjavík</li>
             <li >Hópur 7 <i class="far fa-copyright"></i> 2023 </li>
         </ul>

@@ -26,11 +26,29 @@ header {
     height: 100%;
 }
 
-.bottom-logo {
-    width: 75%;
-    height: 100%;
+.header-logo img.header-logo-before {
+	position: relative;
+	margin-bottom: 6%;
+	visibility: visible;
 }
 
+.header-logo:hover img.header-logo-before {
+	visibility: hidden;
+}
+
+.header-logo img.header-logo-hover {
+	position: absolute;
+	top: 11%;
+	right: 0.8%;
+	visibility: hidden;
+}
+
+.header-logo:hover img.header-logo-hover {
+	position: absolute;
+	top: 11%;
+	right: 0.8%;
+	visibility: visible;
+}
 #login_register {
     font-size: 24px;
 }
@@ -73,14 +91,10 @@ header {
 
 .footer {
     display: flex;
-    margin-top: 3%;
+	padding: 1%;
     width: 100%;
 }
 
-.footer_logo {
-    margin-left: 1%;
-	margin-top: 0;
-}
 .social-media {
     width: 8rem;
     margin: auto;
