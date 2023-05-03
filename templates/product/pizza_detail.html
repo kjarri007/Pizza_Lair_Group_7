@@ -1,11 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
 {% block content %}
-    <h1>{{ pizza.name }}</h1>
-    <p>{{ pizza.description }}</p>
-    <p>{{ pizza.price }} kr</p>
-    <p>Toppings: {{ pizza.toppings }}</p>
-    <p>Category: {{ pizza.categories }}</p>
-    {% for pizzaImg in pizza.pizzaImg_set.all %}
-        <img src="{{ pizzaImg.image }}" class="pizzaImg">
-    {% endfor %}
+        <h1 class="card-title">{{ selected_pizza.name }}</h1>
+        <div class="card mb-3" style="max-width: 900px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% for pizzaimg in selected_pizza.pizzaimg_set.all %}
+                        <img src="{{ pizzaimg.image }}" class="img-fluid rounded-start" alt="pizza detail">
+                    {% endfor %}
+                </div>
+                    <div class="col-md-8">
+                        <div class="card-body position-relative">
+                            <h4 class="card-text m-4">{{ selected_pizza.description }}</h4>
+                            <h6>Toppings:</h6>
+                            <ul class="d-flex flex-wrap list-group list-group-horizontal-sm ">
+                                {% for topping in selected_pizza.toppings.all %}
+                                    <li class="list-group-item">{{ topping.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <h3 class="position-absolute bottom-0 end-0 m-2">{{ selected_pizza.price }} kr</h3>
+                    </div>
+                </div>
+            </div>
 {% endblock %}
+
+
+

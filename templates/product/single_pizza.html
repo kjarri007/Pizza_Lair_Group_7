@@ -1,7 +1,12 @@
-<div class="well pizza">
-    <a>
-        <img class="pizzaImg" src="{{ pizza.pizzaimg_set.first.image }}">
-            <h4>{{ pizza.name }}</h4>
-            <p>{{ pizza.description }}</p>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+<div class="well card pizza" style="width: 18rem;">
+    <a href ="{% url 'pizza_detail' pizza.id %}" class="link-offset-2 link-underline link-underline-opacity-0">
+        <img class="card-img-top" src="{{ pizza.pizzaimg_set.first.image }}" alt="pizza card">
+        <div class="card-body">
+            <h4 class="card-title">{{ pizza.name }}</h4>
+            <p class="card-text">{{ pizza.description }}</p>
+        </div>
     </a>
 </div>

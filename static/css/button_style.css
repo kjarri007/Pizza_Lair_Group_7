@@ -1,0 +1,18 @@
+.main_btn {
+	display: inline-block;
+	text-decoration: none;
+	color: #9c2521;
+	border: 1px solid #9c2521;
+	padding: 12px 34px;
+	font-size: 13px;
+	background: transparent;
+	position: relative;
+	cursor: pointer;
+}
+
+.main_btn:hover {
+	border: 1px solid #9c2521;
+	color: #fff;
+	background: #9c2521;
+	transition: 1s;
+}

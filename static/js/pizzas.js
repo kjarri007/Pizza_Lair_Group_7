@@ -1,25 +1,26 @@
 $(document).ready(function(){
     $('#search-btn').on('click', function(e){
         e.preventDefault();
-        let searchText = $('search-box').val();
+        let searchText = $('#search-bar').val();
         $.ajax({
-            url: '/pizzas?search_filter=' + searchText,
+            url: '/order/pizzas?search_filter=' + searchText,
             type: 'GET',
             success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class="well candy">
-                                <a href="/pizzas/${d.id}">
-                                    <img class="pizza-img" src="${d.firstImage}" />
-                                    <h4>${d.name}</h4>
-                                    <p>${d.description}</p>
+                    return `<div class=" well card pizza" style="width: 24rem;">
+                                <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <div class="card-body">
+                                    <h4 class="card-title">${d.name}</h4>
+                                    <p class="card-text">${d.description}</p>
                                 </a>
-                        </div>`
+                                </div>
+                            </div>`
                 });
-                $('.pizzas').html(newHtml.join(''));
-                $('search-box').val('');
+                $('.pizza-catalog').html(newHtml.join(''));
+                $('#search-bar').val('');
             },
-            error: function(xhr, status, error){
-                // TODO: Show toaster
+            error: function(xhr, status, error) {
                 console.error(error);
             }
         })
