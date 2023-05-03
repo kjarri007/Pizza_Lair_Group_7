@@ -19,7 +19,9 @@ def pizza_index(request):
         return JsonResponse({'data': pizzas})
 
     all_pizzas = models.Pizza.objects.all()
-    return render(request, 'product/pizza_index.html', context={"all_pizzas": all_pizzas})
+    all_categories = models.Category.objects.all()
+    return render(request, 'product/pizza_index.html',
+                  context={"all_pizzas": all_pizzas, "all_categories": all_categories})
 
 
 def offer_index(request):
