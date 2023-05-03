@@ -18,6 +18,9 @@
         </form>
       </div>
     </nav>
+
+
+
     <div class="d-flex flex-wrap pizza-catalog">
         {% for pizza in all_pizzas %}
             {% include 'product/single_pizza.html' with pizza=pizza %}
