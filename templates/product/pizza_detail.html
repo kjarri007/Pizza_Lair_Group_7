@@ -15,7 +15,7 @@
                         <div class="card-body position-relative">
                             <h4 class="card-text m-4">{{ selected_pizza.description }}</h4>
                             <h6>Toppings:</h6>
-                            <ul class="list-group list-group-horizontal-sm">
+                            <ul class="d-flex flex-wrap list-group list-group-horizontal-sm ">
                                 {% for topping in selected_pizza.toppings.all %}
                                     <li class="list-group-item">{{ topping.name }}</li>
                                 {% endfor %}

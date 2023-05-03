@@ -4,7 +4,7 @@
     <h1>Sign up now!</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="Sign Up">
     </form>
 {% endblock %}
