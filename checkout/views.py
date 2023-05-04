@@ -1,9 +1,21 @@
+from django.http import JsonResponse  # Throw away after testing
 from django.shortcuts import render
+import json
+from user.models import Product
 
 
 # Create your views here.
 def cart(request):
-    return render(request, 'checkout/cart.html')
+    products = Product.objects.all()
+    context = {}
+    return render(request, 'checkout/cart.html', context)
+
+
+def add_to_cart(request):
+    data = json.loads(request.body)
+    product_id = data["id"]
+    product = Product.objects.get(product_id)
+    return JsonResponse("it is working", safe=False)
 
 
 def contact(request):
