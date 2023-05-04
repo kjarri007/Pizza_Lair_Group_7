@@ -8,14 +8,20 @@ from product.models import Pizza
 # Create your views here.
 
 def pizza_index(request):
+    filter_name = None
+
     if 'search_filter' in request.GET:
-        search_filter = request.GET['search_filter']
+        filter_name = request.GET['search_filter']
+    elif 'category_filter' in request.GET:
+        filter_name = request.GET['category_filter']
+
+    if filter_name:
         pizzas = [{
             'id': pizza.id,
             'name': pizza.name,
             'description': pizza.description,
             'firstImage': pizza.pizzaimg_set.first().image
-        } for pizza in Pizza.objects.filter(name__icontains=search_filter)]
+        } for pizza in Pizza.objects.filter(name__icontains=filter_name)]
         return JsonResponse({'data': pizzas})
 
     all_pizzas = models.Pizza.objects.all().order_by("price")
