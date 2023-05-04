@@ -27,12 +27,13 @@ $(document).ready(function(){
     });
     $('.category-button').on('click', function(e) {
         e.preventDefault();
-        let categoryName = $(this).val();
+        let categoryId = $(this).attr('id');
         $.ajax({
-            url: '/order/pizzas?category_filter=' + categoryName,
+            url: '/order/pizzas?category_filter=' + categoryId,
             type: 'GET',
             success: function(resp){
-                console.log('button has been pressed')
+                console.log(categoryId)
+                console.log(typeof(categoryId))
                 let newHtml = resp.data.map(d => {
                     return `<div class=" well card pizza" style="width: 24rem;">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
@@ -44,6 +45,7 @@ $(document).ready(function(){
                                 </div>
                             </div>`
                 });
+                $('.pizza-catalog').html(newHtml.join(''));
             },
             error: function (xhr, status, error) {
                 console.error(error);

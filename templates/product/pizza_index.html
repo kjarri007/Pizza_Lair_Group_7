@@ -8,9 +8,9 @@
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-bar">
           <button id="search-btn" class="btn btn-outline-success" type="submit">Search</button>
         </form>
-        <button id="category0" class="btn btn-outline-success color-blue category-button">All</button>
+        <button id="0" class="btn btn-outline-success color-blue category-button">All</button>
         {% for category in all_categories %}
-          <button id="category{{ category.id }}" aria-current="false" value="{{ category.name }}" class="btn btn-outline-success color-{{ category.color }} category-button">{{ category }}</button>
+          <button id="{{ category.id }}" aria-current="false" value="{{ category.name }}" class="btn btn-outline-success color-{{ category.color }} category-button">{{ category }}</button>
         {% endfor %}
         <label class="form-check-label text-center" for="flexSwitchCheckDefault">a-z</label>
         <div class=" form-check form-switch">
