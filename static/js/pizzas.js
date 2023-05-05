@@ -11,11 +11,11 @@ $(document).ready(function(){
             order = 'price'
         }
         $.ajax({
-            url: '/order/pizzas?search_filter=' + searchText,
+            url: '/order/pizzas?search_filter=' + searchText + '&order_by=' + order,
             type: 'GET',
             success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 24rem;">
+                    return `<div class=" well card pizza" style="width: 18rem;">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
                                     <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
                                     <div class="card-body">
@@ -38,6 +38,7 @@ $(document).ready(function(){
         // Strip 'current' class from all buttons in the set
         $('.category-button').removeClass('current');
         $(this).addClass('current');
+        // Get the id of the clicked button
         let categoryId = $(this).attr('id');
         // Check the state of the order switch!
         let order
@@ -48,11 +49,11 @@ $(document).ready(function(){
             order = 'price'
         }
         $.ajax({
-            url: '/order/pizzas?category_filter=' + categoryId + '&' + 'order_by' + order,
+            url: '/order/pizzas?category_filter=' + categoryId + '&order_by=' + order,
             type: 'GET',
             success: function(resp){
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 24rem;">
+                    return `<div class=" well card pizza" style="width: 18rem;">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
                                     <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
                                     <div class="card-body">
@@ -69,14 +70,27 @@ $(document).ready(function(){
             }
         })
     });
-    $('#my-checkbox').change(function() {
+    $('#flexSwitchCheckDefault').change(function() {
         if (this.checked) {
             // send AJAX request for when checkbox is checked
+            let order = 'name';
+            let categoryId = $('.current').attr('id')
             $.ajax({
-                url: '/my-endpoint-on',
-                type: 'POST',
-                success: function(data) {
-                    console.log('Checkbox is checked');
+                url: '/order/pizzas?category_filter=' + categoryId + '&order_by=' + order,
+                type: 'GET',
+                success: function(resp){
+                let newHtml = resp.data.map(d => {
+                    return `<div class=" well card pizza" style="width: 18rem;">
+                                <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <div class="card-body">
+                                    <h4 class="card-title">${d.name}</h4>
+                                    <p class="card-text">${d.description}</p>
+                                </a>
+                                </div>
+                            </div>`
+                });
+                $('.pizza-catalog').html(newHtml.join(''));
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
@@ -84,11 +98,24 @@ $(document).ready(function(){
             });
         } else {
             // send AJAX request for when checkbox is not checked
+            let order = 'price';
+            let categoryId = $('.current').attr('id');
             $.ajax({
-                url: '/my-endpoint-off',
-                type: 'POST',
-                success: function(data) {
-                    console.log('Checkbox is not checked');
+                url: '/order/pizzas?category_filter=' + categoryId + '&order_by=' + order,
+                type: 'GET',
+                success: function(resp){
+                let newHtml = resp.data.map(d => {
+                    return `<div class=" well card pizza" style="width: 18rem;">
+                                <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <div class="card-body">
+                                    <h4 class="card-title">${d.name}</h4>
+                                    <p class="card-text">${d.description}</p>
+                                </a>
+                                </div>
+                            </div>`
+                });
+                $('.pizza-catalog').html(newHtml.join(''));
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
