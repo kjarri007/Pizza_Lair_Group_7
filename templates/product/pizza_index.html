@@ -12,13 +12,16 @@
         {% for category in all_categories %}
           <button id="category-{{ category.id }}" class="category-button btn btn-outline-success color-{{ category.color }}">{{ category }}</button>
         {% endfor %}
-        <label class="form-check-label text-center" for="flexSwitchCheckDefault">a-z</label>
-        <div class=" form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-        </div>
+
+            <div class="form-check form-switch col-md-6" style="width: 170px;">
+                <p style="font-weight: bold;text-align: center;">Ordered by</p>
+                <div class="d-flex justify-content-around" style="width: 170px;">
+                    <p style="margin-right: 7px;width: 170px;">Price</p><label class="switch"><input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault"></label>
+                    <p style="margin-left: 7px;width: 170px;">Name</p>
+                </div>
+            </div>
+
     </nav>
-
-
 
     <div class="d-flex flex-wrap pizza-catalog">
         {% for pizza in all_pizzas %}
