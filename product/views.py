@@ -6,6 +6,9 @@ from product.models import Pizza
 
 
 # Create your views here.
+def front_page(request):
+    return render(request, 'frontpage.html')
+
 
 def pizza_index(request):
     # Helper function
