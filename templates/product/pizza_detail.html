@@ -4,7 +4,7 @@
         <div class="card mb-3" style="max-width: 900px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    {% for pizzaimg in selected_pizza.pizzaimg_set.all %}
+                    {% for pizzaimg in selected_pizza.productimg_set.all %}
                         <img src="{{ pizzaimg.image }}" class="img-fluid rounded-start" alt="pizza detail">
                     {% endfor %}
                 </div>
@@ -31,6 +31,7 @@
                         </div>
                     </div>
             </div>
+        </div>
 {% endblock %}
 
 

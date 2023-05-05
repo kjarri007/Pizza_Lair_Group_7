@@ -33,3 +33,7 @@ def profile(request):
             user_profile.save()
             return redirect("profile")
     return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
+
+
+def cart(request):
+    return render(request, "user/cart.html")

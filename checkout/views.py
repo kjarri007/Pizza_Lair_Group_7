@@ -8,7 +8,7 @@ from user.models import Product
 def cart(request):
     products = Product.objects.all()
     context = {}
-    return render(request, 'checkout/cart.html', context)
+    return render(request, 'checkout/../templates/user/cart.html', context)
 
 
 def add_to_cart(request):

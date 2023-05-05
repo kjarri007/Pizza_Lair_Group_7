@@ -2,7 +2,7 @@ import uuid
 
 from django.contrib.auth.models import User
 from django.db import models
-from product.models import Pizza, Offer
+from product.models import Product
 
 
 # Create your models here.
@@ -11,16 +11,12 @@ class Profile(models.Model):
     image = models.CharField(max_length=9999)
 
 
-class Product(models.Model):
-    offer = models.OneToOneField(Offer, on_delete=models.CASCADE)
-    pizza = models.OneToOneField(Pizza, on_delete=models.CASCADE)
-    price = Pizza.price  # vantar fyrir offer lika
-
-
 class Cart(models.Model):
-    id = models.UUIDField(default=uuid.uuid4, primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    completed = models.BooleanField(default=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def clear_cart(self):
+        cart_items = self.cart_items.all()
+        cart_items.delete()
 
     def __str__(self):
         return str(self.id)
@@ -48,5 +44,5 @@ class CartItem(models.Model):
 
     @property
     def price(self):
-        new_price = self.product.price * self.quantity
-        return new_price
+        price_total = self.product.price * self.quantity
+        return price_total
