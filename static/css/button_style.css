@@ -79,6 +79,31 @@
 	background-color: blue;
 }
 
+.color-light-coral {
+	border-color: lightcoral;
+	color: lightcoral;
+	background-color: white;
+}
+
+.color-light-coral:hover {
+	border-color: lightcoral;
+	color: white;
+	background-color: lightcoral;
+}
+
+.color-brown {
+	border-color: brown;
+	color: brown;
+	background-color: white;
+}
+
+.color-brown:hover {
+	border-color: brown;
+	color: white;
+	background-color: brown;
+}
+
+
 .current {
 	border-color: purple;
 	color: white;
