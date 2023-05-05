@@ -78,3 +78,7 @@
 	color: white;
 	background-color: blue;
 }
+
+.current {
+	border-width: thick;
+}

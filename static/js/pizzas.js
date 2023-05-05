@@ -35,6 +35,9 @@ $(document).ready(function(){
     });
     $('.category-button').on('click', function(e) {
         e.preventDefault();
+        // Strip 'current' class from all buttons in the set
+        $('.category-button').removeClass('current');
+        $(this).addClass('current');
         let categoryId = $(this).attr('id');
         // Check the state of the order switch!
         let order
