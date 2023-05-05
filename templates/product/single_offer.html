@@ -1,12 +1,13 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
-<div class="well card offer" style="width: 18rem;">
+<div class="well card offer" style="width: 18rem;height: 42rem">
     <a href="{% url 'offer_detail' offer.id %}" class="link-offset-2 link-underline link-underline-opacity-0">
         <img class="card-img-top" src="{{ offer.productimg_set.first.image }}" alt="offer card">
         <div class="card-body">
             <h4 class="card-title">{{ offer.name }}</h4>
             <p class="card-text">{{ offer.description }}</p>
+            <h3 class="card-text position-absolute bottom-0 end-0 m-2">{{ offer.price}} kr</h3>
         </div>
     </a>
 
