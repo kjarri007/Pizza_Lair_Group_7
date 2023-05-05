@@ -22,6 +22,9 @@ class Product(models.Model):
     description = models.CharField(max_length=200)
     price = models.IntegerField(default=1000)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Pizza(Product):
     toppings = models.ManyToManyField(Topping)
@@ -41,3 +44,6 @@ class Offer(Product):
 class ProductImg(models.Model):
     image = models.CharField(max_length=9999)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Belongs to: {self.product.name}"
