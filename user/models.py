@@ -11,7 +11,6 @@ class Profile(models.Model):
     image = models.CharField(max_length=9999)
 
 
-# Á eftir að Migrate-a!!!!!!!!
 class Product(models.Model):
     offer = models.OneToOneField(Offer, on_delete=models.CASCADE)
     pizza = models.OneToOneField(Pizza, on_delete=models.CASCADE)

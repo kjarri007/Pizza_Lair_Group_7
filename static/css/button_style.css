@@ -78,3 +78,9 @@
 	color: white;
 	background-color: blue;
 }
+
+.current {
+	border-color: purple;
+	color: white;
+	background-color: purple;
+}
