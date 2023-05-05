@@ -14,7 +14,7 @@ def pizza_index(request):
             'id': pizza.id,
             'name': pizza.name,
             'description': pizza.description,
-            'firstImage': pizza.pizzaimg_set.first().image
+            'firstImage': pizza.productimg_set.first().image
         } for pizza in queryset]
         return pizzas
 
