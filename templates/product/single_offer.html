@@ -3,7 +3,7 @@
 
 <div class="well card offer" style="width: 18rem;">
     <a href="{% url 'offer_detail' offer.id %}" class="link-offset-2 link-underline link-underline-opacity-0">
-        <img class="card-img-top" src="{{ offer.offerimg_set.first.image }}" alt="offer card">
+        <img class="card-img-top" src="{{ offer.productimg_set.first.image }}" alt="offer card">
         <div class="card-body">
             <h4 class="card-title">{{ offer.name }}</h4>
             <p class="card-text">{{ offer.description }}</p>

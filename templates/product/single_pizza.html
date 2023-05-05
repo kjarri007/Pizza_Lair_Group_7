@@ -3,7 +3,7 @@
 
 <div class="well card pizza" style="width: 18rem;">
     <a href ="{% url 'pizza_detail' pizza.id %}" class="link-offset-2 link-underline link-underline-opacity-0">
-        <img class="card-img-top" src="{{ pizza.pizzaimg_set.first.image }}" alt="pizza card">
+        <img class="card-img-top" src="{{ pizza.productimg_set.first.image }}" alt="pizza card">
         <div class="card-body">
             <h4 class="card-title">{{ pizza.name }}</h4>
             <p class="card-text">{{ pizza.description }}</p>
