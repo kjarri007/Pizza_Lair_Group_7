@@ -8,31 +8,27 @@
                         <img src="{{ pizzaimg.image }}" class="img-fluid rounded-start" alt="pizza detail">
                     {% endfor %}
                 </div>
-                    <div class="col-md-8">
-                        <div class="card-body position-relative">
-                            <h4 class="card-text m-4">{{ selected_pizza.description }}</h4>
-                            <h6>Toppings:</h6>
-                            <ul class="d-flex flex-wrap list-group list-group-horizontal-sm ">
-                                {% for topping in selected_pizza.toppings.all %}
-                                    <li class="list-group-item">{{ topping.name }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="position-absolute bottom-0 end-0 m-2">
-                            <h3 class="text-center">{{ selected_pizza.price }} kr</h3>
-                            <div class="input-group w-auto justify-content-end align-items-center">
-                                <p class="text-dark">Quantity</p>
-                                <label class="add_to_cart_btn">
-                                    <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25">
-                                    <button type="button" value="add_to_cart" class="main_btn"></button>
-{#                                <input type="submit" value="add_to_cart" class="main_btn">#}
-                                </label>
-                            </div>
+                <div class="col-md-8">
+                    <div class="card-body position-relative">
+                        <h4 class="card-text m-4">{{ selected_pizza.description }}</h4>
+                        <h6>Toppings:</h6>
+                        <ul class="d-flex flex-wrap list-group list-group-horizontal-sm ">
+                            {% for topping in selected_pizza.toppings.all %}
+                                <li class="list-group-item">{{ topping.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 m-2">
+                        <h3 class="text-center">{{ selected_pizza.price }} kr</h3>
+                        <div class="input-group w-auto justify-content-end align-items-center">
+                            <p class="text-dark">Quantity</p>
+                            <label class="add_to_cart_btn">
+                                <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25" id="num_of_items">
+                                <button type="submit" value="{{ selected_pizza.id }}" class="main_btn">Add to cart</button>
+                            </label>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
 {% endblock %}
-
-
-

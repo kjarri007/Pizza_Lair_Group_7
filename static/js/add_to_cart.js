@@ -1,24 +1,32 @@
-let btn = document.querySelectorAll(".add_to_cart_btn button")
-
-btn.forEach(btn=>{
-    btn.addEventListener("click", addToCart)
-})
-
-function addToCart(e){
-    let product_id = e.target.value
-    let url = "add_to_cart/"
-    let data = {id:product_id}
-
-    fetch(url, {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(data)
+$(document).ready(function(){
+    $('.add_to_cart_btn').on('click', function (e) {
+        let productId = $(this).val();
+        let quantity = $('#num_of_items').val();
+        $.ajax({
+            url: "user/cart/"
+        })
     })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-        })
-        .catch(error=>{
-            console.log(error)
-        })
-}
+})
+    let btn = $(".add_to_cart_btn button");
+    btn.click(function(e) {
+        addToCart(e);
+    });
+
+    function addToCart(e) {
+        let product_id = e.target.value;
+        let url = "add_to_cart/";
+        let data = {id: product_id};
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType: "application/json",
+            success: function(data) {
+                $("#num_of_items");
+                console.log(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
