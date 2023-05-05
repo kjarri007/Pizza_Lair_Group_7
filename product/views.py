@@ -8,24 +8,37 @@ from product.models import Pizza
 # Create your views here.
 
 def pizza_index(request):
+    # Helper function
+    def create_pizza_list(queryset):
+        pizzas = [{
+            'id': pizza.id,
+            'name': pizza.name,
+            'description': pizza.description,
+            'firstImage': pizza.pizzaimg_set.first().image
+        } for pizza in queryset]
+        return pizzas
+
     all_pizzas = Pizza.objects.all().order_by('price')
-    if 'sort_by' not in request.GET:
+    if 'order_by' not in request.GET:
         all_categories = models.Category.objects.all()
         return render(request, 'product/pizza_index.html',
                       context={"all_pizzas": all_pizzas, "all_categories": all_categories})
 
-    order = request.GET['order']
+    order = request.GET['order_by']
 
     # If the user searches pizzas by name
     if 'search_filter' in request.GET:
         search_filter = request.GET['search_filter']
-        filtered_pizzas = all_pizzas.filter(name__icontains=search_filter).order_by(order)
+        filtered_pizzas = create_pizza_list(all_pizzas.filter(name__icontains=search_filter).order_by(order))
         return JsonResponse({"data": filtered_pizzas})
 
     # If the user presses a category button to filter pizzas by category
     elif 'category_filter' in request.GET:
-        category = request.GET['category_filter']
-        filtered_pizzas = all_pizzas.filter(categories__exact=category).order_by(order)
+        category = request.GET['category_filter'][-1]
+        if category == '0':
+            filtered_pizzas = create_pizza_list(Pizza.objects.all().order_by(order))
+        else:
+            filtered_pizzas = create_pizza_list(all_pizzas.filter(categories__exact=category).order_by(order))
         return JsonResponse({"data": filtered_pizzas})
 
 
