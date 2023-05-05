@@ -80,5 +80,7 @@
 }
 
 .current {
-	border-width: thick;
+	border-color: purple;
+	color: white;
+	background-color: purple;
 }
