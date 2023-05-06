@@ -7,10 +7,9 @@
       <env name="PYTHONUNBUFFERED" value="1" />
       <env name="DJANGO_SETTINGS_MODULE" value="Pizza_Lair_Group_7.settings" />
     </envs>
-    <option name="SDK_HOME" value="C:\__pizzaLair\Pizza_Lair_Group_7\venv\Scripts\python.exe" />
-    <option name="SDK_NAME" value="Python 3.11 (Pizza_Lair_Group_7) (2)" />
+    <option name="SDK_HOME" value="" />
     <option name="WORKING_DIRECTORY" value="" />
-    <option name="IS_MODULE_SDK" value="false" />
+    <option name="IS_MODULE_SDK" value="true" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <option name="launchJavascriptDebuger" value="false" />
@@ -23,7 +22,7 @@
     <option name="useCustomRunCommand" value="false" />
     <option name="customRunCommand" value="" />
     <method v="2">
-      <option name="LaunchBrowser.Before.Run" browser="26f8728e-e591-45ff-a658-22dbd568a737" />
+      <option name="LaunchBrowser.Before.Run" />
     </method>
   </configuration>
 </component>
