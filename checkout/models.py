@@ -33,8 +33,6 @@ class Order(models.Model):
     total_price = models.IntegerField(default=0)
     order_date = models.DateTimeField(auto_now_add=True)
 
-
-
     def calculate_total_price(self):
         total_price = 0
         for item in self.orderitem_set.all():
