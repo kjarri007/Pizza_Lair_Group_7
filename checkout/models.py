@@ -11,7 +11,7 @@ class ContactInfo(models.Model):
     street_name = models.CharField(max_length=255)
     house_number = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255)
-    postcode = models.CharField(max_length=20)
+    postal_code = models.CharField(max_length=20)
 
 
 class Payment(models.Model):
@@ -38,4 +38,3 @@ class Order(models.Model):
         for item in self.orderitem_set.all():
             total_price += item.product_id.price
         return total_price
-
