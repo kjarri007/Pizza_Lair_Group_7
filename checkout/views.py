@@ -1,34 +1,27 @@
 from django.http import JsonResponse  # Throw away after testing
 from django.shortcuts import render
-import json
-from user.models import Product
+from .forms.contact import ContactInfoForm
+from .forms.payment import PaymentForm
 
 
 # Create your views here.
-def cart(request):
-    products = Product.objects.all()
-    context = {}
-    return render(request, 'checkout/../templates/user/cart.html', context)
+def contact_info(request):
+    if request.method == "POST":
+        pass
+    return render(request, "checkout/contact_info.html", context={"form": ContactInfoForm()})
 
 
-def add_to_cart(request):
-    data = json.loads(request.body)
-    product_id = data["id"]
-    product = Product.objects.get(product_id)
-    return JsonResponse("it is working", safe=False)
+def payment_info(request):
+    if request.method == "POST":
+        pass
+    return render(request, "checkout/payment_info.html", context={"form": PaymentForm()})
 
 
-def contact(request):
-    return render(request, 'checkout/contact_info.html')
+def review_step(request):
+    if request.method == "POST":
+        pass
+    return render(request, "checkout/review_order.html", context={})
 
 
-def payment(request):
-    return render(request, 'checkout/payment_info.html')
-
-
-def review(request):
-    return render(request, 'checkout/review_order.html')
-
-
-def process(request):
-    return render(request, 'checkout/thank_you.html')
+def confirmation(request):
+    return render(request, "checkout/thank_you.html")
