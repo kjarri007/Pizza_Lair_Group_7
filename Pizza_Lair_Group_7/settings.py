@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "product.apps.ProductConfig",
     "user.apps.UserConfig",
+    "checkout.apps.CheckoutConfig",
     "crispy_forms",
     "crispy_bootstrap5"
 ]
