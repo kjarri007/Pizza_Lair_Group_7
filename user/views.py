@@ -2,7 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 
 from user.forms.profile import ProfileForm
-from user.models import Profile
+from user.models import Profile, CartItem, Cart
+from product.models import Product
 
 
 # Create your views here
@@ -14,6 +15,8 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
+            user_cart = Cart(user=request.user)
+            user_cart.save()
             form.save()
             return redirect("user_login")
 
@@ -34,6 +37,16 @@ def profile(request):
             return redirect("profile")
     return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
 
+def add_to_cart(request, product_id):
+    user_cart = request.user.cart
+    selected_product = get_object_or_404(Product, pk=product_id)
+    cart_item = CartItem(product=selected_product, cart=user_cart)
+    cart_item.save()
+    return redirect("user_cart")
+
 
 def cart(request):
-    return render(request, "user/cart.html")
+    user_cart = request.user.cart
+    cart_items = user_cart.cartitem_set.all()
+    # cart_items = models.CartItem.objects.filter(cart=user_cart)
+    return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
