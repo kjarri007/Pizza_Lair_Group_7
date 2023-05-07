@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.shortcuts import get_object_or_404
+
 from product.models import Product
 
 
@@ -15,6 +17,17 @@ class Cart(models.Model):
     def clear_cart(self):
         cart_items = self.cartitem_set.all()
         cart_items.delete()
+
+        # if item.product.id == product_id:
+
+    def add_to_cart(self, selected_product):
+        for item in list(self.cartitem_set.all()):
+            if item.product.id == selected_product.id:
+                item.quantity += 1
+                item.save(update_fields=["quantity"])
+                return
+        cart_item = CartItem(product=selected_product, cart=self)
+        cart_item.save()
 
     def __str__(self):
         return str(self.id)

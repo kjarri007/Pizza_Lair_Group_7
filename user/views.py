@@ -46,14 +46,9 @@ def profile(request):
 
 
 def add_to_cart(request, product_id):
-    user_cart = request.user.cart
     selected_product = get_object_or_404(Product, pk=product_id)
-    for item in list(user_cart.cartitem_set.all()):
-        if item.product.id == product_id:
-            item.quantity += 1
-            redirect("user_cart")
-    cart_item = CartItem(product=selected_product, cart=user_cart)
-    cart_item.save()
+    user_cart = request.user.cart
+    user_cart.add_to_cart(selected_product)
     return redirect("user_cart")
 
 
@@ -62,3 +57,8 @@ def cart(request):
     cart_items = user_cart.cartitem_set.all()
     # cart_items = models.CartItem.objects.filter(cart=user_cart)
     return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
+
+def clear_cart(request):
+    user_cart = request.user.cart
+    user_cart.clear_cart()
+    return redirect("user_cart")

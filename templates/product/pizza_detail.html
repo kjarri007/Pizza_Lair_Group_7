@@ -23,7 +23,7 @@
                         <div class="input-group w-auto justify-content-end align-items-center">
                             <p class="text-dark">Quantity</p>
                             <label class="add_to_cart_btn">
-                                <input type="number" step="1" max="10" value="1" name="quantity" class="quantity-field border-0 text-center w-25 {{ selected_pizza.product.quantity }}" id="num_of_items">
+{#                                <input type="number" step="1" max="99" value="1" name="quantity" class="quantity-field border-0 text-center w-25 {{ selected_pizza.product.quantity }}" id="num_of_items">#}
 {#                                <button type="submit" value="{{ selected_pizza.id }}" class="main_btn">Add to cart</button>#}
                                 <a href="{% url "add_to_cart" selected_pizza.id %}" class="main_btn">Add to cart</a>
                             </label>
