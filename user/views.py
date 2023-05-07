@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from user.forms.profile import ProfileForm
 from user.models import Profile, CartItem, Cart
@@ -55,8 +56,21 @@ def add_to_cart(request, product_id):
 @login_required
 def cart(request):
     user_cart = request.user.cart
+
+    if request.method == "POST":
+        command = request.GET["command"]
+        if command == "clear":
+            user_cart.clear_cart()
+            user_cart.save()
+            return JsonResponse({"total_price": user_cart.total_price, "num_of_items": user_cart.num_of_items})
+        elif command == "remove":
+            user_cart.remove_product(request.GET["product"])
+            user_cart.save()
+            return JsonResponse({"data": user_cart.cartitem_set.all()})
+        elif command == "update":
+            pass
+
     cart_items = user_cart.cartitem_set.all()
-    # cart_items = models.CartItem.objects.filter(cart=user_cart)
     return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
 
 
