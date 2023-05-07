@@ -1,10 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from user.forms.profile import ProfileForm
 from user.models import Profile, CartItem, Cart
 from product.models import Product
-
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
@@ -41,7 +41,7 @@ def profile(request):
             user_profile = form.save(commit=False)
             user_profile.user = request.user
             user_profile.save()
-            return redirect("profile")
+            return redirect("user_profile")
     return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
 
 
@@ -52,6 +52,7 @@ def add_to_cart(request, product_id):
     return redirect("user_cart")
 
 
+@login_required
 def cart(request):
     user_cart = request.user.cart
     cart_items = user_cart.cartitem_set.all()
