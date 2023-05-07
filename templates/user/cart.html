@@ -39,7 +39,7 @@
                       </div>
                     </td>
                     <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }}</td>
-                    <td class="align-middle p-4"><input type="text" class="form-control text-center" value="{{ item.quantity }}"></td>
+                    <td class="align-middle p-4"><input type="number" step="1" min="1" max="99" class="form-control text-center" value="{{ item.quantity }}"></td>
                     <td class="text-right font-weight-semibold align-middle p-4">{{ item.price }}</td>
                     <td class="text-center align-middle px-0"><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
                   </tr>
