@@ -38,7 +38,7 @@ class CartItem(models.Model):
     quantity = models.IntegerField(default=1)
 
     def __str__(self):
-        return self.product
+        return str(self.product)
 
     @property
     def price(self):
