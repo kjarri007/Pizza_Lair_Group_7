@@ -9,7 +9,7 @@
                 <div class="border-top border-bottom border-3" style="border-color: #9c2521 !important;">
                     <p>
                         <span class="h2">Shopping Cart</span>
-                        <span class="h4">({{ cart.quantity }} item(s) in your cart)</span>
+                        <span class="h4">({{ user_cart.num_of_items }} item(s) in your cart)</span>
                     </p>
                     <div class="card mb-4">
                         <div class="card-body p-4">
@@ -62,6 +62,6 @@
     </section>
     <div class="d-flex justify-content-end">
         <a href="{% url 'main_page' %}"><input type="submit" value="Continue shopping" class="main_btn"></a>
-        <a href="{% url 'contact_info' %}"><input type="submit" value="Checkout" class="main_btn "></a>
+        <a href="{% url 'contact_info' %}"><input type="submit" value="Checkout" class="main_btn"></a>
     </div>
 {% endblock %}

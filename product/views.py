@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404
 
 from product import models
 from product.models import Pizza
-# from user.models import
 
 
 # Create your views here.
@@ -53,7 +52,6 @@ def offer_index(request):
 
 def pizza_detail(request, pizza_id):
     selected_pizza = get_object_or_404(models.Pizza, pk=pizza_id)
-    # pizza_quantity = get_object_or_404(models.Pizza)
     return render(request, "product/pizza_detail.html", context={"selected_pizza": selected_pizza})
 
 
