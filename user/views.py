@@ -58,6 +58,22 @@ def cart(request):
     # cart_items = models.CartItem.objects.filter(cart=user_cart)
     return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
 
+
+def update_quantity(request, product_id):
+    user_cart = request.user.cart
+    cart_item = CartItem.objects.filter(product_id=product_id, cart=user_cart).first()
+    cart_item.quantity = request.POST["quantity"]
+    cart_item.save()
+    return redirect("user_cart")
+
+
+def remove_item_from_cart(request, product_id):
+    user_cart = request.user.cart
+    cart_item = CartItem.objects.filter(product_id=product_id, cart=user_cart).first()
+    cart_item.delete()
+    return redirect("user_cart")
+
+
 def clear_cart(request):
     user_cart = request.user.cart
     user_cart.clear_cart()
