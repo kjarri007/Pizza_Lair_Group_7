@@ -13,7 +13,7 @@ class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def clear_cart(self):
-        cart_items = self.cart_items.all()
+        cart_items = self.cartitem_set.all()
         cart_items.delete()
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Cart(models.Model):
 
     @property
     def num_of_items(self):
-        cart_items = self.cart_items.all()
+        cart_items = self.cartitem_set.all()
         quantity = sum([item.quantity for item in cart_items])
         return quantity
 

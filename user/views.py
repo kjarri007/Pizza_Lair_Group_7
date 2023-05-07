@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
-
 from user.forms.profile import ProfileForm
 from user.models import Profile, CartItem, Cart
 from product.models import Product
@@ -36,6 +35,7 @@ def profile(request):
             user_profile.save()
             return redirect("profile")
     return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
+
 
 def add_to_cart(request, product_id):
     user_cart = request.user.cart
