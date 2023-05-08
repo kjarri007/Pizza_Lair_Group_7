@@ -40,7 +40,14 @@
                       </div>
                     </td>
                     <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }}</td>
-                    <td class="align-middle p-4"><input type="number" step="1" min="1" max="99" class="form-control text-center" value="{{ item.quantity }}"></td>
+                    <td>
+                      <div class="input-group bootstrap-touchspin">
+                          <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-down" type="button">-</button></span>
+                            <span class="input-group-addon bootstrap-touchspin-prefix" style="display: none;"></span>
+                                <input type="text" step="1" min="1" max="99" name="" value="{{ item.quantity }}" class="input-qty form-control text-center" style="display: block;">
+                            <span class="input-group-addon bootstrap-touchspin-postfix" style="display: none;"></span>
+                          <span class="input-group-btn"><button class="btn btn-default bootstrap-touchspin-up" type="button">+</button></span>
+                      </div>
                     <td class="text-right font-weight-semibold align-middle p-4">{{ item.price }}</td>
                     <td class="text-center align-middle px-0"><button id="cart-remove-item" class="shop-tooltip close float-none text-danger" value="{{ item.product.id }}" data-original-title="Remove">X</button></td>
                   </tr>
