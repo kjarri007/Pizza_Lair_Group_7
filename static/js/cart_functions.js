@@ -60,6 +60,7 @@ $(document).ready(function() {
         let command = 'update-quantity'
         let itemId = $(this).attr('id');
         let quantity = $(this).val();
+        let myElement = 'cart-item-' + itemId
         $.ajax({
             url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity,
             type: 'POST',
@@ -68,6 +69,7 @@ $(document).ready(function() {
             },
              success: function (resp) {
                 $('#cart-total-price').text(resp.cart_price);
+                $('#myElement').text(resp.item_price)
             },
             error: function(xhr, status, error) {
                 console.error(error);

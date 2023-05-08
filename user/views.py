@@ -77,8 +77,8 @@ def cart(request):
         elif command == "remove":
             user_cart.remove_item(request.GET["item"])
             user_cart.save()
-            remaining_pizzas = create_cart_items(user_cart.cartitem_set.all())
-            return JsonResponse({"data": remaining_pizzas, "total_price": user_cart.total_price,
+            remaining_items = create_cart_items(user_cart.cartitem_set.all())
+            return JsonResponse({"data": remaining_items, "total_price": user_cart.total_price,
                                  "num_of_items": user_cart.num_of_items})
         elif command == "update-quantity":
             item_id = request.GET["item"]
@@ -90,33 +90,3 @@ def cart(request):
             return JsonResponse({"cart_price": new_cart_price, "item_price": new_item_price})
     cart_items = user_cart.cartitem_set.all()
     return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
-
-
-def update_quantity(request, product_id):
-    user_cart = request.user.cart
-    cart_item = CartItem.objects.filter(product_id=product_id, cart=user_cart).first()
-    cart_item.quantity = request.POST["quantity"]
-    cart_item.save()
-    return redirect("user_cart")
-
-
-def remove_item_from_cart(request, product_id):
-    user_cart = request.user.cart
-    cart_item = CartItem.objects.filter(product_id=product_id, cart=user_cart).first()
-    cart_item.delete()
-    return redirect("user_cart")
-
-
-def clear_cart(request):
-    user_cart = request.user.cart
-    user_cart.clear_cart()
-    return redirect("user_cart")
-
-
-def total_price(request):
-    user_cart = request.user.cart
-    cart_items = user_cart.cartitem_set.all()
-    sum_same_product = 0
-    for cart_item in cart_items:
-        sum_same_product += cart_item.quantity * cart_item.product.price
-    return render(request, "user/cart.html", context={"sum_same_product": sum_same_product})
