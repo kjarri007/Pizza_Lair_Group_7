@@ -75,7 +75,7 @@ def cart(request):
             user_cart.save()
             return JsonResponse({"total_price": user_cart.total_price, "num_of_items": user_cart.num_of_items})
         elif command == "remove":
-            user_cart.remove_product(request.GET["product"])
+            user_cart.remove_item(request.GET["item"])
             user_cart.save()
             remaining_pizzas = create_cart_items(user_cart.cartitem_set.all())
             return JsonResponse({"data": remaining_pizzas, "total_price": user_cart.total_price,

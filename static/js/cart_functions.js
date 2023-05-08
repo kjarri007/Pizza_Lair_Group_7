@@ -24,7 +24,7 @@ $(document).ready(function() {
         let command = 'remove';
         let itemId = $(this).val();
         $.ajax({
-            url: '/user/cart/?command=' + command + '&product=' + productId,
+            url: '/user/cart/?command=' + command + '&item=' + itemId,
             type: 'POST',
             data: {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
