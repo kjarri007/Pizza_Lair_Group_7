@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Here is the contact info form</h1>
     {{ form }}
-    <button type="submit">Next Page</button>
+    <a href="{% url 'payment_info' %}"><button type="submit" class="btn btn-primary" >Next Page</button></a>
     {#    <div class="py-5 text-center">#}
 {#    <h2>Contact</h2>#}
 {#  </div>#}

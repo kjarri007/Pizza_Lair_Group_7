@@ -21,11 +21,6 @@ class Payment(models.Model):
     cvc_number = SecurityCodeField('security code')
 
 
-class OrderItem(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    order_id = models.ForeignKey('Order', on_delete=models.CASCADE)
-
-
 class Order(models.Model):
     contact_id = models.ForeignKey(ContactInfo, on_delete=models.CASCADE)
     payment_id = models.ForeignKey(Payment, on_delete=models.CASCADE, null=True)
@@ -33,8 +28,16 @@ class Order(models.Model):
     total_price = models.IntegerField(default=0)
     order_date = models.DateTimeField(auto_now_add=True)
 
-    def calculate_total_price(self):
-        total_price = 0
-        for item in self.orderitem_set.all():
-            total_price += item.product_id.price
-        return total_price
+
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+    def __str__(self):
+        return str(self.product)
+
+    @property
+    def price(self):
+        price_total = self.product.price * self.quantity
+        return price_total
