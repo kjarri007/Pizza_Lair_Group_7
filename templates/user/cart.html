@@ -19,10 +19,10 @@
                     <thead>
                     <tr>
                         <!-- Set columns width -->
-                        <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp; Details</th>
-                        <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
-                        <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
-                        <th class="text-right py-3 px-4" style="width: 100px;">Total</th>
+                        <th class="text-center py-3 px-4" style="min-width: 200px;">Product Name &amp; Details</th>
+                        <th class="text-right py-3 px-4" style="width: 150px;">Price</th>
+                        <th class="text-center py-3 px-4" style="width: 220px;">Quantity</th>
+                        <th class="text-right py-3 px-4" style="width: 150px;">Total</th>
                         <th class="text-center align-middle py-3 px-0" style="width: 40px;">
                             <a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a>
                         </th>
@@ -39,12 +39,14 @@
                                     <div class="media-body"></div>
                                 </div>
                             </td>
-                            <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }}</td>
+                            <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }} kr</td>
                             <td class="align-middle p-4">
-                                <label for="item-quantity"></label>
-                                <input type="number" step="1" min="1" max="99" class="form-control text-center" id="item-quantity" value="{{ item.quantity }}">
+
+                                <div class="input-group bootstrap-touchspin">
+                                    <input id="{{ item.id }}" type="number" name="" step="1" min="1" max="99" value="{{ item.quantity }}" class="item-quantity input-qty form-control text-center" style="display: block;">
+                                </div>
                             </td>
-                            <td class="text-right font-weight-semibold align-middle p-4">{{ item.price }}</td>
+                            <td id="cart-item-{{ item.id }}" class="text-right font-weight-semibold align-middle p-4">{{ item.price }} kr</td>
                             <td class="text-center align-middle px-0">
                                 <button class="cart-remove-item shop-tooltip close float-none text-danger" value="{{ item.id }}" data-original-title="Remove" data-item="{{ item.product_id }}"><i class="fa fa-trash"></i></button>
                             </td>
@@ -54,19 +56,22 @@
                     </tbody>
                 </table>
             </div><!-- / Shopping cart table -->
-            <div class="card mb-5 border-top border-bottom border-3" style="border-color: #9c2521 !important;">
+            <div class="card mb-5">
                 <div class="card-body p-4">
                     <div class="float-end">
                         <p class="mb-0 me-5 d-flex align-items-center">
                             <span class="small text-muted me-2">Order total:</span>
-                            <span id="cart-total-price" class="lead fw-normal">{{ user_cart.total_price }}</span>
+                            <span id="cart-total-price" class="lead fw-normal">{{ user_cart.total_price }} kr</span>
+                            {{ if }}
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="float-right">
-                <button id="back-to-shopping-btn" type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>
-                <button id="checkout-btn" type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>
+            <div class=" position-absolute end-0">
+                <a href="{% url 'pizza_index' %}"><input type="submit" value="Continue shopping" class="main_btn" id="checkout-btn"></a>
+                <a href="{% url 'contact_info' %}"><input type="submit" value="Checkout" class="main_btn" id="checkout-btn"></a>
+{#                <button id="back-to-shopping-btn" type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>#}
+{#                <button id="checkout-btn" type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>#}
             </div>
         </div>
     </div>
