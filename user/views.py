@@ -90,33 +90,3 @@ def cart(request):
             return JsonResponse({"cart_price": new_cart_price, "item_price": new_item_price})
     cart_items = user_cart.cartitem_set.all()
     return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
-
-
-def update_quantity(request, product_id):
-    user_cart = request.user.cart
-    cart_item = CartItem.objects.filter(product_id=product_id, cart=user_cart).first()
-    cart_item.quantity = request.POST["quantity"]
-    cart_item.save()
-    return redirect("user_cart")
-
-
-def remove_item_from_cart(request, product_id):
-    user_cart = request.user.cart
-    cart_item = CartItem.objects.filter(product_id=product_id, cart=user_cart).first()
-    cart_item.delete()
-    return redirect("user_cart")
-
-
-def clear_cart(request):
-    user_cart = request.user.cart
-    user_cart.clear_cart()
-    return redirect("user_cart")
-
-
-def total_price(request):
-    user_cart = request.user.cart
-    cart_items = user_cart.cartitem_set.all()
-    sum_same_product = 0
-    for cart_item in cart_items:
-        sum_same_product += cart_item.quantity * cart_item.product.price
-    return render(request, "user/cart.html", context={"sum_same_product": sum_same_product})
