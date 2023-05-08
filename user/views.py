@@ -88,7 +88,6 @@ def cart(request):
             new_item_price = selected_item.price
             new_cart_price = user_cart.total_price
             return JsonResponse({"cart_price": new_cart_price, "item_price": new_item_price})
-
     cart_items = user_cart.cartitem_set.all()
     return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
 
@@ -112,3 +111,12 @@ def clear_cart(request):
     user_cart = request.user.cart
     user_cart.clear_cart()
     return redirect("user_cart")
+
+
+def total_price(request):
+    user_cart = request.user.cart
+    cart_items = user_cart.cartitem_set.all()
+    sum_same_product = 0
+    for cart_item in cart_items:
+        sum_same_product += cart_item.quantity * cart_item.product.price
+    return render(request, "user/cart.html", context={"sum_same_product": sum_same_product})

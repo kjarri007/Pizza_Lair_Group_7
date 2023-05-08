@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {#context= cart: total_price, num_of_items -- cart_items: price#}
 
@@ -9,7 +10,7 @@
     <div class="card">
         <div class="d-flex card-header">
             {% csrf_token %}
-            <h2>Shopping Cart </h2>
+            <h2>Shopping Cart</h2>
 {#            <span class="h4 cart-num-items"> ( {{ user_cart.num_of_items }} item(s) in your cart )</span>#}
             <button id="clear-cart-btn" type="submit" class="main_btn position-absolute end-0" style="margin-right: 10px">Clear cart</button>
         </div>
@@ -29,29 +30,33 @@
                     </tr>
                     </thead>
                     <tbody class="item-row-start">
+
                     {% for item in cart_items %}
                         <tr>
                             <td class="p-4">
-                                <div class="media align-items-center">
-                                    <h2 class="d-block">{{ item.product.name }}</h2>
-                                    <img src="{{ item.product.productimg_set.first.image }}" class="d-block mg-fluid" style="height: 16rem" alt="cart image">
-                                    <div class="media-body"></div>
+                                <div class="media align-items-center product_name">
+                                    <a href="{% url 'pizza_detail' item.product.id %}">
+                                        <h2 class="d-block">{{ item.product.name }}</h2>
+                                        <img src="{{ item.product.productimg_set.first.image }}" class="d-block mg-fluid" style="height: 16rem" alt="cart image">
+{#                                    <div class="media-body"></div>#}
+                                    </a>
                                 </div>
                             </td>
                             <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }} kr</td>
                             <td class="align-middle p-4">
 
                                 <div class="input-group bootstrap-touchspin">
+                                    <label for="{{ item.id }}"></label>
                                     <input id="{{ item.id }}" type="number" name="" step="1" min="1" max="99" value="{{ item.quantity }}" class="item-quantity input-qty form-control text-center" style="display: block;">
                                 </div>
                             </td>
-                            <td id="cart-item-{{ item.id }}" class="text-right font-weight-semibold align-middle p-4">{{ item.price }} kr</td>
+                            <td id="cart-item-{{ item.id }}" class="text-right font-weight-semibold align-middle p-4">{{ sum_same_product }} kr</td>
                             <td class="text-center align-middle px-0">
                                 <button class="cart-remove-item shop-tooltip close float-none text-danger" value="{{ item.id }}" data-original-title="Remove" data-item="{{ item.product_id }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
-
                     {% endfor %}
+
                     </tbody>
                 </table>
             </div><!-- / Shopping cart table -->
@@ -61,14 +66,13 @@
                         <p class="mb-0 me-5 d-flex align-items-center">
                             <span class="small text-muted me-2">Order total:</span>
                             <span id="cart-total-price" class="lead fw-normal">{{ user_cart.total_price }} kr</span>
-                            {{ if }}
                         </p>
                     </div>
                 </div>
             </div>
             <div class=" position-absolute end-0">
-                <a href="{% url 'pizza_index' %}"><input type="submit" value="Continue shopping" class="main_btn" id="checkout-btn"></a>
-                <a href="{% url 'contact_info' %}"><input type="submit" value="Checkout" class="main_btn" id="checkout-btn"></a>
+                <a href="{% url 'pizza_index' %}"><input type="submit" value="Continue shopping" class="main_btn" id="checkout-btn" style="margin-right: 10px;"></a>
+                <a href="{% url 'contact_info' %}"><input type="submit" value="Checkout" class="main_btn" id="checkout-btn" style="margin-right: 10px;"></a>
 {#                <button id="back-to-shopping-btn" type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3">Back to shopping</button>#}
 {#                <button id="checkout-btn" type="button" class="btn btn-lg btn-primary mt-2">Checkout</button>#}
             </div>
