@@ -12,7 +12,7 @@ $(document).ready(function() {
                 let newHtml = `<h1>Your Pizza Cart Is EMPTY!!!</h1>`
                 $('.item-row-start').html(newHtml);
                 $('#cart-total-price').text(resp.total_price);
-                $('#cart-num-items').text(resp.num_of_items);
+                $('.cart-num-items').text(resp.num_of_items);
             },
             error: function(xhr, status, error) {
                 console.error(error);
@@ -22,7 +22,7 @@ $(document).ready(function() {
     $('.cart-remove-item').on('click', function(e) {
         e.preventDefault();
         let command = 'remove';
-        let productId = $('#cart-remove-item').val()
+        let itemId = $(this).val();
         $.ajax({
             url: '/user/cart/?command=' + command + '&product=' + productId,
             type: 'POST',
@@ -46,13 +46,32 @@ $(document).ready(function() {
                                 <td class="text-center align-middle px-0"><button id="cart-remove-item" class="shop-tooltip close float-none text-danger" data-original-title="Remove">X</button></td>
                               </tr>`
                 })
-                $('.item-row-start').html(newHtml);
+                $('.item-row-start').html(newHtml.join(''));
                 $('#cart-total-price').text(resp.total_price);
-                $('#cart-num-items').text(resp.num_of_items);
+                $('.cart-num-items').text(resp.num_of_items);
             },
             error: function(xhr, status, error) {
                 console.error(error);
             }
+        });
+    });
+    $('.item-quantity').change(function (e) {
+        e.preventDefault();
+        let command = 'update-quantity'
+        let itemId = $(this).attr('id');
+        let quantity = $(this).val();
+        $.ajax({
+            url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity,
+            type: 'POST',
+            data: {
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+            },
+             success: function (resp) {
+                $('#cart-total-price').text(resp.cart_price);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            },
         });
     });
 });

@@ -9,8 +9,8 @@
     <div class="card">
         <div class="d-flex card-header">
             {% csrf_token %}
-            <h2>Shopping Cart</h2>
-            <span id="cart-num-items" class="h4">({{ user_cart.num_of_items }} item(s) in your cart)</span>
+            <h2>Shopping Cart </h2>
+{#            <span class="h4 cart-num-items"> ( {{ user_cart.num_of_items }} item(s) in your cart )</span>#}
             <button id="clear-cart-btn" type="submit" class="main_btn position-absolute end-0" style="margin-right: 10px">Clear cart</button>
         </div>
         <div class="card-body">
@@ -46,9 +46,7 @@
                             </td>
                             <td class="text-right font-weight-semibold align-middle p-4">{{ item.price }}</td>
                             <td class="text-center align-middle px-0">
-                                <button id="cart-remove-item" class="shop-tooltip close float-none text-danger" value="{{ item.product.id }}" data-original-title="Remove">
-                                    X
-                                </button>
+                                <button class="cart-remove-item shop-tooltip close float-none text-danger" value="{{ item.id }}" data-original-title="Remove" data-item="{{ item.product_id }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
 

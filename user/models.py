@@ -29,6 +29,15 @@ class Cart(models.Model):
         cart_item = CartItem(product=selected_product, cart=self)
         cart_item.save()
 
+    def remove_item(self, item_id):
+        remove_item = self.cartitem_set.get(pk=item_id)
+        remove_item.delete()
+
+    def update_quantity(self, item_id, new_quantity):
+        item = self.cartitem_set.get(pk=item_id)
+        item.quantity = new_quantity
+        item.save()
+
     def __str__(self):
         return str(self.id)
 

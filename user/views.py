@@ -55,6 +55,17 @@ def add_to_cart(request, product_id):
 
 @login_required
 def cart(request):
+    def create_cart_items(queryset):
+        all_items = [{
+            'id': item.id,
+            'name': item.product.name,
+            'price': item.product.price,
+            'total_price': item.price,
+            'quantity0': item.quantity,
+            'firstImage': item.product.productimg_set.first().image
+        } for item in queryset]
+        return all_items
+
     user_cart = request.user.cart
 
     if request.method == "POST":
@@ -66,9 +77,17 @@ def cart(request):
         elif command == "remove":
             user_cart.remove_product(request.GET["product"])
             user_cart.save()
-            return JsonResponse({"data": user_cart.cartitem_set.all()})
-        elif command == "update":
-            pass
+            remaining_pizzas = create_cart_items(user_cart.cartitem_set.all())
+            return JsonResponse({"data": remaining_pizzas, "total_price": user_cart.total_price,
+                                 "num_of_items": user_cart.num_of_items})
+        elif command == "update-quantity":
+            item_id = request.GET["item"]
+            new_quantity = request.GET["quantity"]
+            user_cart.update_quantity(item_id, new_quantity)
+            selected_item = CartItem.objects.get(pk=item_id)
+            new_item_price = selected_item.price
+            new_cart_price = user_cart.total_price
+            return JsonResponse({"cart_price": new_cart_price, "item_price": new_item_price})
 
     cart_items = user_cart.cartitem_set.all()
     return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
