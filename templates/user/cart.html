@@ -49,7 +49,7 @@
                                     <input id="{{ item.id }}" type="number" name="" step="1" min="1" max="99" value="{{ item.quantity }}" class="item-quantity input-qty form-control text-center" style="display: block;">
                                 </div>
                             </td>
-                            <td id="cart-item-{{ item.id }}" class="text-right font-weight-semibold align-middle p-4">{{ sum_same_product }} kr</td>
+                            <td id="cart-item-{{ item.id }}" class="text-right font-weight-semibold align-middle p-4">{{ item.price }}kr</td>
                             <td class="text-center align-middle px-0">
                                 <button class="cart-remove-item shop-tooltip close float-none text-danger" value="{{ item.id }}" data-original-title="Remove" data-item="{{ item.product_id }}"><i class="fa fa-trash"></i></button>
                             </td>
