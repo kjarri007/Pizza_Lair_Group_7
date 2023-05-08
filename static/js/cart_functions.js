@@ -19,7 +19,7 @@ $(document).ready(function() {
             }
         });
     });
-    $('#cart-remove-item').on('click', function(e) {
+    $('.cart-remove-item').on('click', function(e) {
         e.preventDefault();
         let command = 'remove';
         let productId = $('#cart-remove-item').val()
