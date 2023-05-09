@@ -14,7 +14,7 @@ class Profile(models.Model):
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    def cart_is_empty(self):
+    def is_empty(self):
         if self.cartitem_set.count() == 0:
             return True
         else:
