@@ -1,28 +1,64 @@
 {% extends 'base.html' %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
 
 {% block content %}
-    <h1 class="card-title">{{ selected_offer.name }}</h1>
-    <div class="card mb-3" style="max-width: 900px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                {% for offerimg in selected_offer.productimg_set.all %}
-                    <img src="{{ offerimg.image }}" class="img-fluid rounded-start" alt="Offer detail">
-                {% endfor %}
-            </div>
-                <div class="col-md-8">
-                    <div class="card-body position-relative">
-                    <h4 class="card-text m-4">{{ selected_offer.description }}</h4>
-                    <h6>Included Pizzas:</h6>
-                    <ul class="list-group list-group-horizontal-sm">
-                        {% for pizza in selected_offer.pizzas.all %}
-                            <li class="list-group-item">{{ pizza.name }}</li>
-                        {% endfor %}
-                    </ul>
+    <div class="container px-3 my-5 clearfix" xmlns="http://www.w3.org/1999/html">
+    <!-- Shopping cart table -->
+    <div class="card">
+        <div class="d-flex card-header">
+            {% csrf_token %}
+            <h2>Offer details:</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <thead>
+                    <tr>
+                        <!-- Set columns width -->
+                        <th class="text-center py-3 px-4" style="width: 300px;"><h3 class="card-title">{{ selected_offer.name }}</h3></th>
+                        <th class="text-right py-3 px-4" style="width: 600px;">Description:</th>
+                    </tr>
+                    </thead>
+                    <tbody class="item-row-start" >
+                        <tr>
+                            <td class="p-4">
+                                <div class="media  product_name" >
+                                    {% for offerimg in selected_offer.productimg_set.all %}
+                                        <img src="{{ offerimg.image }}" class="img-fluid rounded-start" alt="Offer detail" style="height: 400px">
+                                    {% endfor %}
+                                </div>
+                            </td>
+                            <td class="text-right font-weight-semibold  p-4">
+                                <h4 class="card-text m-4">{{ selected_offer.description }}</h4>
+                                <h6>Included pizzas:</h6>
+                                <ul class="d-flex flex-wrap list-group list-group-horizontal-sm ">
+                                    {% for pizza in selected_offer.pizzas.all %}
+                                        <li class="list-group-item">{{ pizza.name }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div><!-- / Shopping cart table -->
+            <div class="card mb-5">
+                <div class="card-body p-4">
+                    <div class="float-end">
+                        <p class="mb-0 me-5 d-flex align-items-center">
+                            <span class="small text-muted me-2">Price:</span>
+                            <span id="cart-total-price" class="lead fw-normal">{{ selected_offer.price }} kr</span>
+                        </p>
+                    </div>
                 </div>
-                <h3 class="position-absolute bottom-0 end-0 m-2">{{ selected_offer.price }} kr</h3>
+            </div>
+            <div class="d-flex justify-content-end">
+                <label class="add_to_cart_btn">
+                    <a href="{% url "add_to_cart" selected_offer.id %}" class="main_btn">Add to cart</a>
+                </label>
             </div>
         </div>
     </div>
+    </div>
+
 {% endblock %}
