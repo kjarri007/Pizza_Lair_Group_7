@@ -68,8 +68,8 @@ $(document).ready(function() {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
             },
              success: function (resp) {
-                $('#cart-total-price').text(resp.cart_price);
-                $('#myElement').text(resp.item_price)
+                $('#cart-total-price').text(resp.cart_price + ' kr');
+                $('#' + myElement).text(resp.item_price + ' kr')
                 // $('#checkout-btn').text(resp.num_of_items);
             },
             error: function(xhr, status, error) {
