@@ -26,7 +26,7 @@ class ContactInfoForm(ModelForm):
             }),
             "street_name": widgets.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Enter your street namee...'
+                'placeholder': 'Enter your street name...'
             }),
             "house_number": widgets.TextInput(attrs={
                 'class': 'form-control',
