@@ -21,26 +21,8 @@
               </div>
               <table class="table table-borderless">
                 <tbody>
-
-                        <!-- Dummy gögn -->
-                      <tr>
-                        <td>
-                          <div class="d-flex mb-2">
-                            <div class="flex-shrink-0">
-                              <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="" width="35" class="img-fluid">
-                            </div>
-                            <div class="flex-lg-grow-1 ms-3">
-                              <h6 class="small mb-0">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>1</td>
-                        <td class="text-end">$79.99</td>
-                    </tr>
-
-
                         <!-- Main content -->
-                    {% for item in cart_items %}
+                    {% for item in cart.cartitem_set.all %}
                       <tr>
                         <td>
                           <div class="d-flex mb-2">
@@ -61,7 +43,7 @@
                     <tfoot>
                       <tr class="fw-bold">
                         <td colspan="2">TOTAL</td>
-                        <td class="text-end">{{ user_cart.total_price }} kr</td>
+                        <td class="text-end">{{ cart.total_price }} kr</td>
                       </tr>
                     </tfoot>
                   </table>
@@ -72,15 +54,16 @@
               <!-- Customer Notes -->
               <div class="card mb-4">
                 <div class="card-body">
-                  <h3 class="h6">Payment method</h3>
-                    <p>Visa -1234 <br>
-                      Total: {{ user_cart.total_price }} kr
+                  <h5>Payment Information</h5>
+                    {{ payment_info.card_holder }}<br>
+                    Credit card: **** **** **** {{ payment_info.card_number|slice:"12:16" }}<br>
+                    exp. {{ payment_info.expiration_date }}<br>
                 </div>
               </div>
               <div class="card mb-4">
                 <!-- Shipping information -->
                 <div class="card-body">
-                  <h3 class="h6">Address</h3>
+                  <h3 class="h6">Users information</h3>
                   <address>
                     <strong>John Doe</strong><br>
                     1355 Market St, Suite 900<br>
@@ -90,8 +73,8 @@
                 </div>
               </div>
                     <div class="d-flex justify-content-end" style="margin-bottom: 10px">
-                        <a href="{%  url 'payment_detail'%}"><input type="submit" value="Back" class="main_btn" id="submit-btn" style="margin-right: 10px;"></a>
-                        <input type="submit" value="Submit order " class="main_btn" id="submit-btn" style="margin-right: 10px;">
+                        <a href="{% url 'payment_detail' %}"><input type="submit" value="Back" class="main_btn" id="submit-btn" style="margin-right: 10px;"></a>
+                        <a href="{% url 'order_confirmation' %}"><input type="submit" value="Submit order" class="main_btn" id="submit-btn" style="margin-right: 10px;"></a>
                     </div>
                 </div>
           </div>
