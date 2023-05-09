@@ -2,11 +2,9 @@
 
 {% block content %}
     <h1>Here is the payment detail form</h1>
-    <form method="post">
+    <form method="post" class="container-xl px-4 mt-4">
         {% csrf_token %}
         {{ form }}
-        <a href="{% url 'contact_info' %}">Back</a>
-        <label for="next-btn"></label>
-        <input id="next-btn" class="next-btn" type="submit" value="Next">
+        <input class="next-btn" type="submit" value="Next">
     </form>
 {% endblock %}

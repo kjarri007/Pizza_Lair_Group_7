@@ -22,7 +22,7 @@ def contact_info(request):
 def payment_info(request):
     user_payment_info = PaymentDetails.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = PaymentDetailsForm(data=request.POST)
+        form = PaymentDetailsForm(instance=user_payment_info, data=request.POST)
         if form.is_valid():
             user_payment_info = form.save(commit=False)
             user_payment_info.user = request.user
