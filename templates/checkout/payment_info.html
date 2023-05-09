@@ -5,13 +5,9 @@
     <form method="post">
         {% csrf_token %}
         {{ form }}
-{#        <label for="payment">#}
-{#        <input id="payment" type="text" value="user-name">#}
-{#        <input id="payment" type="number" value="user-number">#}
-{#        <input id="payment" type="date" value="exp-date">#}
-{#        <input id="payment" type="number" value="cvc-cvv">#}
         <a href="{% url 'contact_info' %}">Back</a>
-        <input type="submit" value="Next">
+        <label for="next-btn"></label>
+        <input id="next-btn" class="next-btn" type="submit" value="Next">
     </form>
 
 
