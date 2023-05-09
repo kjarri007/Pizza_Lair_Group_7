@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Cart",
+            name="Order",
             fields=[
                 (
                     "id",
@@ -27,9 +27,17 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
+                ("full_name", models.CharField(max_length=255)),
+                ("phone_number", models.CharField(max_length=15)),
+                ("street_name", models.CharField(max_length=255)),
+                ("house_number", models.CharField(max_length=255)),
+                ("city", models.CharField(max_length=255)),
+                ("postal_code", models.CharField(max_length=20)),
+                ("total_price", models.IntegerField(default=0)),
+                ("order_date", models.DateTimeField(auto_now_add=True)),
                 (
                     "user",
-                    models.OneToOneField(
+                    models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.AUTH_USER_MODEL,
                     ),
@@ -37,7 +45,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name="Profile",
+            name="PaymentDetails",
             fields=[
                 (
                     "id",
@@ -48,10 +56,13 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("image", models.CharField(max_length=9999)),
+                ("card_holder", models.CharField(max_length=50)),
+                ("card_number", models.CharField(max_length=16)),
+                ("expiration_date", models.DateField()),
+                ("cvc", models.CharField(max_length=3)),
                 (
                     "user",
-                    models.OneToOneField(
+                    models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to=settings.AUTH_USER_MODEL,
                     ),
@@ -59,7 +70,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name="CartItem",
+            name="OrderItem",
             fields=[
                 (
                     "id",
@@ -71,10 +82,11 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 ("quantity", models.IntegerField(default=1)),
+                ("total_price", models.IntegerField()),
                 (
-                    "cart",
+                    "order",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="user.cart"
+                        on_delete=django.db.models.deletion.CASCADE, to="checkout.order"
                     ),
                 ),
                 (
@@ -82,6 +94,33 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         to="product.product",
+                    ),
+                ),
+            ],
+        ),
+        migrations.CreateModel(
+            name="ContactInfo",
+            fields=[
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("full_name", models.CharField(max_length=255)),
+                ("phone_number", models.CharField(max_length=15)),
+                ("street_name", models.CharField(max_length=255)),
+                ("house_number", models.CharField(max_length=255)),
+                ("city", models.CharField(max_length=255)),
+                ("postal_code", models.CharField(max_length=20)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
                     ),
                 ),
             ],

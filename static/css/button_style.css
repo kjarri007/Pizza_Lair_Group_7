@@ -18,6 +18,11 @@
 	transition: 1s;
 }
 
+.main_btn:disabled {
+	color: grey;
+	background-color: grey;
+}
+
 .color-green {
 	border-color: green;
 	color: green;

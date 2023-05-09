@@ -1,105 +1,27 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-    <div class="py-5 text-center">
-    <h2>Contact</h2>
-  </div>
-<div class="row">
-    <div class="col-md-3 order-md-2 mb-4 col card border-top border-bottom border-3" style="border-color: #9c2521 !important;">
-      <h4 class="d-flex justify-content-between  align-items-center mb-3">
-        <span class="text-muted">Your cart</span>
-        <span class="badge badge-secondary badge-pill">3</span>
-      </h4>
-      <ul class="list-group mb-3 ">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Pepperoni</h6>
-            <small class="text-muted">A lot of pepperoni and cheese</small>
-          </div>
-          <span class="text-muted">3980 kr</span>
-        </li>
-
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total</span>
-          <strong>3980 kr</strong>
-        </li>
-      </ul>
-    </div>
-
-    <div class="col-md-8 order-md-1 col card m-4 border-top border-bottom border-3" style="border-color: #9c2521 !important;">
-      <h4 class="mb-3">Contact information</h4>
-      <form class="needs-validation" novalidate="">
-
-          <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="fullName">Full name</label>
-            <input type="text" class="form-control" id="fullName" placeholder="Your full name..." value="" required="">
-            <div class="invalid-feedback">
-              Valid name is required.
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-            <div class=" col-md-6 mb-3">
-              <label for="street_name">Street name</label>
-              <input type="text" class="form-control" id="street_name" placeholder="Your street name..." required="">
-              <div class="invalid-feedback">
-                Please enter your street name.
-              </div>
-            </div>
-                <div class="col-md-6 mb-3">
-                  <label for="house_number">House number</label>
-                  <input type="text" class="form-control" id="house_number" placeholder="Your house number..." required="">
-                  <div class="invalid-feedback">
-                    Please enter your shipping address.
+    <div class="card container-fluid mb-4 col-md-9">
+        <div class="card-header">Contact info</div>
+         <div class="card-body">
+            <form method="post" class="card row pt-3">
+                {% csrf_token %}
+                <div class=" d-flex">
+                    {{ form.full_name }}
+                    {{ form.phone_number }}
                 </div>
-            </div>
-        </div>
-
-
-         <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="city">City</label>
-                <input type="text" class="form-control" id="city" placeholder="The city you live in..." required="">
-                <div class="invalid-feedback">
-                    Please enter your shipping address.
-            </div>
-            </div>
-                <div class="col-md-3 mb-3">
-                    <label for="zip">Zip</label>
-                    <input type="text" class="form-control" id="zip" placeholder="Enter your zip code" required="">
-                    <div class="invalid-feedback">
-                      Zip code required.
+                <div class=" d-flex">
+                    {{ form.street_name }}
+                    {{ form.house_number }}
                 </div>
-            </div>
+                <div class=" d-flex">
+                    {{ form.city }}
+                    {{ form.postal_code }}
+                </div>
+                    <div class="d-flex justify-content-end" style="margin-bottom: 10px">
+                        <a href="{% url 'payment_detail' %}"><input type="submit" value="Next" class="main_btn" id="submit-btn" style="margin-right: 10px;"></a>
+                    </div>
+            </form>
          </div>
-
-        <div class="row">
-          <div class="col-md-5 mb-3">
-            <label for="country">Country</label>
-            <select class="custom-select d-block w-100" id="country">
-              <option value="">Choose...</option>
-                <option>Denmark</option>
-                <option>Faroe Islands</option>
-                <option>Finland</option>
-                <option>Greenland</option>
-                <option>Iceland</option>
-                <option>Norway</option>
-                <option>Sweden</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
-            </div>
-          </div>
-        </div>
-      </form>
     </div>
-</div>
-    <div class="d-flex justify-content-end">
-        <a href="{% url 'cart' %}"><input type="submit" value="Back" class="main_btn"></a>
-        <a href="{% url 'payment_info' %}"><input type="submit" value="Payment" class="main_btn "></a>
-    </div>
-
 {% endblock %}
