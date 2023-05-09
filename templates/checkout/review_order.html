@@ -2,50 +2,144 @@
 
 {% block content %}
 
-{#    checkout - views.py#}
 
-  <div class="py-5 h-100">
-    <div class="row d-flex  h-100">
-      <div class="col-lg-8 col-xl-6">
-        <div class="card border-top border-bottom border-3" style="border-color: #9c2521 !important;">
-          <div class="card-body p-5">
-
-            <p class="lead fw-bold mb-5" style="color: #9c2521;">Review order</p>
-
-            <div class="row">
-              <div class="col mb-3">
-                <p class="small text-muted mb-1">Date: {% now "jS F Y" %}</p>
-              </div>
-              <div class="col mb-3">
-                <p class="small text-muted mb-1">Order No: </p>
-                <p>77490</p>
-              </div>
-            </div>
-
-            <div class="mx-n5 px-5 py-4" style="background-color: #9c2521;">
-              <div class="row">
-                <div class="col-md-8 col-lg-9">
-                  <p style="color: white;" >Product: </p>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                  <p style="color: white;">3890 kr</p>
+    <div class=" card container-fluid">
+      <!-- Title -->
+    <div class="card-header">Order review</div>
+      <!-- Main content -->
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Details -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="mb-3 d-flex justify-content-between">
+                <div>
+                  <span class="me-3">{% now "jS F Y" %}</span>
+                  <span class="me-3">Visa -1234</span>
                 </div>
               </div>
-            </div>
+              <table class="table table-borderless">
+                <tbody>
 
-            <div class="row my-4">
-              <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
-                <p class="lead fw-bold mb-0" style="color: #9c2521;">3890 kr</p>
+                        <!-- Dummy gögn -->
+                      <tr>
+                        <td>
+                          <div class="d-flex mb-2">
+                            <div class="flex-shrink-0">
+                              <img src="https://www.bootdey.com/image/280x280/87CEFA/000000" alt="" width="35" class="img-fluid">
+                            </div>
+                            <div class="flex-lg-grow-1 ms-3">
+                              <h6 class="small mb-0">Wireless Headphones with Noise Cancellation Tru Bass Bluetooth HiFi</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>1</td>
+                        <td class="text-end">$79.99</td>
+                    </tr>
+
+
+                        <!-- Main content -->
+                    {% for item in cart_items %}
+                      <tr>
+                        <td>
+                          <div class="d-flex mb-2">
+                            <div class="flex-shrink-0">
+                              <img src="{{ item.product.productimg_set.first.image }}" alt="Review image" width="35" class="img-fluid">
+                            </div>
+                            <div class="flex-lg-grow-1 ms-3">
+                              <h6 class="small mb-0">{{ item.product.name }}</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td  id="{{ item.id }}">{{ item.quantity }}</td>
+                        <td class="text-end">{{ item.price }} kr</td>
+                      </tr>
+                    {% endfor %}
+
+                    </tbody>
+                    <tfoot>
+                      <tr class="fw-bold">
+                        <td colspan="2">TOTAL</td>
+                        <td class="text-end">{{ user_cart.total_price }} kr</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
               </div>
             </div>
-
-
-
+            <div class="col-lg-4">
+              <!-- Customer Notes -->
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h3 class="h6">Payment method</h3>
+                    <p>Visa -1234 <br>
+                      Total: {{ user_cart.total_price }} kr
+                </div>
               </div>
-            </div>
+              <div class="card mb-4">
+                <!-- Shipping information -->
+                <div class="card-body">
+                  <h3 class="h6">Address</h3>
+                  <address>
+                    <strong>John Doe</strong><br>
+                    1355 Market St, Suite 900<br>
+                    San Francisco, CA 94103<br>
+                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                  </address>
+                </div>
+              </div>
+                    <div class="d-flex justify-content-end" style="margin-bottom: 10px">
+                        <input type="submit" value="Submit order " class="main_btn" id="submit-btn" style="margin-right: 10px;">
+                    </div>
+                </div>
           </div>
         </div>
-      </div>
-    <input type="submit" value="Submit" class="main_btn ">
+
+
+    {#    checkout - views.py#}
+
+    {#  <div class="py-5 h-100">#}
+    {#    <div class="row d-flex  h-100">#}
+    {#      <div class="col-lg-8 col-xl-6">#}
+    {#        <div class="card border-top border-bottom border-3" style="border-color: #9c2521 !important;">#}
+    {#          <div class="card-body p-5">#}
+    {##}
+    {#            <p class="lead fw-bold mb-5" style="color: #9c2521;">Review order</p>#}
+    {##}
+    {#            <div class="row">#}
+    {#              <div class="col mb-3">#}
+    {#                <p class="small text-muted mb-1">Date: {% now "jS F Y" %}</p>#}
+    {#              </div>#}
+    {#              <div class="col mb-3">#}
+    {#                <p class="small text-muted mb-1">Order No: </p>#}
+    {#                <p>77490</p>#}
+    {#              </div>#}
+    {#            </div>#}
+    {##}
+    {#            <div class="mx-n5 px-5 py-4" style="background-color: #9c2521;">#}
+    {#              <div class="row">#}
+    {#                <div class="col-md-8 col-lg-9">#}
+    {#                  <p style="color: white;" >Product: </p>#}
+    {#                </div>#}
+    {#                <div class="col-md-4 col-lg-3">#}
+    {#                  <p style="color: white;">3890 kr</p>#}
+    {#                </div>#}
+    {#              </div>#}
+    {#            </div>#}
+    {##}
+    {#            <div class="row my-4">#}
+    {#              <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">#}
+    {#                <p class="lead fw-bold mb-0" style="color: #9c2521;">3890 kr</p>#}
+    {#              </div>#}
+    {#            </div>#}
+    {##}
+    {##}
+    {##}
+    {#              </div>#}
+    {#            </div>#}
+    {#          </div>#}
+    {#        </div>#}
+    {#      </div>#}
+    {#    <input type="submit" value="Submit" class="main_btn ">#}
 
 {% endblock %}
