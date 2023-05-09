@@ -1,4 +1,4 @@
-from django.forms import ModelForm, fields
+from django.forms import ModelForm, widgets
 from checkout.models import Payment
 
 
