@@ -12,13 +12,32 @@ class ContactInfoForm(ModelForm):
             "street_name",
             "house_number",
             "city",
-            "postal_code"
+            "postal_code",
         ]
+
         widgets = {
-            "full_name": widgets.TextInput(attrs={'class': 'form-control'}),
-            "phone_number": widgets.TextInput(attrs={'class': 'form-control'}),
-            "street_name": widgets.TextInput(attrs={'class': 'form-control'}),
-            "house_number": widgets.TextInput(attrs={'class': 'form-control'}),
-            "city": widgets.TextInput(attrs={'class': 'form-control'}),
-            "postal_code": widgets.TextInput(attrs={'class': 'form-control'})
+            "full_name": widgets.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your full name...'
+            }),
+            "phone_number": widgets.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your phone number...'
+            }),
+            "street_name": widgets.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your street namee...'
+            }),
+            "house_number": widgets.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your street number...'
+            }),
+            "city": widgets.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your city...'
+            }),
+            "postal_code": widgets.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Enter your postal code...'
+            })
         }
