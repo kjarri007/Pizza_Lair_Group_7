@@ -79,7 +79,7 @@ WSGI_APPLICATION = "Pizza_Lair_Group_7.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pizza-lair-db',
+        'NAME': 'pizza-lair-db-v2',
         'USER': 'pizza-lair-db-user',
         'PASSWORD': 'Abc.12345',
         'HOST': '35.228.5.225',
