@@ -1,4 +1,3 @@
-from django.http import JsonResponse  # Throw away after testing
 from django.shortcuts import render, redirect
 
 from user.models import Cart
