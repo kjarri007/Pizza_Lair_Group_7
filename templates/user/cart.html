@@ -48,7 +48,7 @@
                             </td>
                             <td id="cart-item-{{ item.id }}" class="text-right font-weight-semibold align-middle p-4">{{ item.price }}kr</td>
                             <td class="text-center align-middle px-0">
-                                <button class="cart-remove-item  text-danger" value="{{ item.id }}" data-original-title="Remove" data-item="{{ item.product_id }}"><i class="fa fa-trash"></i></button>
+                                <button class="cart-remove-item  text-danger" value="{{ item.id }}" data-original-title="Remove" data-item="{{ item.product_id }}" style="border: none"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     {% endfor %}
