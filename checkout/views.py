@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from user.models import Cart
 from .forms.contact import ContactInfoForm
+from .forms.payment_detail import PaymentDetailsForm
 from checkout.models import ContactInfo, PaymentDetails
 
 
@@ -21,20 +22,20 @@ def contact_info(request):
 def payment_info(request):
     user_payment_info = PaymentDetails.objects.filter(user=request.user).first()
     if request.method == "POST":
-        form = myForm(data=request.POST)
+        form = PaymentDetailsForm(data=request.POST)
         if form.is_valid():
             user_payment_info = form.save(commit=False)
             user_payment_info.user = request.user
             user_payment_info.save()
             return redirect("review_order")
     return render(request, "checkout/payment_info.html",
-                  context={"form": myForm()})
+                  context={"form": PaymentDetailsForm()})
 
 
 def review_step(request):
     user_cart = Cart.objects.filter(user=request.user).first()
     user_contact_info = ContactInfo.objects.filter(user=request.user).first()  # needs to be erased when POST
-    user_payment_info = MyStory.objects.filter(user=request.user).first()  # needs to be erased when POST
+    user_payment_info = PaymentDetails.objects.filter(user=request.user).first()  # needs to be erased when POST
     if request.method == "POST":
         pass
     return render(request, "checkout/review_order.html",
