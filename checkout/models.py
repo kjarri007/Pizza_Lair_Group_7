@@ -14,6 +14,7 @@ class ContactInfo(models.Model):
     postal_code = models.CharField(max_length=20)
 
 
+
 class PaymentDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     card_holder = models.CharField(max_length=50)
