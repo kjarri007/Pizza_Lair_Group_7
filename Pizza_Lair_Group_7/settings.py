@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "product.apps.ProductConfig",
     "user.apps.UserConfig",
+    "checkout.apps.CheckoutConfig",
     "crispy_forms",
     "crispy_bootstrap5"
 ]
@@ -78,7 +79,7 @@ WSGI_APPLICATION = "Pizza_Lair_Group_7.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pizza-lair-db',
+        'NAME': 'pizza-lair-db-v2',
         'USER': 'pizza-lair-db-user',
         'PASSWORD': 'Abc.12345',
         'HOST': '35.228.5.225',

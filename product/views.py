@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 
@@ -50,11 +51,13 @@ def offer_index(request):
     return render(request, "product/offer_index.html", context={"all_offers": all_offers})
 
 
+@login_required
 def pizza_detail(request, pizza_id):
     selected_pizza = get_object_or_404(models.Pizza, pk=pizza_id)
     return render(request, "product/pizza_detail.html", context={"selected_pizza": selected_pizza})
 
 
+@login_required
 def offer_detail(request, offer_id):
     selected_offer = get_object_or_404(models.Offer, pk=offer_id)
     return render(request, "product/offer_detail.html", context={"selected_offer": selected_offer})
