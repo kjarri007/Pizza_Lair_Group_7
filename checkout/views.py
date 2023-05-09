@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from user.models import Cart
 from .forms.contact import ContactInfoForm
 from .forms.payment_detail import PaymentDetailsForm
-from checkout.models import ContactInfo, PaymentDetails
+from checkout.models import ContactInfo, SecondInfoWindow, PaymentDetails
 
 
 # Create your views here.
@@ -28,8 +28,10 @@ def payment_info(request):
             user_payment_info.user = request.user
             user_payment_info.save()
             return redirect("review_order")
+        else:
+            print(form.errors)
     return render(request, "checkout/payment_info.html",
-                  context={"form": PaymentDetailsForm()})
+                  context={"form": PaymentDetailsForm(instance=user_payment_info)})
 
 
 def review_step(request):
