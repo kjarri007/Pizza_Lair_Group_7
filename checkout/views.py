@@ -36,8 +36,8 @@ def payment_info(request):
 
 def review_step(request):
     user_cart = Cart.objects.filter(user=request.user).first()
-    user_contact_info = ContactInfo.objects.filter(user=request.user).first()  # needs to be erased when POST
     user_payment_info = PaymentDetails.objects.filter(user=request.user).first()  # needs to be erased when POST
+    user_contact_info = ContactInfo.objects.filter(user=request.user).first()  # needs to be erased when POST
     if request.method == "POST":
         pass
     return render(request, "checkout/review_order.html",
@@ -45,4 +45,14 @@ def review_step(request):
 
 
 def confirmation(request):
+    user_cart = Cart.objects.filter(user=request.user).first()
+    user_payment_info = PaymentDetails.objects.filter(user=request.user).first()  # needs to be erased when POST
+    user_contact_info = ContactInfo.objects.filter(user=request.user).first()  # needs to be erased when POST
+
+    user_cart.clear_cart()
+    user_cart.save()
+
+    user_payment_info.delete()
+    user_contact_info.delete()
+
     return render(request, "checkout/thank_you.html")
