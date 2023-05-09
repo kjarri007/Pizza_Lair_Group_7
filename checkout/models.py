@@ -23,6 +23,14 @@ class PaymentDetails(models.Model):
     cvc = models.CharField(max_length=3)
 
 
+class MyStory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mammaþin = models.CharField(max_length=100)
+    eitthvad = models.CharField(max_length=100)
+    koolbro = models.CharField(max_length=100)
+    okok = models.CharField(max_length=100)
+
+
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
