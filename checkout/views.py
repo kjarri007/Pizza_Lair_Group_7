@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 
 from user.models import Cart
 from .forms.contact import ContactInfoForm
-from .forms.myForm import myForm
 from checkout.models import ContactInfo, PaymentDetails
 
 
