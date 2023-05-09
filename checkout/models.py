@@ -14,14 +14,6 @@ class ContactInfo(models.Model):
     postal_code = models.CharField(max_length=20)
 
 
-class SecondInfoWindow(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
-    number = models.CharField(max_length=16)
-    date = models.DateField()
-    secret_number = models.CharField(max_length=3)
-
-
 class PaymentDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     card_holder = models.CharField(max_length=50)

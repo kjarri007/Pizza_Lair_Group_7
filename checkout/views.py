@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from user.models import Cart
 from .forms.contact import ContactInfoForm
 from .forms.payment_detail import PaymentDetailsForm
-from checkout.models import ContactInfo, SecondInfoWindow, PaymentDetails
+from checkout.models import ContactInfo, PaymentDetails
 
 
 # Create your views here.
