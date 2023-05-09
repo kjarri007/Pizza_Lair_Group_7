@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
     <div class=" card container-fluid">
       <!-- Title -->
     <div class="card-header">Order review</div>
@@ -65,10 +64,10 @@
                 <div class="card-body">
                   <h3 class="h6">Users information</h3>
                   <address>
-                    <strong>John Doe</strong><br>
-                    1355 Market St, Suite 900<br>
-                    San Francisco, CA 94103<br>
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
+                    <strong>{{ contact_info.full_name }}</strong><br>
+                    {{ contact_info.street_name }}, {{ contact_info.house_number }}<br>
+                    {{ contact_info.city }}, {{ contact_info.postal_code }}<br>
+                    <abbr title="Phone"></abbr>{{ contact_info.phone_number }}
                   </address>
                 </div>
               </div>
