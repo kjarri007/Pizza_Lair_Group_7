@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="card mb-4 col-md-9">
+    <div class="card container-fluid mb-4 col-md-9">
         <div class="card-header">Contact info</div>
          <div class="card-body">
-            <form method="post" class="row gx-3 mb-3">
+            <form method="post" class="card row pt-3">
                 {% csrf_token %}
                 <div class=" d-flex">
                     {{ form.full_name }}
@@ -18,7 +18,9 @@
                     {{ form.city }}
                     {{ form.postal_code }}
                 </div>
-                <input type="submit" value="Next" class="main_btn justify-content-end">
+                    <div class="d-flex justify-content-end" style="margin-bottom: 10px">
+                        <a href="{% url 'payment_detail' %}"><input type="submit" value="Next" class="main_btn" id="submit-btn" style="margin-right: 10px;"></a>
+                    </div>
             </form>
          </div>
     </div>
