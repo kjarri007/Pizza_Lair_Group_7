@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from user.models import Cart
 from .forms.contact import ContactInfoForm
-from .forms.myForm import myForm, MyStory
+from .forms.myForm import myForm
 from checkout.models import ContactInfo, PaymentDetails
 
 
@@ -20,7 +20,7 @@ def contact_info(request):
 
 
 def payment_info(request):
-    user_payment_info = MyStory.objects.filter(user=request.user).first()
+    user_payment_info = PaymentDetails.objects.filter(user=request.user).first()
     if request.method == "POST":
         form = myForm(data=request.POST)
         if form.is_valid():
@@ -41,8 +41,6 @@ def review_step(request):
     return render(request, "checkout/review_order.html",
                   context={"cart": user_cart, "contact_info": user_contact_info, "payment_info": user_payment_info})
 
-
-# allir cart items = user_cart.cartitems_set.all
 
 def confirmation(request):
     return render(request, "checkout/thank_you.html")
