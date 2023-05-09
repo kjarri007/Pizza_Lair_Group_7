@@ -69,9 +69,7 @@
             <div class="d-flex justify-content-end">
                 <a href="{% url 'pizza_index' %}"><input type="submit" value="Continue shopping" class="main_btn" id="checkout-btn" style="margin-right: 10px;"></a>
 
-                {% if user_cart.cart_is_empty %}
-                    <a href=""><input type="submit" value="Your cart is empty" class="main_btn" id="checkout-btn" style="margin-right: 10px;"></a>
-                {% else %}
+                {% if not user_cart.is_empty %}
                     <a href="{% url 'contact_info' %}"><input type="submit" value="Checkout" class="main_btn" id="checkout-btn" style="margin-right: 10px;"></a>
                 {% endif %}
 

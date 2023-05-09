@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-# from creditcards.models import CardNumberField, CardExpiryField, SecurityCodeField
 from product.models import Product
 
 
@@ -15,12 +14,12 @@ class ContactInfo(models.Model):
     postal_code = models.CharField(max_length=20)
 
 
-class Payment(models.Model):
+class PaymentDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    card_holder = models.CharField(max_length=255)
-    card_number = models.IntegerField()
+    card_holder = models.CharField(max_length=50)
+    card_number = models.CharField(max_length=16)
     expiration_date = models.DateField()
-    cvc_number = models.IntegerField()
+    cvc = models.CharField(max_length=3)
 
 
 class Order(models.Model):

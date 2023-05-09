@@ -4,9 +4,6 @@
     <h1>Here is the payment detail form</h1>
     <form method="post">
         {% csrf_token %}
-        {% if error_message %}
-            <p><<strong>{{ error_message }}</strong></p>
-        {% endif %}
         {{ form }}
         <a href="{% url 'contact_info' %}">Back</a>
         <input type="submit" value="Next">
