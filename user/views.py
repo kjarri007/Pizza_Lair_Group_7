@@ -88,5 +88,15 @@ def cart(request):
             new_item_price = selected_item.price
             new_cart_price = user_cart.total_price
             return JsonResponse({"cart_price": new_cart_price, "item_price": new_item_price})
+    user_cart = Cart.objects.get(user=request.user)
     cart_items = user_cart.cartitem_set.all()
-    return render(request, "user/cart.html", context={"user_cart": user_cart, "cart_items": cart_items})
+    if user_cart.is_empty():
+        is_empty = True
+    else:
+        is_empty = False
+    context = {
+        "user_cart": user_cart,
+        "cart_items": cart_items,
+        "is_empty": is_empty
+    }
+    return render(request, "user/cart.html", context=context)

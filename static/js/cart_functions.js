@@ -61,16 +61,18 @@ $(document).ready(function() {
         let itemId = $(this).attr('id');
         let quantity = $(this).val();
         let myElement = 'cart-item-' + itemId
+        let user_cart = 'checkout-button-link'
         $.ajax({
-            url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity,
+            url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity + '&element=' + myElement + '&user_cart' + user_cart,
             type: 'POST',
             data: {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
             },
              success: function (resp) {
                 $('#cart-total-price').text(resp.cart_price + ' kr');
-                $('#' + myElement).text(resp.item_price + ' kr')
-                // $('#checkout-btn').text(resp.num_of_items);
+                $('#' + myElement).text(resp.item_price + ' kr');
+                $('#checkout-btn').text(resp.user_cart);
+                $('#checkout-button-link').attr('href', '/user/checkout/?cart=' + resp.cart_id);
             },
             error: function(xhr, status, error) {
                 console.error(error);
