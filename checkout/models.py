@@ -18,7 +18,7 @@ class PaymentDetails(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     card_holder = models.CharField(max_length=50)
     card_number = models.CharField(max_length=16)
-    expiration_date = models.DateField()
+    expiration_date = models.CharField(max_length=5)
     cvc = models.CharField(max_length=3)
 
 
