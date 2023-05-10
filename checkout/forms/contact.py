@@ -15,31 +15,29 @@ class ContactInfoForm(ModelForm):
             "postal_code",
         ]
 
-        
-
-        widgets = {
-            "full_name": widgets.TextInput(attrs={
-                'class': 'form-control mb-3 contact-info-form',
-                'placeholder': 'Enter your full name...'
-            }),
-            "phone_number": widgets.TextInput(attrs={
-                'class': 'form-control mb-3',
-                'placeholder': 'Enter your phone number...'
-            }),
-            "street_name": widgets.TextInput(attrs={
-                'class': 'form-control mb-3 contact-info-form',
-                'placeholder': 'Enter your street name...'
-            }),
-            "house_number": widgets.TextInput(attrs={
-                'class': 'form-control mb-3',
-                'placeholder': 'Enter your street number...'
-            }),
-            "city": widgets.TextInput(attrs={
-                'class': 'form-control mb-3 contact-info-form',
-                'placeholder': 'Enter your city...'
-            }),
-            "postal_code": widgets.TextInput(attrs={
-                'class': 'form-control mb-3',
-                'placeholder': 'Enter your postal code...'
-            })
-        }
+    widgets = {
+        "full_name": widgets.TextInput(attrs={
+            'class': 'form-control mb-3 contact-info-form',
+            'placeholder': 'Enter your full name...'
+        }),
+        "phone_number": widgets.TextInput(attrs={
+            'class': 'form-control mb-3',
+            'placeholder': 'Enter your phone number...'
+        }),
+        "street_name": widgets.TextInput(attrs={
+            'class': 'form-control mb-3 contact-info-form',
+            'placeholder': 'Enter your street name...'
+        }),
+        "house_number": widgets.TextInput(attrs={
+            'class': 'form-control mb-3',
+            'placeholder': 'Enter your street number...'
+        }),
+        "city": widgets.TextInput(attrs={
+            'class': 'form-control mb-3 contact-info-form',
+            'placeholder': 'Enter your city...'
+        }),
+        "postal_code": widgets.TextInput(attrs={
+            'class': 'form-control mb-3',
+            'placeholder': 'Enter your postal code...'
+        })
+    }
