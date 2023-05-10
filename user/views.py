@@ -6,7 +6,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from user.forms.profile import ProfileForm
 from user.models import Profile, CartItem, Cart
 from product.models import Product
-
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 

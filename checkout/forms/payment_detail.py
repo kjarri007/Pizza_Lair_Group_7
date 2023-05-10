@@ -1,8 +1,6 @@
 from django.forms import ModelForm, widgets, ValidationError
 from checkout.models import PaymentDetails
-from django.utils import timezone
-from datetime import datetime, date
-import re
+from datetime import date
 
 
 class PaymentDetailsForm(ModelForm):
@@ -47,17 +45,6 @@ class PaymentDetailsForm(ModelForm):
         return card_number
 
     def clean_expiration_date(self):
-        # expiration_date = self.cleaned_data.get('expiration_date')
-        # # Validate the format "MM/YY" using regex
-        # if not re.match(r'^\d{2}/\d{2}$', expiration_date):
-        #     raise ValidationError("Invalid expiration date format. Please use MM/YY format.")
-        # # Extract the month and year from the input
-        # month, year = expiration_date.split('/')
-        # # Validate the month and year values
-        # current_year = date.today().year % 100
-        # if not (1 <= int(month) <= 12 and int(year) >= current_year):
-        #     raise ValidationError("Invalid expiration date.")
-        # return expiration_date
         today = date.today()
         expiration_date = self.cleaned_data["expiration_date"]
         if not expiration_date > today:
