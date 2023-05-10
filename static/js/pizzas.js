@@ -15,14 +15,15 @@ $(document).ready(function(){
             type: 'GET',
             success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
+                    return `<div class=" well card pizza" style="width: 23%;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
                                     <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
-                                    <h4 class="card-title">${d.name}</h4>
-                                    <p class="card-text">${d.description}</p>
+                                        <h4 class="card-title">${d.name}</h4>
+                                        <p class="card-text">${d.description}</p>
+                                        <h3 class="card-text position-absolute bottom-0 end-0 m-2">${d.price} kr</h3>                                    
+                                    </div>
                                 </a>
-                                </div>
                             </div>`
                 });
                 $('.pizza-catalog').html(newHtml.join(''));
@@ -53,14 +54,15 @@ $(document).ready(function(){
             type: 'GET',
             success: function(resp){
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
+                    return `<div class=" well card pizza" style="width: 23%;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
                                     <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
-                                    <h4 class="card-title">${d.name}</h4>
-                                    <p class="card-text">${d.description}</p>
+                                        <h4 class="card-title">${d.name}</h4>
+                                        <p class="card-text">${d.description}</p>
+                                        <h3 class="card-text position-absolute bottom-0 end-0 m-2">${d.price} kr</h3>
+                                    </div>
                                 </a>
-                                </div>
                             </div>`
                 });
                 $('.pizza-catalog').html(newHtml.join(''));
@@ -80,14 +82,15 @@ $(document).ready(function(){
                 type: 'GET',
                 success: function(resp){
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
+                    return `<div class=" well card pizza" style="width: 23%;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
                                     <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
-                                    <h4 class="card-title">${d.name}</h4>
-                                    <p class="card-text">${d.description}</p>
+                                        <h4 class="card-title">${d.name}</h4>
+                                        <p class="card-text">${d.description}</p>
+                                        <h3 class="card-text position-absolute bottom-0 end-0 m-2">${d.price} kr</h3>
+                                    </div>
                                 </a>
-                                </div>
                             </div>`
                 });
                 $('.pizza-catalog').html(newHtml.join(''));
@@ -105,14 +108,15 @@ $(document).ready(function(){
                 type: 'GET',
                 success: function(resp){
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
+                    return `<div class=" well card pizza" style="width: 23%;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
                                     <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
-                                    <h4 class="card-title">${d.name}</h4>
-                                    <p class="card-text">${d.description}</p>
+                                        <h4 class="card-title">${d.name}</h4>
+                                        <p class="card-text">${d.description}</p>
+                                        <h3 class="card-text position-absolute bottom-0 end-0 m-2">${d.price} kr</h3>                                    
+                                    </div>
                                 </a>
-                                </div>
                             </div>`
                 });
                 $('.pizza-catalog').html(newHtml.join(''));
