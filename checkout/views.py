@@ -15,9 +15,10 @@ def contact_info(request):
             user_contact_info.user = request.user
             user_contact_info.save()
             return redirect("payment_detail")
-    context = ContactInfoForm(instance=user_contact_info)
-    return render(request, "checkout/contact_info.html",
-                  context={"form": context})
+    else:
+        form = ContactInfoForm(instance=user_contact_info)
+    context = {"form": form}
+    return render(request, "checkout/contact_info.html", context=context)
 
 
 def payment_info(request):
