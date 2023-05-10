@@ -8,6 +8,9 @@ header {
 	width: 100%;
 }
 
+a {
+	text-decoration-line: none;
+}
 .header-row {
     width: 100%;
     height: 100%;
@@ -25,6 +28,47 @@ header {
 .account-control-text {
 	display: flex;
 	justify-content: end;
+}
+
+
+/*-----navigation links-----*/
+#login_register {
+    font-size: 20px;
+}
+
+/*-----navigation-----*/
+.nav-links {
+	flex: 1;
+	text-align: right;
+}
+
+.nav-links ul li {
+	list-style: none;
+	display: inline-block;
+	padding: 8px 12px;
+	position: relative;
+}
+.nav-links ul li a {
+	color: black;
+	text-decoration: none;
+}
+
+.nav-links ul li::after {
+	content: "";
+	width: 0;
+	height: 2px;
+	background: #9c2521;
+	display: block;
+	margin: auto;
+	transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+	width: 100%;
+}
+
+#nav-text {
+    font-size: 24px;
 }
 
 /*-----Overlay logo-----*/
@@ -65,9 +109,9 @@ header {
 /*-----footer-----*/
 
 .footer {
-    display: flex;
-	padding: 1%;
-    width: 100%;
+	position: fixed;
+	left: 0;
+	bottom: 0;
 }
 
 .social-media {

@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,45 +21,45 @@
     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
     <title>Base</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 <header>
     <div class="row header-row">
         <div class="container header-divider">
             <div class="row" style="height: 230px">
                 <div class="col-md-9"><img class="img-fluid" src="{% static '/images/header_image.png' %}" alt="header image" />
             </div>
+                <div class="col-md-6 col-lg-3 position-absolute end-0">
+                    <div class="row account-control-container" >
+                        <div class="col account-control-text">
 
-            <div class="col-md-6 col-lg-3 position-absolute end-0">
-                <div class="row account-control-container" >
-                    <div class="col account-control-text">
-                        <a href="{% url 'user_cart' %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16" style="margin-right: 20px;">
-                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-                            </svg>
-                        </a>
-                        {% if user.is_authenticated %}
-                            <h5 style="margin-right: 20px;"><a href="{% url 'user_logout' %}">Logout</a></h5>
-                            {% else %}
-                                <h5 style="margin-right: 20px;"><a href="{% url 'user_login' %}">Login</a></h5>
-                                <h5 style="margin-right: 20px;"><a href="{% url 'user_register' %}">Register</a></h5>
-                        {% endif %}
+                            <a href="{% url 'user_cart' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16" style="margin-right: 20px;">
+                                    <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                                </svg>
+                            </a>
+                            {% if user.is_authenticated %}
+                                <h5 id="login_register" style="margin-right: 20px;"><a href="{% url 'user_logout' %}">Logout</a></h5>
+                                {% else %}
+                                    <h5 id="login_register" style="margin-right: 20px;"><a href="{% url 'user_login' %}">Login</a></h5>
+                                    <h5 id="login_register" style="margin-right: 20px;"><a href="{% url 'user_register' %}">Register</a></h5>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col d-flex justify-content-end">
-                        <div class="ml-overlay-container">
-                            <a href="" style="width: fit-content; height: fit-content" ><img class="img-fluid" src="{% static '/images/logo.png' %}" alt="logo"></a>
-                                <div class="ml-overlay" style="background: transparent;">
-                                    <a href="{% url 'main_page' %}"><img class="img-fluid" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>
-                                </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-end">
+                            <div class="ml-overlay-container">
+                                <a href="" style="width: fit-content; height: fit-content" ><img class="img-fluid" style="height: 100px" src="{% static '/images/logo.png' %}" alt="logo"></a>
+                                    <div class="ml-overlay" style="background: transparent;">
+                                        <a href="{% url 'main_page' %}"><img class="img-fluid" style="height: 100px" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
-            </div>
-        </div>
-</div>
-    </header>
+    </div>
+        </header>
 
     {% include 'navigation.html' %}
 
@@ -69,35 +69,79 @@
     </div>
 
 <!------ Footer ------>
-<footer class="footer">
-    <div>
-        <div class="ml-overlay-container">
-            <a href="" style="width: fit-content; height: fit-content" ><img class="img-fluid" src="{% static '/images/logo.png' %}" alt="logo"></a>
-                <div class="ml-overlay" style="background: transparent;">
-                    <a href="{% url 'main_page' %}"><img class="img-fluid" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>
-                </div>
-        </div>
-    </div>
+<footer class="text-center py-4">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-center">
+            <div class="ml-overlay-container">
+                <a href="" style="width: fit-content; height: fit-content" ><img class="img-fluid" style="height: 100px" src="{% static '/images/logo.png' %}" alt="logo"></a>
+                    <div class="ml-overlay" style="background: transparent;">
+                        <a href="{% url 'main_page' %}"><img class="img-fluid" style="height: 100px" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>
+                    </div>
+            </div>
+            <div class="col">
+                <ul class="list-inline my-2">
+                    <li class="list-inline-item me-4">
+                        <div class="bs-icon-circle bs-icon-primary bs-icon">
+                            <a href="https://www.facebook.com/Dominos.is" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </li>
+                    <li class="list-inline-item me-4">
+                        <div class="bs-icon-circle bs-icon-primary bs-icon">
+                            <a href="https://twitter.com/dominos" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </li>
+                    <li class="list-inline-item">
+                        <div class="bs-icon-circle bs-icon-primary bs-icon">
+                            <a href="https://www.instagram.com/dominos/" target="_blank"><i class="fab fa-instagram-square"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col">
+                <ul class="list-inline my-2">
 
-    <nav class="nav-links-footer">
-        <ul class="company-info">
-            <li>Phone: 5812345</li>
-            <li>Email: <a href="{% url 'main_page' %}" target="_blank">pizzalair@pizzalair.com</a></li>
-            <li>Locations: Pizzafold 12, 112 Reykjavík</li>
-            <li >Hópur 7 <i class="far fa-copyright"></i> 2023 </li>
-        </ul>
-    </nav>
+                        <p class="text-muted my-2">Copyright © 2023 Hópur 7</p>
 
-    <div class="social-media">
-        <p><small>Social media links</small></p>
-        <div class="icons">
-            <a href="https://www.facebook.com/Dominos.is" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/dominos" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/dominos/" target="_blank"><i class="fab fa-instagram-square"></i></a>
-            <a href="https://www.linkedin.com/company/domino's-pizza/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </ul>
+            </div>
         </div>
     </div>
 </footer>
+
+
+
+
+
+
+{#<footer class="footer">#}
+{#    <div>#}
+{#        <div class="ml-overlay-container">#}
+{#            <a href="" style="width: fit-content; height: fit-content" ><img class="img-fluid" src="{% static '/images/logo.png' %}" alt="logo"></a>#}
+{#                <div class="ml-overlay" style="background: transparent;">#}
+{#                    <a href="{% url 'main_page' %}"><img class="img-fluid" src="{% static '/images/logo_hover.png' %}" alt="logo hover"></a>#}
+{#                </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <nav class="nav-links-footer">#}
+{#        <ul class="company-info">#}
+{#            <li>Phone: 5812345</li>#}
+{#            <li>Email: <a href="{% url 'main_page' %}" target="_blank">pizzalair@pizzalair.com</a></li>#}
+{#            <li>Locations: Pizzafold 12, 112 Reykjavík</li>#}
+{#            <li >Hópur 7 <i class="far fa-copyright"></i> 2023 </li>#}
+{#        </ul>#}
+{#    </nav>#}
+{##}
+{#    <div class="social-media">#}
+{#        <p><small>Social media links</small></p>#}
+{#        <div class="icons">#}
+{#            <a href="https://www.facebook.com/Dominos.is" target="_blank"><i class="fab fa-facebook-f"></i></a>#}
+{#            <a href="https://twitter.com/dominos" target="_blank"><i class="fab fa-twitter"></i></a>#}
+{#            <a href="https://www.instagram.com/dominos/" target="_blank"><i class="fab fa-instagram-square"></i></a>#}
+{#            <a href="https://www.linkedin.com/company/domino's-pizza/" target="_blank"><i class="fab fa-linkedin-in"></i></a>#}
+{#        </div>#}
+{#    </div>#}
+{#</footer>#}
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js" ></script>
