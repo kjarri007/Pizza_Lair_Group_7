@@ -53,8 +53,8 @@ class ContactInfoForm(ModelForm):
 
     def clean_full_name(self):
         full_name = self.cleaned_data["full_name"]
-        if not full_name.isalpha():
-            raise ValidationError("You are not Elon Musk's kid!!", "Full name should contain only letters and spaces.")
+        if not all(char.isalpha() or char.isspace() for char in full_name):
+            raise ValidationError("You are not Elon Musk's kid!!")
         if not len(full_name) > 3:
             raise ValidationError("You can't possibly be called that...", "Please enter a valid full name.")
         return full_name
