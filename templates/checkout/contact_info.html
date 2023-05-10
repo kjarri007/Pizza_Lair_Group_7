@@ -10,6 +10,13 @@
                     <div class="col-md-6" style="margin-right: 1rem">
                         {{ form.full_name.label }}
                         {{ form.full_name }}
+                        <ul>
+                            {% for field_errors in form.errors.values %}
+                                {% for error in field_errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
                     </div>
                     <div class="col-md-3">
                         {{ form.phone_number.label }}
