@@ -72,7 +72,8 @@ class ContactInfoForm(ModelForm):
         return street_name
 
     def clean_house_number(self):
-        pass
+        house_number = self.cleaned_data["house_number"]
+        return house_number
 
     def clean_city(self):
         city = self.cleaned_data["city"]
