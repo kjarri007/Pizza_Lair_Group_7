@@ -53,10 +53,10 @@ class ContactInfoForm(ModelForm):
 
     def clean_full_name(self):
         full_name = self.cleaned_data["full_name"]
-        if not all(char.isalpha() or char.isspace() for char in full_name):
-            raise ValidationError("You are not Elon Musk's kid!!")
+        if not full_name.isalpha():
+            raise ValidationError("You are not Elon Musk's kid!!", "Full name should contain only letters and spaces.")
         if not len(full_name) > 3:
-            raise ValidationError("You can't possibly be called that...")
+            raise ValidationError("You can't possibly be called that...", "Please enter a valid full name.")
         return full_name
 
     def clean_phone_number(self):
@@ -72,7 +72,8 @@ class ContactInfoForm(ModelForm):
         return street_name
 
     def clean_house_number(self):
-        return self
+        house_number = self.cleaned_data["house_number"]
+        return house_number
 
     def clean_city(self):
         city = self.cleaned_data["city"]
