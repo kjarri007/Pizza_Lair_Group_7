@@ -38,6 +38,7 @@
                                 </svg>
                             </a>
                             {% if user.is_authenticated %}
+                                <h5 id="login_register" style="margin-right: 20px;"><a href="{% url 'user_profile' %}">My Account</a></h5>
                                 <h5 id="login_register" style="margin-right: 20px;"><a href="{% url 'user_logout' %}">Logout</a></h5>
                                 {% else %}
                                     <h5 id="login_register" style="margin-right: 20px;"><a href="{% url 'user_login' %}">Login</a></h5>

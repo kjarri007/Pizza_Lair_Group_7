@@ -15,131 +15,132 @@
                                 <input type="submit" value="Update" class="btn main_btn" style="margin-top: 10px">
                         </div>
                 </div>
+                {{ form }}
             </div>
         </div>
     </form>
 
-    <div class="container-xl px-4 mt-4">
-            {% csrf_token %}
-
-        <!-- Account page navigation-->
-        <nav class="nav nav-borders">
-            <a class="nav-link active ms-0" href="{% url 'user_profile' %}">Profile</a>
+{#    <div class="container-xl px-4 mt-4">#}
+{#            {% csrf_token %}#}
+{##}
+{#        <!-- Account page navigation-->#}
+{#        <nav class="nav nav-borders">#}
+{#            <a class="nav-link active ms-0" href="{% url 'user_profile' %}">Profile</a>#}
     {#        <a class="nav-link" href="{% url 'billing_info' %}">Billing</a>#}
-        </nav>
-        <hr class="mt-0 mb-4">
-
-            <div class="col-xl-8">
-                <!-- Account details card-->
-                <div class="card mb-4">
-                    <div class="card-header">Account Details</div>
-                    <div class="card-body">
-                        <form>
-                            <!-- Form Group (username)-->
-                            <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid username name.
-                                    </div>
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (Full name)-->
-                                <div class="mb-3">
-                                    <label class="small mb-1" for="inputFullName">Full name</label>
-                                    <input class="form-control" id="inputFullName" type="text" placeholder="Enter your full name">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid name.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Form Row        -->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (Street name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputStreetName">Street name</label>
-                                    <input class="form-control" id="inputStreetName" type="text" placeholder="Enter your Street name">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid street name.
-                                    </div>
-                                </div>
-                                <!-- Form Group (House number)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputStreetNumber">House number</label>
-                                    <input class="form-control" id="inputStreetNumber" type="text" placeholder="Enter your Street number">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid house number.
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Form Row        -->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (City name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputCity">City</label>
-                                    <input class="form-control" id="inputCity" type="text" placeholder="Enter city">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid city.
-                                    </div>
-                                </div>
-                                <!-- Form Group (House number)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputZipCode">ZipCode</label>
-                                    <input class="form-control" id="inputZipCode" type="text" placeholder="Enter zip code">
-                                    <div class="invalid-feedback">
-                                        Please enter a valid zip code.
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <!-- Form Group (email address)-->
-                            <div class="mb-3">
-                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address">
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (phone number)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputCurrentPassword">Current password</label>
-                                    <input class="form-control" id="inputCurrentPassword" type="password" placeholder="Current password">
-                                </div>
-                                <!-- Form Group (birthday)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputNewPassword">New password</label>
-                                    <input class="form-control" id="inputNewPassword" type="password" placeholder="New Password">
-                                </div>
-                            </div>
-                            <!-- Form Group (Country)-->
-                            <div class="row">
-                              <div class="col-md-5 mb-3">
-                                <label for="country">Country</label>
-                                <select class="custom-select d-block w-100" id="country">
-                                  <option value="">Choose...</option>
-                                    <option>Denmark</option>
-                                    <option>Faroe Islands</option>
-                                    <option>Finland</option>
-                                    <option>Greenland</option>
-                                    <option>Iceland</option>
-                                    <option>Norway</option>
-                                    <option>Sweden</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                  Please select a valid country.
-                                </div>
-                              </div>
-                            </div>
-                            <!-- Save changes button-->
-                            <button class="btn main_btn" type="button">Save changes</button>
-                        </form>
-                    </div>
-                </div>
-
-                </div>
-            </div>
-        </div>
+{#        </nav>#}
+{#        <hr class="mt-0 mb-4">#}
+{##}
+{#            <div class="col-xl-8">#}
+{#                <!-- Account details card-->#}
+{#                <div class="card mb-4">#}
+{#                    <div class="card-header">Account Details</div>#}
+{#                    <div class="card-body">#}
+{#                        <form>#}
+{#                            <!-- Form Group (username)-->#}
+{#                            <div class="mb-3">#}
+{#                                <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>#}
+{#                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username">#}
+{#                                    <div class="invalid-feedback">#}
+{#                                        Please enter a valid username name.#}
+{#                                    </div>#}
+{#                            </div>#}
+{#                            <!-- Form Row-->#}
+{#                            <div class="row gx-3 mb-3">#}
+{#                                <!-- Form Group (Full name)-->#}
+{#                                <div class="mb-3">#}
+{#                                    <label class="small mb-1" for="inputFullName">Full name</label>#}
+{#                                    <input class="form-control" id="inputFullName" type="text" placeholder="Enter your full name">#}
+{#                                    <div class="invalid-feedback">#}
+{#                                        Please enter a valid name.#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <!-- Form Row        -->#}
+{#                            <div class="row gx-3 mb-3">#}
+{#                                <!-- Form Group (Street name)-->#}
+{#                                <div class="col-md-6">#}
+{#                                    <label class="small mb-1" for="inputStreetName">Street name</label>#}
+{#                                    <input class="form-control" id="inputStreetName" type="text" placeholder="Enter your Street name">#}
+{#                                    <div class="invalid-feedback">#}
+{#                                        Please enter a valid street name.#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <!-- Form Group (House number)-->#}
+{#                                <div class="col-md-6">#}
+{#                                    <label class="small mb-1" for="inputStreetNumber">House number</label>#}
+{#                                    <input class="form-control" id="inputStreetNumber" type="text" placeholder="Enter your Street number">#}
+{#                                    <div class="invalid-feedback">#}
+{#                                        Please enter a valid house number.#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <!-- Form Row        -->#}
+{#                            <div class="row gx-3 mb-3">#}
+{#                                <!-- Form Group (City name)-->#}
+{#                                <div class="col-md-6">#}
+{#                                    <label class="small mb-1" for="inputCity">City</label>#}
+{#                                    <input class="form-control" id="inputCity" type="text" placeholder="Enter city">#}
+{#                                    <div class="invalid-feedback">#}
+{#                                        Please enter a valid city.#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <!-- Form Group (House number)-->#}
+{#                                <div class="col-md-6">#}
+{#                                    <label class="small mb-1" for="inputZipCode">ZipCode</label>#}
+{#                                    <input class="form-control" id="inputZipCode" type="text" placeholder="Enter zip code">#}
+{#                                    <div class="invalid-feedback">#}
+{#                                        Please enter a valid zip code.#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{##}
+{##}
+{##}
+{#                            <!-- Form Group (email address)-->#}
+{#                            <div class="mb-3">#}
+{#                                <label class="small mb-1" for="inputEmailAddress">Email address</label>#}
+{#                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address">#}
+{#                            </div>#}
+{#                            <!-- Form Row-->#}
+{#                            <div class="row gx-3 mb-3">#}
+{#                                <!-- Form Group (phone number)-->#}
+{#                                <div class="col-md-6">#}
+{#                                    <label class="small mb-1" for="inputCurrentPassword">Current password</label>#}
+{#                                    <input class="form-control" id="inputCurrentPassword" type="password" placeholder="Current password">#}
+{#                                </div>#}
+{#                                <!-- Form Group (birthday)-->#}
+{#                                <div class="col-md-6">#}
+{#                                    <label class="small mb-1" for="inputNewPassword">New password</label>#}
+{#                                    <input class="form-control" id="inputNewPassword" type="password" placeholder="New Password">#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <!-- Form Group (Country)-->#}
+{#                            <div class="row">#}
+{#                              <div class="col-md-5 mb-3">#}
+{#                                <label for="country">Country</label>#}
+{#                                <select class="custom-select d-block w-100" id="country">#}
+{#                                  <option value="">Choose...</option>#}
+{#                                    <option>Denmark</option>#}
+{#                                    <option>Faroe Islands</option>#}
+{#                                    <option>Finland</option>#}
+{#                                    <option>Greenland</option>#}
+{#                                    <option>Iceland</option>#}
+{#                                    <option>Norway</option>#}
+{#                                    <option>Sweden</option>#}
+{#                                </select>#}
+{#                                <div class="invalid-feedback">#}
+{#                                  Please select a valid country.#}
+{#                                </div>#}
+{#                              </div>#}
+{#                            </div>#}
+{#                            <!-- Save changes button-->#}
+{#                            <button class="btn main_btn" type="button">Save changes</button>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
 
     {% endblock %}

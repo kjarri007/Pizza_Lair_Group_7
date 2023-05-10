@@ -15,6 +15,8 @@ class ContactInfoForm(ModelForm):
             "postal_code",
         ]
 
+        
+
         widgets = {
             "full_name": widgets.TextInput(attrs={
                 'class': 'form-control mb-3 contact-info-form',
