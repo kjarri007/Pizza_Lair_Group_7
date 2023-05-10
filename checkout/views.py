@@ -30,9 +30,9 @@ def payment_info(request):
             user_payment_info.user = request.user
             user_payment_info.save()
             return redirect("review_order")
-        else:
-            form = PaymentDetailsForm(instance=user_payment_info)
-        context = {"form": form}
+    else:
+        form = PaymentDetailsForm(instance=user_payment_info)
+    context = {"form": form}
     return render(request, "checkout/payment_info.html", context=context)
 
 
