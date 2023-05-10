@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets, ValidationError
 from checkout.models import PaymentDetails
-from datetime import date
+from datetime import date, datetime
 
 
 class PaymentDetailsForm(ModelForm):
@@ -51,7 +51,19 @@ class PaymentDetailsForm(ModelForm):
         return card_number
 
     def clean_expiration_date(self):
-        pass
+        expiration_date = self.cleaned_data['expiration_date']
+        try:
+            # parse the expiration date string into a datetime object
+            expiration_date = datetime.strptime(expiration_date, '%m/%y')
+        except ValueError:
+            # raise a validation error if the date cannot be parsed correctly
+            raise ValidationError("Invalid expiration date format. Please enter a valid expiration date in the format MM/YY.")
+
+        # check that the expiration date is in the future
+        if expiration_date < datetime.now():
+            raise ValidationError("Expiration date must be in the future.")
+
+        return expiration_date.strftime('%m/%y')
 
 
     def clean_cvc(self):
