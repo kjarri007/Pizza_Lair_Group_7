@@ -67,7 +67,7 @@ class ContactInfoForm(ModelForm):
 
     def clean_street_name(self):
         street_name = self.cleaned_data["street_name"]
-        if not street_name.isalpha():
+        if not all(char.isalpha() or char.isspace() for char in street_name):
             raise ValidationError("Street name should only contain letters and spaces.")
         return street_name
 
@@ -77,7 +77,7 @@ class ContactInfoForm(ModelForm):
 
     def clean_city(self):
         city = self.cleaned_data["city"]
-        if not city.isalpha():
+        if not all(char.isalpha() or char.isspace() for char in city):
             raise ValidationError("City name should only contain letters and spaces.")
         return city
 
