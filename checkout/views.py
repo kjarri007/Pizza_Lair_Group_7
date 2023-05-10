@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from user.models import Cart
 from .forms.contact import ContactInfoForm
 from .forms.payment_detail import PaymentDetailsForm
@@ -48,11 +47,8 @@ def confirmation(request):
     user_cart = Cart.objects.filter(user=request.user).first()
     user_payment_info = PaymentDetails.objects.filter(user=request.user).first()  # needs to be erased when POST
     user_contact_info = ContactInfo.objects.filter(user=request.user).first()  # needs to be erased when POST
-
     user_cart.clear_cart()
     user_cart.save()
-
     user_payment_info.delete()
     user_contact_info.delete()
-
     return render(request, "checkout/thank_you.html")

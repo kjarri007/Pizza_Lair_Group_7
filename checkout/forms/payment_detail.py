@@ -14,6 +14,7 @@ class PaymentDetailsForm(ModelForm):
             "expiration_date",
             "cvc",
         ]
+
         widgets = {
             "card_holder": widgets.TextInput(attrs={'class': 'form-control'}),
             "card_number": widgets.TextInput(attrs={'class': 'form-control'}),
