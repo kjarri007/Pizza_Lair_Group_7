@@ -29,6 +29,14 @@ class PaymentDetailsForm(ModelForm):
             "cvc": "CVC"
         }
 
+    def clean_card_holder(self):
+        card_holder = self.cleaned_data["card_holder"]
+        if not card_holder.isalpha():
+            raise ValidationError("You are not Elon Musk's kid!!")
+        if not len(card_holder) > 3:
+            raise ValidationError("You can't possibly be called that...")
+        return card_holder
+
     def clean_card_number(self):
         card_number = self.cleaned_data["card_number"]
         if not card_number.isdigit():
