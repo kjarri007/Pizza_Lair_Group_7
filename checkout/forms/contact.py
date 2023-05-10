@@ -73,7 +73,9 @@ class ContactInfoForm(ModelForm):
 
     def clean_house_number(self):
         house_number = self.cleaned_data["house_number"]
-        if not len(str(house_number)) < 1 or len(str(house_number)) > 4:
+        if not len(str(house_number)) > 1:
+            raise ValidationError("Please enter a valid house number.")
+        elif not len(str(house_number)) < 4:
             raise ValidationError("Please enter a valid house number.")
         return house_number
 
