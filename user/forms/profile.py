@@ -17,6 +17,15 @@ class ProfileForm(ModelForm):
             "postal_code",
         ]
 
+        labels = {
+            "full_name": "Full name",
+            "phone_number": "Phone number",
+            "street_name": "Street name",
+            "house_number": "House Number",
+            "city": "City",
+            "postal_code": "Postal code"
+        }
+
         widgets = {
             "image": widgets.TextInput(attrs={
                 "class": "form-control",
