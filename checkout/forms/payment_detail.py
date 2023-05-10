@@ -51,7 +51,18 @@ class PaymentDetailsForm(ModelForm):
         return card_number
 
     def clean_expiration_date(self):
-        pass
+        expiration_date = self.cleaned_data["expiration_date"]
+        if expiration_date[0:2].isdigit() and expiration_date[3:5].isdigit():
+            raise ValidationError("Please enter only digits for the month and year.")
+        elif not int(expiration_date[0:2]) in range(1, 13):
+            raise ValidationError("The month must be between 1 and 12.")
+        elif not int(expiration_date[3:5]) in range(23, 33):
+            raise ValidationError("The year must be between 23 and 32.")
+        elif datetime.strptime(expiration_date, "%m/%y").date() < date.today():
+            raise ValidationError("The expiration date cannot be in the past.")
+        elif expiration_date[2] != "/":
+            raise ValidationError("Please enter expiration date in form MM/YY.")
+        return expiration_date
 
 
     def clean_cvc(self):
