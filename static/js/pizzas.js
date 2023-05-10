@@ -15,9 +15,9 @@ $(document).ready(function(){
             type: 'GET',
             success: function(resp) {
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 18rem;">
+                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
-                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
                                     <h4 class="card-title">${d.name}</h4>
                                     <p class="card-text">${d.description}</p>
@@ -53,9 +53,9 @@ $(document).ready(function(){
             type: 'GET',
             success: function(resp){
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 18rem;">
+                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
-                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
                                     <h4 class="card-title">${d.name}</h4>
                                     <p class="card-text">${d.description}</p>
@@ -80,9 +80,9 @@ $(document).ready(function(){
                 type: 'GET',
                 success: function(resp){
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 18rem;">
+                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
-                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
                                     <h4 class="card-title">${d.name}</h4>
                                     <p class="card-text">${d.description}</p>
@@ -105,9 +105,9 @@ $(document).ready(function(){
                 type: 'GET',
                 success: function(resp){
                 let newHtml = resp.data.map(d => {
-                    return `<div class=" well card pizza" style="width: 18rem;">
+                    return `<div class=" well card pizza" style="width: 15rem;height: 36rem">
                                 <a href="/order/pizzas/${d.id}" class="link-offset-2 link-underline link-underline-opacity-0">
-                                    <img class="card-img-top" src="${d.firstImage}" alt="search image"/>
+                                    <img class="card-img-top" src="${d.firstImage}" alt="search image" style="height: 300px">
                                     <div class="card-body">
                                     <h4 class="card-title">${d.name}</h4>
                                     <p class="card-text">${d.description}</p>
