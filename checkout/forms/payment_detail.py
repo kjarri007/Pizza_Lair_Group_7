@@ -17,7 +17,13 @@ class PaymentDetailsForm(ModelForm):
         widgets = {
             "card_holder": widgets.TextInput(attrs={'class': 'form-control'}),
             "card_number": widgets.TextInput(attrs={'class': 'form-control'}),
-            "expiration_date": widgets.DateInput(attrs={'class': 'form-control'}),
+            "expiration_date": widgets.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'MM/YY',
+                    'data-mask': '00/00'  # Input masking pattern
+                }
+            ),
             "cvc": widgets.TextInput(attrs={'class': 'form-control'}),
         }
 
@@ -45,10 +51,17 @@ class PaymentDetailsForm(ModelForm):
         return card_number
 
     def clean_expiration_date(self):
-        today = date.today()
         expiration_date = self.cleaned_data["expiration_date"]
-        if not expiration_date > today:
-            raise ValidationError("This card is expired.")
+        if not expiration_date:
+            raise ValidationError("Please enter an expiration date.")
+        if not expiration_date[2] == "/":
+            raise ValidationError("Please enter a valid expiration date.")
+        if not expiration_date[0:2].isdigit() or not expiration_date[3:5].isdigit():
+            raise ValidationError("Please enter only digits for the expiration date.")
+        if not 1 <= int(expiration_date[0:2]) <= 12:
+            raise ValidationError("Please enter a valid month.")
+        if not int(expiration_date[3:5]) >= date.today().year % 100:
+            raise ValidationError("Please enter a valid year.")
         return expiration_date
 
     def clean_cvc(self):
