@@ -77,6 +77,8 @@ class ContactInfoForm(ModelForm):
             raise ValidationError("Please enter a valid house number.")
         elif not len(str(house_number)) < 4:
             raise ValidationError("Please enter a valid house number.")
+        elif not str(house_number)[0].isdigit():
+            raise ValidationError("Please enter a valid house number.")
         return house_number
 
     def clean_city(self):
@@ -89,4 +91,6 @@ class ContactInfoForm(ModelForm):
         postal_code = self.cleaned_data["postal_code"]
         if not len(str(postal_code)) == 3:
             raise ValidationError("Please enter a valid postal code.")
+        elif not postal_code.isdigit():
+            raise ValidationError("Please enter only digits for the postal code.")
         return postal_code
