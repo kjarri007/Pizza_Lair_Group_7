@@ -15,7 +15,14 @@ class ContactInfoForm(ModelForm):
             "postal_code",
         ]
 
-        
+        labels = {
+            "full_name": "Full name",
+            "phone_number": "Phone number",
+            "street_name": "Street name",
+            "house_number": "House Number",
+            "city": "City",
+            "postal_code": "Postal code"
+        }
 
         widgets = {
             "full_name": widgets.TextInput(attrs={
