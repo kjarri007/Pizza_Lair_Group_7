@@ -29,7 +29,6 @@ class ProfileForm(ModelForm):
         widgets = {
             "image": widgets.TextInput(attrs={
                 "class": "form-control",
-                "type": "file"
             }),
             "full_name": widgets.TextInput(attrs={
                 'class': 'form-control mb-3 contact-info-form',
