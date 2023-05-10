@@ -33,8 +33,7 @@ def payment_info(request):
         else:
             form = PaymentDetailsForm(instance=user_payment_info)
         context = {"form": form}
-    return render(request, "checkout/payment_info.html",
-                  context={"form": PaymentDetailsForm(instance=user_payment_info)})
+    return render(request, "checkout/payment_info.html", context=context)
 
 
 def review_step(request):
