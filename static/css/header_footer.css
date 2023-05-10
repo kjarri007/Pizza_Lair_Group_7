@@ -107,36 +107,3 @@ a {
 }
 
 /*-----footer-----*/
-
-.footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-}
-
-.social-media {
-    width: 8rem;
-    margin: auto;
-}
-
-.icons .fab {
-	margin-right: 13px;
-    padding-left: 2px;
-	cursor: pointer;
-	color: #9c2521;
-}
-
-.nav-links-footer{
-    width: 55%;
-
-}
-.company-info {
-    display: flex;
-    list-style: none;
-}
-
-.company-info > li{
-    width: fit-content;
-    margin-top: 5%;
-    padding: 2%;
-}
