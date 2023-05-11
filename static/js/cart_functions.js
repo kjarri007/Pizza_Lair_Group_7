@@ -30,8 +30,8 @@ $(document).ready(function() {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
             },
             success: function (resp) {
-                let newHtml = ``
                 $('#cart-item-' + itemId).remove();
+                let newHtml = ``;
                 $('.item-row-start').html(newHtml);
                 $('#cart-total-price').text(resp.total_price);
                 $('.cart-num-items').text(resp.num_of_items);
