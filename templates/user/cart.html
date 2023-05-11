@@ -13,7 +13,6 @@
         <div class="d-flex card-header">
             {% csrf_token %}
             <h2>Shopping Cart</h2>
-                <span class="h6 cart-num-items" style="margin-left: 12px"> ( {{ user_cart.num_of_items }} item(s) in your cart )</span>
             <button id="clear-cart-btn" type="submit" class="main_btn position-absolute end-0" style="margin-right: 10px">Clear cart</button>
         </div>
         <div class="card-body">
