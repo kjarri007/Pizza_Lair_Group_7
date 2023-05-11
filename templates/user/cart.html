@@ -32,7 +32,7 @@
                     <tbody class="item-row-start" >
 
                     {% for item in cart_items %}
-                        <tr>
+                        <tr id="item-{{ item.id }}">
                             <td class="p-4">
                                 <div class="media align-items-center product_name">
                                     <a href="{% url 'pizza_detail' item.product.id %}">
@@ -51,7 +51,7 @@
                             </td>
                             <td id="cart-item-{{ item.id }}" class="text-right font-weight-semibold align-middle p-4">{{ item.price }} kr</td>
                             <td class="text-center align-middle px-0">
-                                <button id="remove-item-btn" type="submit" class="cart-remove-item text-danger" value="{{ item.id }}" data-original-title="Remove" data-item="{{ item.id }}" style="border: none"><i class="fa fa-trash"></i></button>
+                                <button class="cart-remove-item text-danger" value="{{ item.id }}" data-original-title="Remove" style="border: none"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     {% endfor %}

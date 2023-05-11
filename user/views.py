@@ -76,8 +76,7 @@ def cart(request):
         elif command == "remove":
             user_cart.remove_item(request.GET["item"])
             user_cart.save()
-            remaining_items = create_cart_items(user_cart.cartitem_set.all())
-            return JsonResponse({"data": remaining_items, "total_price": user_cart.total_price,
+            return JsonResponse({"total_price": user_cart.total_price,
                                  "num_of_items": user_cart.num_of_items})
         elif command == "update-quantity":
             item_id = request.GET["item"]

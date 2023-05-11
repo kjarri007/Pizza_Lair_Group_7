@@ -107,8 +107,7 @@ $(document).ready(function() {
         e.preventDefault(); // Prevents the default behavior of the click event
         let command = 'remove'; // Specifies the command as 'remove'
         let itemId = $(this).val(); // Retrieves the value of the clicked button (assumed to be the item ID)
-        let rowToRemove = $('#cart-item-' + itemId); // Identify the specific row to remove
-        let newHtml = ``; // Empty string for new HTML content
+        let rowToRemove = $('#item-' + itemId); // Identify the specific row to remove
         // AJAX request to the server
         $.ajax({
             url: '/user/cart/?command=' + command + '&item=' + itemId, // URL to send the request, includes the command and item ID as parameters
@@ -119,13 +118,9 @@ $(document).ready(function() {
             },
             success: function (resp) {
                 // This code block executes if the request is successful
-                $('#cart-item-' + itemId).closest('.item-row').remove();
                 rowToRemove.remove(); // Remove the row from the DOM
-                $(itemId).remove(); // Removes the element with the ID 'cart-item-{itemId}' from the DOM
-                $('.item-row-start').html(newHtml); // Updates the HTML content of elements with the class 'item-row-start'
                 $('#cart-total-price').text(resp.total_price); // Updates the text of the element with the id 'cart-total-price' with the total price value received in the response
                 $('.cart-num-items').text(resp.num_of_items); // Updates the text of elements with the class 'cart-num-items' with the number of items received in the response
-                $('.cart-remove-item').attr('href','/user/cart/');
             },
             error: function(xhr, status, error) {
                 // This code block executes if there is an error in the request
