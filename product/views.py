@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 from product import models
 from product.models import Pizza
@@ -8,7 +8,10 @@ from product.models import Pizza
 
 # Create your views here.
 def front_page(request):
-    return render(request, 'frontpage.html')
+    popular_category = get_object_or_404(models.Category, name="Popular")
+    top_pizzas = Pizza.objects.filter(categories=popular_category).order_by("name")[:4]
+    top_offers = get_list_or_404(models.Offer.objects.all().order_by("name")[:4])
+    return render(request, "frontpage.html", context={"top_pizzas": top_pizzas, "top_offers": top_offers})
 
 
 def pizza_index(request):
