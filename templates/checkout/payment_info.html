@@ -30,46 +30,39 @@
                                              <div class="col-md-6" style="margin-right: 1rem">
                                                 {{ form.card_holder.label }}
                                                 {{ form.card_holder }}
-                                                 <ul>
                                                     {% if form.card_holder.errors %}
                                                         {% for error in form.card_holder.errors %}
-                                                            <li>{{ error }}</li>
+                                                            <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
                                                         {% endfor %}
                                                     {% endif %}
-                                                 </ul>
                                              </div>
                                         </div>
                                           <div class="d-flex">
                                              <div class="col-md-6" style="margin-right: 1rem">
                                                 {{ form.card_number.label }}
                                                 {{ form.card_number }}
-                                                 <ul>
                                                     {% if form.card_number.errors %}
                                                         {% for error in form.card_number.errors %}
-                                                            <li>{{ error }}</li>
+                                                            <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
                                                         {% endfor %}
                                                     {% endif %}
-                                                 </ul>
                                              </div>
                                         </div>
                                           <div class="d-flex">
                                              <div class="col-md-6" style="margin-right: 1rem">
                                                 {{ form.expiration_date.label }}
                                                 {{ form.expiration_date }}
-                                                 <ul>
+
                                                      {% for error in form.expiration_date.errors %}
-                                                         <li>{{ error }}</li>
+                                                         <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
                                                      {% endfor %}
-                                                 </ul>
                                              </div>
-                                             <div class="col-md-3">
+                                             <div class="col-md-4">
                                                  {{ form.cvc.label }}
                                                 {{ form.cvc }}
-                                                 <ul>
                                                      {% for error in form.cvc.errors %}
-                                                         <li>{{ error }}</li>
+                                                         <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
                                                      {% endfor %}
-                                                 </ul>
                                             </div>
                                         </div>
                                      </div>
