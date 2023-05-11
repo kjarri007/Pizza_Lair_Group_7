@@ -48,12 +48,10 @@ $(document).ready(function() {
             },
             error: function(xhr, status, error) {
                 // This code block executes if there is an error in the request
-
                 console.error(error); // Logs the error to the console
             }
         });
     });
-
     // Event handler for the change event on elements with the class 'item-quantity'
     $('.item-quantity').change(function (e) {
         e.preventDefault(); // Prevents the default
@@ -76,7 +74,7 @@ $(document).ready(function() {
                 // This code block executes if the request is successful
                 $('#cart-total-price').text(resp.cart_price + ' kr'); // Updates the text of the element with the id 'cart-total-price' with the updated cart price received in the response
                 $('#' + myElement).text(resp.item_price + ' kr'); // Updates the text of the element with the ID 'myElement' with the updated item price received in the response
-                $('#checkout-btn').text(resp.user_cart); // Updates the text of the element with the id 'checkout-btn' with the updated user cart value received in the response
+                $('#checkout-btn').text(resp.user_cart); //id=".checkout-button-link"// Updates the text of the element with the id 'checkout-btn' with the updated user cart value received in the response
                 $('#checkout-button-link').attr('href', '/user/checkout/?cart=' + resp.cart_id);
                 // Updates the href attribute of the element with the id 'checkout-button-link' with the updated cart ID received in the response
             },

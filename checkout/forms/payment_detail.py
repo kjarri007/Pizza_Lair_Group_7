@@ -35,6 +35,8 @@ class PaymentDetailsForm(ModelForm):
             "cvc": "CVC"
         }
 
+        validators = []
+
     def clean_card_holder(self):
         card_holder = self.cleaned_data["card_holder"]
         if not all(char.isalpha() or char.isspace() for char in card_holder):
