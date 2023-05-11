@@ -60,7 +60,7 @@ def cart(request):
             'name': item.product.name,
             'price': item.product.price,
             'total_price': item.price,
-            'quantity0': item.quantity,
+            'quantity': item.quantity,
             'firstImage': item.product.productimg_set.first().image
         } for item in queryset]
         return all_items
