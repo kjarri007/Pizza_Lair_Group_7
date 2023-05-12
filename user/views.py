@@ -79,8 +79,12 @@ def cart(request):
         elif command == "remove":
             user_cart.remove_item(request.GET["item"])
             user_cart.save()
+            if user_cart.is_empty():
+                remove_button = True
+            else:
+                remove_button = False
             return JsonResponse({"total_price": user_cart.total_price,
-                                 "num_of_items": user_cart.num_of_items})
+                                 "num_of_items": user_cart.num_of_items, "remove_checkout_button": remove_button})
         elif command == "update-quantity":
             item_id = request.GET["item"]
             new_quantity = request.GET["quantity"]

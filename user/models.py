@@ -21,10 +21,7 @@ class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def is_empty(self):
-        if self.cartitem_set.count() == 0:
-            return True
-        else:
-            return False
+        return self.num_of_items == 0
 
     def clear_cart(self):
         cart_items = self.cartitem_set.all()
