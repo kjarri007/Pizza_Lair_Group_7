@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% block title %}Offer menu{% endblock %}
+
 {% block content %}
-    <h2>Our offers</h2>
-    <div class="d-flex flex-wrap">
-        {% for offer in all_offers %}
-            {% include 'product/single_offer.html' with offer=offer %}
-        {% endfor %}
-    </div>
+    <div class="card container-xl px-4 mt-4">
+        <div class="card-header">
+            <h2>Our Offers</h2>
+         </div>
+            <div class="card-body d-flex flex-wrap">
+                {% for offer in all_offers %}
+                    {% include 'product/single_offer.html' with offer=offer %}
+                {% endfor %}
+            </div>
+        </div>
 {% endblock %}

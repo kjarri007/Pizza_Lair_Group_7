@@ -4,7 +4,8 @@
 	color: #9c2521;
 	border: 1px solid #9c2521;
 	padding: 12px 34px;
-	font-size: 13px;
+	font-size: 18px;
+	margin-left: 10px;
 	background: transparent;
 	position: relative;
 	cursor: pointer;
@@ -15,4 +16,101 @@
 	color: #fff;
 	background: #9c2521;
 	transition: 1s;
+}
+
+.main_btn:disabled {
+	color: grey;
+	background-color: grey;
+}
+
+.color-green {
+	border-color: green;
+	color: green;
+	background-color: white;
+}
+
+.color-green:hover {
+	border-color: green;
+	color: white;
+	background-color: green;
+
+}
+
+.color-red {
+	border-color: red;
+	color: red;
+	background-color: white;
+}
+
+.color-red:hover {
+	border-color: red;
+	color: white;
+	background-color: red;
+}
+
+.color-light-green {
+	border-color: lightseagreen;
+	color: lightseagreen;
+	background-color: white;
+}
+
+.color-light-green:hover {
+	border-color: lightseagreen;
+	color: white;
+	background-color: lightseagreen;
+}
+
+.color-orange {
+	border-color: orange;
+	color: orange;
+	background-color: white;
+}
+
+.color-orange:hover {
+	border-color: orange;
+	color: white;
+	background-color: orange;
+}
+
+.color-blue {
+	border-color: blue;
+	color: blue;
+	background-color: white;
+}
+
+.color-blue:hover {
+	border-color: blue;
+	color: white;
+	background-color: blue;
+}
+
+.color-light-coral {
+	border-color: lightcoral;
+	color: lightcoral;
+	background-color: white;
+}
+
+.color-light-coral:hover {
+	border-color: lightcoral;
+	color: white;
+	background-color: lightcoral;
+}
+
+.color-brown {
+	border-color: brown;
+	color: brown;
+	background-color: white;
+}
+
+.color-brown:hover {
+	border-color: brown;
+	color: white;
+	background-color: brown;
+}
+
+
+.current {
+	border-color: purple;
+	color: white;
+	background-color: purple;
 }

@@ -1,9 +1,100 @@
 {% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
 {% block content %}
-    <h1>User Profile</h1>
-    <form class="form form-horizontal" method="post">
+    <form class="container-xl px-4 mt-4" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Update">
+
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                     <div class="card-header">
+                         Profile Picture
+                     </div>
+                    <div class="card-body text-center">
+                         <img class="img-account-profile rounded-circle mb-2" src="{{ user.profile.image }}" alt="Profile image">
+                            {{ form.image }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-8">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Account Details
+                    </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                 <div class="d-flex">
+                                    <div class="col-md-6" style="margin-right: 1rem">
+                                        {{ form.full_name.label }}
+                                        {{ form.full_name }}
+                                        {% if form.full_name.errors %}
+                                            {% for error in form.full_name.errors %}
+                                                <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.phone_number.label }}
+                                        {{ form.phone_number }}
+                                         {% if form.phone_number.errors %}
+                                            {% for error in form.phone_number.errors %}
+                                                <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-md-6" style="margin-right: 1rem">
+                                        {{ form.street_name.label }}
+                                        {{ form.street_name }}
+                                        {% if form.street_name.errors %}
+                                            {% for error in form.street_name.errors %}
+                                                <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.house_number.label }}
+                                        {{ form.house_number }}
+                                        {% if form.house_number.errors %}
+                                            {% for error in form.house_number.errors %}
+                                                <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="col-md-4" style="margin-right: 1rem">
+                                        {{ form.city.label }}
+                                        {{ form.city }}
+                                        {% if form.city.errors %}
+                                            {% for error in form.city.errors %}
+                                                <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-3" style="margin-right: 1rem">
+                                        {{ form.postal_code.label }}
+                                        {{ form.postal_code }}
+                                         {% if form.postal_code.errors %}
+                                            {% for error in form.postal_code.errors %}
+                                                <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{ form.country.label }}
+                                        {{ form.country }}
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="d-flex justify-content-end" style="margin-bottom: 10px">
+                                    <input type="submit" value="Update" class="btn main_btn" style="margin-top: 10px">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </form>
 {% endblock %}

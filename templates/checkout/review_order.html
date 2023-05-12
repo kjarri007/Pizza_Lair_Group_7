@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Review order{% endblock %}
+
+{% block content %}
+
+    <div class=" card container-fluid">
+      <!-- Title -->
+    <div class="card-header">
+        <h4>Order review:</h4>
+        <span class="me-3" style="margin-left: 10px">{% now "jS F Y" %}</span>
+    </div>
+      <!-- Main content -->
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Details -->
+          <div class="card mb-4">
+            <div class="card-body">
+            <h3 class="h6">Your items</h3>
+              <div class="mb-3 d-flex justify-content-between">
+              </div>
+              <table class="table table-borderless">
+                <tbody>
+                        <!-- Main content -->
+                    {% for item in cart.cartitem_set.all %}
+                      <tr>
+                        <td>
+                          <div class="d-flex mb-2">
+                            <div class="flex-shrink-0">
+                              <img src="{{ item.product.productimg_set.first.image }}" alt="Review image" width="35" class="img-fluid">
+                            </div>
+                            <div class="flex-lg-grow-1 ms-3">
+                              <h6 class="small mb-0">{{ item.product.name }}</h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td  id="{{ item.id }}">{{ item.quantity }}</td>
+                        <td class="text-end">{{ item.price }} kr</td>
+                      </tr>
+                    {% endfor %}
+
+                    </tbody>
+                    <tfoot>
+                      <tr class="fw-bold">
+                        <td colspan="2">TOTAL</td>
+                        <td class="text-end">{{ cart.total_price }} kr</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <!-- Customer Notes -->
+              <div class="card mb-4">
+                <div class="card-body">
+                  <h5>Payment Information</h5>
+                        {{ payment_info.card_holder }}<br>
+                        Credit card: **** **** **** {{ payment_info.card_number|slice:"12:16" }}<br>
+                        exp. {{ payment_info.expiration_date }}<br>
+                    </div>
+                </div>
+                      <div class="card mb-4">
+                <!-- Shipping information -->
+                <div class="card-body">
+                  <h3 class="h6">Users information</h3>
+                  <address>
+                    <strong>{{ contact_info.full_name }}</strong><br>
+                    {{ contact_info.street_name }}, {{ contact_info.house_number }}<br>
+                    {{ contact_info.city }}, {{ contact_info.postal_code }}<br>
+                    <abbr title="Phone"></abbr>{{ contact_info.phone_number }}
+                  </address>
+                </div>
+              </div>
+                    <div class="d-flex justify-content-end" style="margin-bottom: 10px">
+                        <a href="{% url 'payment_detail' %}" class="main_btn" id="submit-btn" style="margin-right: 10px;">Back</a>
+                        <a href="{% url 'order_confirmation' %}"><input type="submit" value="Submit Order" class="main_btn" id="submit-btn" style="margin-right: 10px;"></a>
+                    </div>
+                </div>
+          </div>
+        </div>
+{% endblock %}

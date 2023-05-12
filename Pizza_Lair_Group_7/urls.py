@@ -16,10 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from . import views
 
 urlpatterns = [
-    path("", include("my_site.urls")),
     path("admin/", admin.site.urls),
+    path("", include("product.urls")),
     path("order/", include("product.urls")),
-    path("user/", include("user.urls"))
+    path("user/", include("user.urls")),
+    path("checkout/", include("checkout.urls"))
 ]
+
+# Exception and Error Handling
+handler400 = views.handler400
+handler403 = views.handler403
+handler404 = views.handler404
+handler500 = views.handler500

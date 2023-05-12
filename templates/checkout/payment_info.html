@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Payment details{% endblock %}
+
+{% block content %}
+
+    <form method="post" class="card container-fluid mb-4 col-md-9 payment-choice">
+        {% csrf_token %}
+            <div class="card-header">Payment method</div>
+                 <div class="card-body">
+                     <div class="mb-3">
+                         <div class="d-flex">
+                             <div class="col-md-6" style="margin-right: 1rem">
+                                {{ form.card_holder.label }}
+                                {{ form.card_holder }}
+                                    {% if form.card_holder.errors %}
+                                        {% for error in form.card_holder.errors %}
+                                            <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                             </div>
+                        </div>
+                          <div class="d-flex">
+                             <div class="col-md-6" style="margin-right: 1rem">
+                                {{ form.card_number.label }}
+                                {{ form.card_number }}
+                                    {% if form.card_number.errors %}
+                                        {% for error in form.card_number.errors %}
+                                            <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                        {% endfor %}
+                                    {% endif %}
+                             </div>
+                        </div>
+                          <div class="d-flex">
+                             <div class="col-md-6" style="margin-right: 1rem">
+                                {{ form.expiration_date.label }}
+                                {{ form.expiration_date }}
+
+                                     {% for error in form.expiration_date.errors %}
+                                         <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                     {% endfor %}
+                             </div>
+                             <div class="col-md-4">
+                                 {{ form.cvc.label }}
+                                {{ form.cvc }}
+                                     {% for error in form.cvc.errors %}
+                                         <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
+                                     {% endfor %}
+                            </div>
+                        </div>
+                     </div>
+                 </div>
+                <div class="d-flex justify-content-end" style="margin-bottom: 10px">
+                        <input type="submit" name="contact_info" value="Contact info" class="btn main_btn" id="submit-btn" style="margin-right: 10px;">
+                        <input type="submit" name="review_order" value="Review order" class="btn main_btn" id="submit-btn" style="margin-right: 10px;">
+                </div>
+    </form>
+
+{% endblock %}

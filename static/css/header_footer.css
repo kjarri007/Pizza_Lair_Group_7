@@ -1,38 +1,44 @@
-body{
-    margin: 0 auto;
+.container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
+footer {
+  margin-top: auto;
+}
 /*-----header-----*/
+
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 14rem; /* adjust to your needs */
+	width: 100%;
 }
 
-.header_image {
-    width: 90%;
-    height: 100%;
+a {
+	text-decoration-line: none;
 }
-
-.header_image img {
+.header-row {
     width: 100%;
     height: 100%;
 }
 
-.header_right {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.header-divider {
+	width: 100%;
+	height: 100%;
 }
 
-.bottom-logo {
-    width: 75%;
-    height: 100%;
+.account-control-container {
+	margin-bottom: 10%;
 }
 
+.account-control-text {
+	display: flex;
+	justify-content: end;
+}
+
+
+/*-----navigation links-----*/
 #login_register {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 /*-----navigation-----*/
@@ -66,44 +72,43 @@ header {
 	width: 100%;
 }
 
-#nav_text {
+#nav-text {
     font-size: 24px;
 }
+
+/*-----Overlay logo-----*/
+.ml-overlay-container{
+	position:relative
+}
+
+.ml-overlay{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	height:100%;
+	width:100%;
+	opacity:0;
+	transition:
+	.5s;background-color:#008cba
+}
+
+.ml-overlay-container:hover
+
+.ml-overlay{
+	opacity:1;
+	cursor:initial
+}
+
+.ml-p{
+	color:#fff;
+	font-size:20px;
+	position:absolute;
+	top:50%;left:50%;
+	transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	text-align:center
+}
+
 /*-----footer-----*/
-
-.footer {
-    display: flex;
-    margin-top: 3%;
-    width: 100%;
-}
-
-.footer_logo {
-    margin-left: 1%;
-	margin-top: 0;
-}
-.social-media {
-    width: 8rem;
-    margin: auto;
-}
-
-.icons .fab {
-	margin-right: 13px;
-    padding-left: 2px;
-	cursor: pointer;
-	color: #9c2521;
-}
-
-.nav-links-footer{
-    width: 55%;
-
-}
-.company-info {
-    display: flex;
-    list-style: none;
-}
-
-.company-info > li{
-    width: fit-content;
-    margin-top: 5%;
-    padding: 2%;
-}

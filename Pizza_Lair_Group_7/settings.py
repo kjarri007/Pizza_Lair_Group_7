@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-8o*9k0+_rfa_98+)k9mc1&or*817ej+q6)1xq7cr%vu2*rfh+n"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "product.apps.ProductConfig",
     "user.apps.UserConfig",
+    "checkout.apps.CheckoutConfig",
     "crispy_forms",
     "crispy_bootstrap5"
 ]
@@ -77,7 +78,7 @@ WSGI_APPLICATION = "Pizza_Lair_Group_7.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'pizza-lair-db',
+        'NAME': 'pizza-lair-db-v2',
         'USER': 'pizza-lair-db-user',
         'PASSWORD': 'Abc.12345',
         'HOST': '35.228.5.225',
