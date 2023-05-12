@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from user.models import Cart
+from user.models import Cart, Profile
 from .forms.contact import ContactInfoForm
 from .forms.payment_detail import PaymentDetailsForm
 from checkout.models import ContactInfo, PaymentDetails
@@ -28,7 +28,11 @@ def contact_info(request):
                 if user_payment_info:
                     return redirect("review_order")
     else:
-        form = ContactInfoForm(instance=user_contact_info)
+        profile_contact_info = Profile.objects.filter(user=request.user).first()
+        if not user_contact_info:
+            form = ContactInfoForm(instance=profile_contact_info)
+        else:
+            form = ContactInfoForm(instance=user_contact_info)
     context = {"form": form}
     return render(request, "checkout/contact_info.html", context=context)
 
