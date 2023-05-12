@@ -32,6 +32,7 @@ def register(request):
     return render(request, "user/register.html", context={"form": UserCreationForm()})
 
 
+@login_required
 def profile(request):
     user_profile = Profile.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -46,7 +47,7 @@ def profile(request):
     context = {"form": form}
     return render(request, "user/profile.html", context=context)
 
-
+@login_required
 def add_to_cart(request, product_id):
     selected_product = get_object_or_404(Product, pk=product_id)
     user_cart = request.user.cart
