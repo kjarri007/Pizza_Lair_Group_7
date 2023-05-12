@@ -40,9 +40,7 @@ class PaymentDetailsForm(ModelForm):
     def clean_card_holder(self):
         card_holder = self.cleaned_data["card_holder"]
         if not all(char.isalpha() or char.isspace() for char in card_holder):
-            raise ValidationError("You are not Elon Musk's kid!!")
-        if not len(card_holder) > 3:
-            raise ValidationError("You can't possibly be called that...")
+            raise ValidationError("No digits allowed in the name.")
         return card_holder
 
     def clean_card_number(self):
