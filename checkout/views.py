@@ -14,7 +14,10 @@ def contact_info(request):
             user_contact_info = form.save(commit=False)
             user_contact_info.user = request.user
             user_contact_info.save()
-            return redirect("payment_detail")
+            if "back_to_cart" in request.POST:
+                return redirect("user_cart")
+            elif "payment_detail" in request.POST:
+                return redirect("payment_detail")
     else:
         form = ContactInfoForm(instance=user_contact_info)
     context = {"form": form}

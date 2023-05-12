@@ -5,7 +5,10 @@
 
     <div class=" card container-fluid">
       <!-- Title -->
-    <div class="card-header">Order review</div>
+    <div class="card-header">
+        <h4>Order review:</h4>
+        <span class="me-3" style="margin-left: 10px">{% now "jS F Y" %}</span>
+    </div>
       <!-- Main content -->
       <div class="row">
         <div class="col-lg-8">
@@ -14,10 +17,6 @@
             <div class="card-body">
             <h3 class="h6">Your items</h3>
               <div class="mb-3 d-flex justify-content-between">
-                <div>
-                  <span class="me-3">{% now "jS F Y" %}</span>
-                  <span class="me-3">Visa -1234</span>
-                </div>
               </div>
               <table class="table table-borderless">
                 <tbody>
