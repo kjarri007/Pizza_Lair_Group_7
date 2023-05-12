@@ -1,11 +1,3 @@
-<script>
-    if (window.history.pushState) {
-        window.history.pushState({}, null, '/order/pizzas/');
-    } else {
-        window.location.href = '/order/pizzas/';
-    }
-</script>
-
 {% extends 'base.html' %}
 {% block title %}Review order{% endblock %}
 
