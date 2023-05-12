@@ -63,11 +63,9 @@ $(document).ready(function() {
         let itemId = $(this).attr('id'); // Retrieves the ID of the changed element (assumed to be the item ID)
         let quantity = $(this).val(); // Retrieves the new value of the changed element (assumed to be the quantity)
         let myElement = 'cart-item-' + itemId; // Constructs the ID of the element to update
-        let user_cart = 'checkout-button-link'; // Specifies the ID of the user cart element
-
         // AJAX request to the server
         $.ajax({
-            url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity + '&element=' + myElement + '&user_cart=' + user_cart,
+            url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity + '&element=' + myElement,
             // URL to send the request, includes the command, item ID, quantity, and element IDs as parameters
             type: 'POST', // HTTP method to use
             data: {
@@ -78,8 +76,7 @@ $(document).ready(function() {
                 // This code block executes if the request is successful
                 $('#cart-total-price').text(resp.cart_price + ' kr'); // Updates the text of the element with the id 'cart-total-price' with the updated cart price received in the response
                 $('#' + myElement).text(resp.item_price + ' kr'); // Updates the text of the element with the ID 'myElement' with the updated item price received in the response
-                $('.cart-num-items').text(resp.num_of_items); // Updates the text of elements with the class 'cart-num-items' with the number of items received in the response
-                $('#checkout-button-link').remove() //if item.quantity is 0
+                $('#cart-num-items').text(resp.num_of_items); // Updates the text of elements with the class 'cart-num-items' with the number of items received in the response
             },
             error: function(xhr, status, error) {
                 // This code block executes if there is an error in the request
