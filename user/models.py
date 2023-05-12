@@ -5,6 +5,10 @@ from product.models import Product
 
 
 # Create your models here.
+class Country(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.CharField(max_length=9999)
@@ -14,7 +18,6 @@ class Profile(models.Model):
     house_number = models.IntegerField()
     city = models.CharField(max_length=50)
     postal_code = models.IntegerField()
-    country = models.CharField(max_length=30)
 
 
 class Cart(models.Model):
