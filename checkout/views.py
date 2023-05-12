@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from user.models import Cart
 from .forms.contact import ContactInfoForm
@@ -6,6 +7,7 @@ from checkout.models import ContactInfo, PaymentDetails
 
 
 # Create your views here.
+@login_required
 def contact_info(request):
     user_contact_info = ContactInfo.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -24,6 +26,7 @@ def contact_info(request):
     return render(request, "checkout/contact_info.html", context=context)
 
 
+@login_required
 def payment_info(request):
     user_payment_info = PaymentDetails.objects.filter(user=request.user).first()
     if request.method == "POST":
@@ -42,6 +45,7 @@ def payment_info(request):
     return render(request, "checkout/payment_info.html", context=context)
 
 
+@login_required
 def review_step(request):
     user_cart = Cart.objects.filter(user=request.user).first()
     user_payment_info = PaymentDetails.objects.filter(user=request.user).first()  # needs to be erased when POST
@@ -52,6 +56,7 @@ def review_step(request):
                   context={"cart": user_cart, "contact_info": user_contact_info, "payment_info": user_payment_info})
 
 
+@login_required
 def confirmation(request):
     user_contact_info = ContactInfo.objects.filter(user=request.user).first()  # needs to be erased when POST
     if user_contact_info:
