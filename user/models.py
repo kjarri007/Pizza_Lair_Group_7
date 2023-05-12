@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.shortcuts import get_object_or_404
 
 from product.models import Product
 
@@ -9,6 +8,13 @@ from product.models import Product
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.CharField(max_length=9999)
+    full_name = models.CharField(max_length=50)
+    phone_number = models.IntegerField()
+    street_name = models.CharField(max_length=50)
+    house_number = models.IntegerField()
+    city = models.CharField(max_length=50)
+    postal_code = models.IntegerField()
+    country = models.CharField(max_length=30)
 
 
 class Cart(models.Model):
@@ -36,8 +42,8 @@ class Cart(models.Model):
         cart_item.save()
 
     def remove_item(self, item_id):
-        remove_item = self.cartitem_set.get(pk=item_id)
-        remove_item.delete()
+        item_to_remove = self.cartitem_set.get(pk=item_id)
+        item_to_remove.delete()
 
     def update_quantity(self, item_id, new_quantity):
         item = self.cartitem_set.get(pk=item_id)

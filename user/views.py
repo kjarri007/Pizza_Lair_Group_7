@@ -6,7 +6,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from user.forms.profile import ProfileForm
 from user.models import Profile, CartItem, Cart
 from product.models import Product
-
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
@@ -43,7 +42,10 @@ def profile(request):
             user_profile.user = request.user
             user_profile.save()
             return redirect("user_profile")
-    return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
+    else:
+        form = ProfileForm(instance=user_profile)
+    context = {"form": form}
+    return render(request, "user/profile.html", context=context)
 
 
 def add_to_cart(request, product_id):
@@ -61,7 +63,7 @@ def cart(request):
             'name': item.product.name,
             'price': item.product.price,
             'total_price': item.price,
-            'quantity0': item.quantity,
+            'quantity': item.quantity,
             'firstImage': item.product.productimg_set.first().image
         } for item in queryset]
         return all_items
@@ -77,8 +79,7 @@ def cart(request):
         elif command == "remove":
             user_cart.remove_item(request.GET["item"])
             user_cart.save()
-            remaining_items = create_cart_items(user_cart.cartitem_set.all())
-            return JsonResponse({"data": remaining_items, "total_price": user_cart.total_price,
+            return JsonResponse({"total_price": user_cart.total_price,
                                  "num_of_items": user_cart.num_of_items})
         elif command == "update-quantity":
             item_id = request.GET["item"]

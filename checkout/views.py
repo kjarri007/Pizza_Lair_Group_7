@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-
 from user.models import Cart
 from .forms.contact import ContactInfoForm
 from .forms.payment_detail import PaymentDetailsForm
@@ -16,7 +15,10 @@ def contact_info(request):
             user_contact_info.user = request.user
             user_contact_info.save()
             return redirect("payment_detail")
-    return render(request, "checkout/contact_info.html", context={"form": ContactInfoForm(instance=user_contact_info)})
+    else:
+        form = ContactInfoForm(instance=user_contact_info)
+    context = {"form": form}
+    return render(request, "checkout/contact_info.html", context=context)
 
 
 def payment_info(request):
@@ -27,11 +29,14 @@ def payment_info(request):
             user_payment_info = form.save(commit=False)
             user_payment_info.user = request.user
             user_payment_info.save()
-            return redirect("review_order")
-        else:
-            print(form.errors)
-    return render(request, "checkout/payment_info.html",
-                  context={"form": PaymentDetailsForm(instance=user_payment_info)})
+            if "contact_info" in request.POST:
+                return redirect("contact_info")
+            elif "review_order" in request.POST:
+                return redirect("review_order")
+    else:
+        form = PaymentDetailsForm(instance=user_payment_info)
+    context = {"form": form}
+    return render(request, "checkout/payment_info.html", context=context)
 
 
 def review_step(request):
@@ -45,14 +50,13 @@ def review_step(request):
 
 
 def confirmation(request):
-    user_cart = Cart.objects.filter(user=request.user).first()
-    user_payment_info = PaymentDetails.objects.filter(user=request.user).first()  # needs to be erased when POST
     user_contact_info = ContactInfo.objects.filter(user=request.user).first()  # needs to be erased when POST
-
-    user_cart.clear_cart()
-    user_cart.save()
-
-    user_payment_info.delete()
-    user_contact_info.delete()
-
+    if user_contact_info:
+        user_contact_info.delete()
+        user_cart = Cart.objects.filter(user=request.user).first()
+        user_cart.clear_cart()
+        user_cart.save()
+        user_payment_info = PaymentDetails.objects.filter(user=request.user).first()  # needs to be erased when POST
+        if user_payment_info:
+            user_payment_info.delete()
     return render(request, "checkout/thank_you.html")

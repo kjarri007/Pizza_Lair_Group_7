@@ -1,81 +1,86 @@
 $(document).ready(function() {
+    // This code block executes when the DOM is ready
+    // Event handler for the "Clear Cart" button click
     $('#clear-cart-btn').on('click', function(e) {
-        e.preventDefault();
-        let command = 'clear';
+        e.preventDefault(); // Prevents the default behavior of the click event
+        let command = 'clear'; // Specifies the command as 'clear'
+        // AJAX request to the server
         $.ajax({
-            url: '/user/cart/?command=' + command,
-            type: 'POST',
+            url: '/user/cart/?command=' + command, // URL to send the request
+            type: 'POST', // HTTP method to use
             data: {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                // Sends the CSRF token as data to the server
             },
             success: function (resp) {
-                let newHtml = ``
-                $('.item-row-start').html(newHtml);
-                $('#cart-total-price').text(resp.total_price);
-                $('.cart-num-items').text(resp.num_of_items);
+                // This code block executes if the request is successful
+                let newHtml = ``; // Empty string for new HTML content
+                $('.item-row-start').html(newHtml); // Updates the HTML content of elements with the class 'item-row-start'
+                $('#cart-total-price').text(resp.total_price); // Updates the text of the element with the id 'cart-total-price' with the total price value received in the response
+                $('.cart-num-items').text(resp.num_of_items); // Updates the text of elements with the class 'cart-num-items' with the number of items received in the response
             },
             error: function(xhr, status, error) {
-                console.error(error);
+                // This code block executes if there is an error in the request
+                console.error(error); // Logs the error to the console
             }
         });
     });
+
+    // Event handler for the "Remove Item" button click
     $('.cart-remove-item').on('click', function(e) {
-        e.preventDefault();
-        let command = 'remove';
-        let itemId = $(this).val();
+        e.preventDefault(); // Prevents the default behavior of the click event
+        let command = 'remove'; // Specifies the command as 'remove'
+        let itemId = $(this).val(); // Retrieves the value of the clicked button (assumed to be the item ID)
+        let rowToRemove = $('#item-' + itemId); // Identify the specific row to remove
+        // AJAX request to the server
         $.ajax({
-            url: '/user/cart/?command=' + command + '&item=' + itemId,
-            type: 'POST',
+            url: '/user/cart/?command=' + command + '&item=' + itemId, // URL to send the request, includes the command and item ID as parameters
+            type: 'POST', // HTTP method to use
             data: {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                // Sends the CSRF token as data to the server
             },
             success: function (resp) {
-                let newHtml = resp.data.map(d => {
-                    return `<tr>
-                                <td class="p-4">
-                                    <div class="media align-items-center">
-                                        <h2 class="d-block">${d.product.name}</h2>
-                                        <img src="${d.product.productimg_set.first.image}" class="d-block mg-fluid" style="height: 16rem" alt="cart image">
-                                        <div class="media-body">
-                                    </div>
-                                    </div>
-                                </td>
-                                <td class="text-right font-weight-semibold align-middle p-4">${d.product.price}</td>
-                                <td class="align-middle p-4"><input type="number" step="1" min="1" max="99" class="form-control text-center" value="${d.quantity}"></td>
-                                <td class="text-right font-weight-semibold align-middle p-4">${d.price}</td>
-                                <td class="text-center align-middle px-0"><button id="cart-remove-item" class="shop-tooltip close float-none text-danger" data-original-title="Remove">X</button></td>
-                              </tr>`
-                })
-                $('.item-row-start').html(newHtml.join(''));
-                $('#cart-total-price').text(resp.total_price);
-                $('.cart-num-items').text(resp.num_of_items);
+                // This code block executes if the request is successful
+                rowToRemove.remove(); // Remove the row from the DOM
+                $('#cart-total-price').text(resp.total_price); // Updates the text of the element with the id 'cart-total-price' with the total price value received in the response
+                $('.cart-num-items').text(resp.num_of_items); // Updates the text of elements with the class 'cart-num-items' with the number of items received in the response
             },
             error: function(xhr, status, error) {
-                console.error(error);
+                // This code block executes if there is an error in the request
+                console.error(error); // Logs the error to the console
             }
         });
     });
+    // Event handler for the change event on elements with the class 'item-quantity'
     $('.item-quantity').change(function (e) {
-        e.preventDefault();
-        let command = 'update-quantity'
-        let itemId = $(this).attr('id');
-        let quantity = $(this).val();
-        let myElement = 'cart-item-' + itemId
-        let user_cart = 'checkout-button-link'
+        e.preventDefault(); // Prevents the default
+        let command = 'update-quantity'; // Specifies the command as 'update-quantity'
+        let itemId = $(this).attr('id'); // Retrieves the ID of the changed element (assumed to be the item ID)
+        let quantity = $(this).val(); // Retrieves the new value of the changed element (assumed to be the quantity)
+        let myElement = 'cart-item-' + itemId; // Constructs the ID of the element to update
+        let user_cart = 'checkout-button-link'; // Specifies the ID of the user cart element
+
+        // AJAX request to the server
         $.ajax({
-            url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity + '&element=' + myElement + '&user_cart' + user_cart,
-            type: 'POST',
+            url: '/user/cart/?command=' + command + '&item=' + itemId + '&quantity=' + quantity + '&element=' + myElement + '&user_cart=' + user_cart,
+            // URL to send the request, includes the command, item ID, quantity, and element IDs as parameters
+            type: 'POST', // HTTP method to use
             data: {
                 'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                // Sends the CSRF token as data to the server
             },
-             success: function (resp) {
-                $('#cart-total-price').text(resp.cart_price + ' kr');
-                $('#' + myElement).text(resp.item_price + ' kr');
-                $('#checkout-btn').text(resp.user_cart);
+            success: function (resp) {
+                // This code block executes if the request is successful
+                $('#cart-total-price').text(resp.cart_price + ' kr'); // Updates the text of the element with the id 'cart-total-price' with the updated cart price received in the response
+                $('#' + myElement).text(resp.item_price + ' kr'); // Updates the text of the element with the ID 'myElement' with the updated item price received in the response
+                $('#checkout-btn').text(resp.user_cart); //id=".checkout-button-link"// Updates the text of the element with the id 'checkout-btn' with the updated user cart value received in the response
                 $('#checkout-button-link').attr('href', '/user/checkout/?cart=' + resp.cart_id);
+                // Updates the href attribute of the element with the id 'checkout-button-link' with the updated cart ID received in the response
             },
             error: function(xhr, status, error) {
-                console.error(error);
+                // This code block executes if there is an error in the request
+                console.error(error); // Logs the error to the console
             },
         });
     });
