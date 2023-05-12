@@ -18,6 +18,7 @@ $(document).ready(function() {
                 $('.item-row-start').html(newHtml); // Updates the HTML content of elements with the class 'item-row-start'
                 $('#cart-total-price').text(resp.total_price); // Updates the text of the element with the id 'cart-total-price' with the total price value received in the response
                 $('.cart-num-items').text(resp.num_of_items); // Updates the text of elements with the class 'cart-num-items' with the number of items received in the response
+                $('#checkout-button-link').remove()
             },
             error: function(xhr, status, error) {
                 // This code block executes if there is an error in the request

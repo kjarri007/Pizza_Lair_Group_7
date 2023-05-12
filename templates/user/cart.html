@@ -68,7 +68,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <a id="checkout-button-link" href="{% url 'pizza_index' %}"><input type="button" value="Continue shopping" class="main_btn" style="margin-right: 10px;"></a>
+                <a id="continue-shopping-button-link" href="{% url 'pizza_index' %}"><input type="button" value="Continue shopping" class="main_btn" style="margin-right: 10px;"></a>
 
                 {% if not user_cart.is_empty %}
                     <a id="checkout-button-link" href="{% url 'contact_info' %}"><input type="submit" value="Checkout" class="main_btn" style="margin-right: 10px;"></a>
