@@ -54,12 +54,16 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <h5>Payment Information</h5>
-                    {{ payment_info.card_holder }}<br>
-                    Credit card: **** **** **** {{ payment_info.card_number|slice:"12:16" }}<br>
-                    exp. {{ payment_info.expiration_date }}<br>
-                </div>
-              </div>
-              <div class="card mb-4">
+                    {% if payment_info %}
+                            {{ payment_info.card_holder }}<br>
+                            Credit card: **** **** **** {{ payment_info.card_number|slice:"12:16" }}<br>
+                            exp. {{ payment_info.expiration_date }}<br>
+                        </div>
+                    </div>
+                    {% else %}
+                        <p>Pays on pickup</p>
+                    {% endif %}
+                      <div class="card mb-4">
                 <!-- Shipping information -->
                 <div class="card-body">
                   <h3 class="h6">Users information</h3>
