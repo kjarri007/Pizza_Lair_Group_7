@@ -13,6 +13,7 @@
         <div class="d-flex card-header">
             {% csrf_token %}
             <h2>Shopping Cart</h2>
+            <p class="cart-num-items">{{ user_cart.num_of_items }}</p>
             <button id="clear-cart-btn" type="submit" class="main_btn position-absolute end-0" style="margin-right: 10px">Clear cart</button>
         </div>
         <div class="card-body">
@@ -34,11 +35,9 @@
                         <tr id="item-{{ item.id }}">
                             <td class="p-4">
                                 <div class="media align-items-center product_name">
-                                    <a href="{% url 'pizza_detail' item.product.id %}">
-                                        <h2 class="d-block">{{ item.product.name }}</h2>
-                                        <img src="{{ item.product.productimg_set.first.image }}" class="d-block mg-fluid" style="height: 16rem" alt="cart image">
-                                        <div class="media-body"></div>
-                                    </a>
+                                    <h2 class="d-block">{{ item.product.name }}</h2>
+                                    <img src="{{ item.product.productimg_set.first.image }}" class="d-block mg-fluid" style="height: 16rem" alt="cart image">
+                                    <div class="media-body"></div>
                                 </div>
                             </td>
                             <td class="text-right font-weight-semibold align-middle p-4">{{ item.product.price }} kr</td>

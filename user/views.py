@@ -88,7 +88,8 @@ def cart(request):
             selected_item = CartItem.objects.get(pk=item_id)
             new_item_price = selected_item.price
             new_cart_price = user_cart.total_price
-            return JsonResponse({"cart_price": new_cart_price, "item_price": new_item_price})
+            num_of_items = user_cart.num_of_items
+            return JsonResponse({"cart_price": new_cart_price, "item_price": new_item_price, "num_of_items": num_of_items})
     user_cart = Cart.objects.get(user=request.user)
     cart_items = user_cart.cartitem_set.all()
     if user_cart.is_empty():

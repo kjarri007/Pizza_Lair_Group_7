@@ -77,6 +77,7 @@ $(document).ready(function() {
                 $('#checkout-btn').text(resp.user_cart); //id=".checkout-button-link"// Updates the text of the element with the id 'checkout-btn' with the updated user cart value received in the response
                 $('#checkout-button-link').attr('href', '/user/checkout/?cart=' + resp.cart_id);
                 // Updates the href attribute of the element with the id 'checkout-button-link' with the updated cart ID received in the response
+                $('.cart-num-items').text(resp.num_of_items); // Updates the text of elements with the class 'cart-num-items' with the number of items received in the response
             },
             error: function(xhr, status, error) {
                 // This code block executes if there is an error in the request
