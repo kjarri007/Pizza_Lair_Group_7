@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponseServerError
 
 
 def handler400(request, exception):
