@@ -17,8 +17,44 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+#################################################
+# https://www.youtube.com/watch?v=NgHvfxkEKhQ
+
+# from django.conf import settings
+# from django.conf.urls.static import static
+
+# from django.contrib.auth.models import User
+# from django_otp.plugins.otp_totp.models import TOTPDevice
+# from django_otp.admin import OTPAdminSite
+# from main import models as main
+#
+#
+# class MediaAdmin(admin.ModelAdmin):
+#     list_display = ("id", "url")
+#
+# class OTPAdmin(OTPAdminSite):
+#     pass
+#
+#
+# admin_site = OTPAdmin(name="OTPAdmin")
+
+# admin_site.register(User)
+# admin_site.register(TOTPDevice)
+# admin_site.register(main.Media, MediaAdmin)
+#
+# handler400 = 'diddemo.views.hendler400'
+# handler403 = 'diddemo.views.hendler403'
+# handler404 = 'diddemo.views.hendler404'
+# handler500 = 'diddemo.views.hendler500'
+
+
+#################################################
+
+
 urlpatterns = [
+    # path("django_admin/", admin.site.urls),               # youtube
     path("admin/", admin.site.urls),
+    # path("", include('main.urls', namespace='main')),     # youtube
     path("", include("product.urls")),
     path("order/", include("product.urls")),
     path("user/", include("user.urls")),
