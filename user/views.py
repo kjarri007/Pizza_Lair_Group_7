@@ -45,7 +45,7 @@ def profile(request):
     else:
         form = ProfileForm(instance=user_profile)
     context = {"form": form}
-    return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
+    return render(request, "user/profile.html", context=context)
 
 
 def add_to_cart(request, product_id):
