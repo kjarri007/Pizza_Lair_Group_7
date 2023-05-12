@@ -42,6 +42,9 @@ def profile(request):
             user_profile.user = request.user
             user_profile.save()
             return redirect("user_profile")
+    else:
+        form = ProfileForm(instance=user_profile)
+    context = {"form": form}
     return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
 
 

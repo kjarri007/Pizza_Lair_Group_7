@@ -1,4 +1,4 @@
-from django.forms import ModelForm, widgets
+from django.forms import ModelForm, widgets, ValidationError
 
 from user.models import Profile
 
@@ -55,3 +55,47 @@ class ProfileForm(ModelForm):
                 'placeholder': 'Your postal code...'
             })
         }
+
+
+
+    def clean_full_name(self):
+        full_name = self.cleaned_data["full_name"]
+        if not all(char.isalpha() or char.isspace() for char in full_name):
+            raise ValidationError("You are not Elon Musk's kid!!")
+        if not len(full_name) > 3:
+            raise ValidationError("You can't possibly be called that...", "Please enter a valid full name.")
+        return full_name
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data["phone_number"]
+        if not len(str(phone_number)) == 7:
+            raise ValidationError("A phone number must be exactly 7 digits long.")
+        return phone_number
+
+    def clean_street_name(self):
+        street_name = self.cleaned_data["street_name"]
+        if not all(char.isalpha() or char.isspace() for char in street_name):
+            raise ValidationError("Street name should only contain letters and spaces.")
+        return street_name
+
+    def clean_house_number(self):
+        house_number = self.cleaned_data["house_number"]
+        if not len(str(house_number)) > 1:
+            raise ValidationError("Please enter a valid house number.")
+        elif not len(str(house_number)) < 4:
+            raise ValidationError("Please enter a valid house number.")
+        elif not str(house_number)[0].isdigit():
+            raise ValidationError("Please enter a valid house number.")
+        return house_number
+
+    def clean_city(self):
+        city = self.cleaned_data["city"]
+        if not all(char.isalpha() or char.isspace() for char in city):
+            raise ValidationError("City name should only contain letters and spaces.")
+        return city
+
+    def clean_postal_code(self):
+        postal_code = self.cleaned_data["postal_code"]
+        if not len(str(postal_code)) == 3:
+            raise ValidationError("Please enter a valid postal code.")
+        return postal_code
