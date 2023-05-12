@@ -22,9 +22,9 @@
                     <tbody class="item-row-start" >
                         <tr>
                             <td class="p-4">
-                                <div class="media  product_name" >
+                                <div class="pro-img-details d-flex justify-content-around">
                                     {% for pizzaimg in selected_pizza.productimg_set.all %}
-                                        <img src="{{ pizzaimg.image }}" class="img-fluid rounded-start" alt="pizza detail" style="height: 400px">
+                                        <img style="height:12rem; width: 10rem" src="{{ pizzaimg.image }}" class="img-fluid rounded-start" alt="pizza detail" >
                                     {% endfor %}
                                 </div>
                             </td>
@@ -38,10 +38,10 @@
                                 </ul>
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
-            </div><!-- / Shopping cart table -->
+            </div>
+            <!-- / Shopping cart table -->
             <div class="card mb-5">
                 <div class="card-body p-4">
                     <div class="float-end">
@@ -53,8 +53,9 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <label class="add_to_cart_btn">
-                    <a href="{% url "add_to_cart" selected_pizza.id %}" class="main_btn">Add to cart</a>
+                <label class=" add_to_cart_btn">
+                    <a href="{% url "pizza_index" %}" class="btn main_btn">Back to menu</a>
+                    <a href="{% url "add_to_cart" selected_pizza.id %}" class="btn main_btn">Add to cart</a>
                 </label>
             </div>
         </div>
