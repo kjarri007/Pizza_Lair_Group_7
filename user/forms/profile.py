@@ -1,6 +1,14 @@
+from django import forms
 from django.forms import ModelForm, widgets
 
 from user.models import Profile
+
+class ProfileImageForm(forms.ModelForm):
+    profile_image = forms.ImageField(label="Profile image")
+
+    class Meta:
+        model = Profile
+        fields = ('profile_image' )
 
 
 class ProfileForm(ModelForm):

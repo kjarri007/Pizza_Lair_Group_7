@@ -7,7 +7,7 @@ from product.models import Product
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.CharField(max_length=9999)
+    profile_image = models.ImageField(null=True, blank=True, upload_to="images/")
     full_name = models.CharField(max_length=50)
     phone_number = models.IntegerField()
     street_name = models.CharField(max_length=50)

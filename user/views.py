@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from user.forms.profile import ProfileForm
+from user.forms.profile import ProfileForm, ProfileImageForm
 from user.models import Profile, CartItem, Cart
 from product.models import Product
 from django.dispatch import receiver
@@ -44,6 +44,11 @@ def profile(request):
             return redirect("user_profile")
     return render(request, "user/profile.html", context={"form": ProfileForm(instance=user_profile)})
 
+
+def update_user(request):
+    if request.user.is_authenticated:
+        current_user = user.objects.get(id=request.user.id)
+        form = SignUpForm(request.POST or None, instance=current_user
 
 def add_to_cart(request, product_id):
     selected_product = get_object_or_404(Product, pk=product_id)
