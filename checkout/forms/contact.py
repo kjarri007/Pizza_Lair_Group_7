@@ -22,7 +22,8 @@ class ContactInfoForm(ModelForm):
             "street_name": "Street name",
             "house_number": "House Number",
             "city": "City",
-            "postal_code": "Postal code"
+            "postal_code": "Postal code",
+            "country": "Country"
         }
 
         widgets = {
@@ -49,6 +50,9 @@ class ContactInfoForm(ModelForm):
             "postal_code": widgets.TextInput(attrs={
                 'class': 'form-control mb-3',
                 'placeholder': 'Enter your postal code...'
+            }),
+            "country": widgets.Select(attrs={
+                'class': 'form-control mb-3',
             })
         }
 

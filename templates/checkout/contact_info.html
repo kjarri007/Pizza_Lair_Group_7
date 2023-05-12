@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class=" d-flex">
-                    <div class="col-md-6" style="margin-right: 1rem">
+                    <div class="col-md-3" style="margin-right: 1rem">
                         {{ form.city.label }}
                         {{ form.city }}
                             {% if form.city.errors %}
@@ -58,7 +58,7 @@
                                 {% endfor %}
                             {% endif %}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" style="margin-right: 1rem">
                         {{ form.postal_code.label }}
                         {{ form.postal_code }}
                             {% if form.postal_code.errors %}
@@ -70,11 +70,6 @@
                     <div class="col-md-3">
                         {{ form.country.label }}
                         {{ form.country }}
-                         {% if form.country.errors %}
-                            {% for error in form.countr.errors %}
-                                <p style="color: #ff0000;font-size: 0.8rem;width: fit-content;padding: 2px">{{ error }}</p>
-                            {% endfor %}
-                        {% endif %}
                     </div>
                 </div>
                     <div class="d-flex justify-content-end" style="margin-bottom: 10px">
