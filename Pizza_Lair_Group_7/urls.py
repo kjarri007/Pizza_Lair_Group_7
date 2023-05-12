@@ -42,10 +42,10 @@ from django.urls import path, include
 # admin_site.register(TOTPDevice)
 # admin_site.register(main.Media, MediaAdmin)
 #
-# handler400 = 'diddemo.views.hendler400'
-# handler403 = 'diddemo.views.hendler403'
-# handler404 = 'diddemo.views.hendler404'
-# handler500 = 'diddemo.views.hendler500'
+# handler400 = 'diddemo.views.handler400'
+# handler403 = 'diddemo.views.handler403'
+# handler404 = 'diddemo.views.handler404'
+# handler500 = 'diddemo.views.handler500'
 
 
 #################################################
