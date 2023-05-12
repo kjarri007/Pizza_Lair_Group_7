@@ -15,6 +15,7 @@ class ProfileForm(ModelForm):
             "house_number",
             "city",
             "postal_code",
+            "country"
         ]
 
         labels = {
@@ -23,7 +24,8 @@ class ProfileForm(ModelForm):
             "street_name": "Street name",
             "house_number": "House Number",
             "city": "City",
-            "postal_code": "Postal code"
+            "postal_code": "Postal code",
+            "country": "Country"
         }
 
         widgets = {
@@ -53,6 +55,9 @@ class ProfileForm(ModelForm):
             "postal_code": widgets.TextInput(attrs={
                 'class': 'form-control mb-3',
                 'placeholder': 'Your postal code...'
+            }),
+            "country": widgets.Select(attrs={
+                'class': "form-control mb-3"
             })
         }
 

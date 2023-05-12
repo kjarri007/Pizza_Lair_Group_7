@@ -5,7 +5,7 @@ from checkout.models import ContactInfo
 class ContactInfoForm(ModelForm):
     class Meta:
         model = ContactInfo
-        exclude = ["id"]
+        exclude = ["id", "user"]
         fields = [
             "full_name",
             "phone_number",
@@ -13,6 +13,7 @@ class ContactInfoForm(ModelForm):
             "house_number",
             "city",
             "postal_code",
+            "country"
         ]
 
         labels = {

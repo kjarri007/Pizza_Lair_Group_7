@@ -7,7 +7,7 @@ from django.utils import timezone
 class PaymentDetailsForm(ModelForm):
     class Meta:
         model = PaymentDetails
-        exclude = ["id"]
+        exclude = ["id", "user"]
         fields = [
             "card_holder",
             "card_number",

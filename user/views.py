@@ -33,7 +33,6 @@ def register(request):
 
 
 def profile(request):
-    # user_profile = get_object_or_404(Profile, pk=request.user)
     user_profile = Profile.objects.filter(user=request.user).first()
     if request.method == "POST":
         form = ProfileForm(instance=user_profile, data=request.POST)
